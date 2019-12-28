@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "Launcher",
+            "projectName": "UberDriverSim_7af68c1c"
+        }
+    ]
+}

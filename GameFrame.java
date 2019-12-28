@@ -7,8 +7,8 @@ public class GameFrame {
     private static Canvas canvas;
 
     private String title;
-    private final int WIDTH = 440;
-    private final int HEIGHT = 640;
+    private final int WIDTH = 880;
+    private final int HEIGHT = 1280;
 
     public GameFrame(String title) {
         this.title = title;
