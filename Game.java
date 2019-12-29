@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import graphics.*;
+import input.MouseManager;
 
 public class Game implements Runnable {
 
@@ -16,19 +17,29 @@ public class Game implements Runnable {
 
     // States
     private GameStateManager gsm;
-    private State gameState, menuState;
+    private State gameState, menuState, pickMapState;
+
+    // Input
+    private MouseManager mouseManager;
 
     public Game() {
+        mouseManager = new MouseManager();
     }
 
     private void init() {
         gameFrame = new GameFrame(title);
+        gameFrame.getFrame().addMouseListener(mouseManager);
+        gameFrame.getFrame().addMouseMotionListener(mouseManager);
+        gameFrame.getCanvas().addMouseListener(mouseManager);
+        gameFrame.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
         gsm = new GameStateManager();
-        gameState = new GameState();
-        menuState = new MenuState();
-        gsm.setState(menuState);
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
+        pickMapState = new PickMapState(this);
+
+        gsm.setState(gameState);
     }
  
     /**
@@ -71,6 +82,10 @@ public class Game implements Runnable {
 
         stop();
 
+    }
+
+    public MouseManager getMouseManager() {
+        return mouseManager;
     }
 
     public synchronized void start() {

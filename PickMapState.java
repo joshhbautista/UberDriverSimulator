@@ -1,12 +1,13 @@
 import java.awt.Graphics;
-import graphics.Assets;
 
-public class MenuState extends State {
+public class PickMapState extends State {
 
 
-    public MenuState(Game game) {
+    public PickMapState(Game game) {
         super(game);
     }
+
+
 
 
     @Override
@@ -16,8 +17,8 @@ public class MenuState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.menu, 0, 0, null);
 
     }
+
 
 }

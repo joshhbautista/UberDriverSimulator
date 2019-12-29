@@ -34,4 +34,8 @@ public class GameFrame {
     public Canvas getCanvas() {
         return canvas;
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }
