@@ -8,19 +8,24 @@ import graphics.*;
  */
 public class Assets {
 
-    private static final int width = 580, height = 580;
+    private static final int width = 32, height = 32;
 
     public static BufferedImage car, townMap, menu, customer;
+    public static BufferedImage[] startButtons;
 
     public static void init() {
-        SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("resources\\townmap.png"));
+        SpriteSheet tutSheet = new SpriteSheet(ImageLoader.loadImage("resources\\tutsheet.png"));
         menu = ImageLoader.loadImage("resources\\Backgrounds\\menubg.gif");
         car = ImageLoader.loadImage("resources\\Sprites\\Player\\playersprites.gif");
         customer = ImageLoader.loadImage("resources\\Sprites\\Enemies\\arachnik.gif");
 
 
         // Load all assets from spritesheet here
-        townMap = sheet.crop(0, 0, width, height);
+        startButtons = new BufferedImage[2];
+        startButtons[0] = tutSheet.crop(width * 6, height * 4, 64, 32);
+        startButtons[1] = tutSheet.crop(width * 6, height * 5, 64, 32);
+
+
         //menu = sheet.crop(0, 0, width, height);
     }
 }

@@ -119,4 +119,8 @@ public class Game implements Runnable {
             e.printStackTrace();
         }
     }
+
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
 }
