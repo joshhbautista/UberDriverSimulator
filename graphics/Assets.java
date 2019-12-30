@@ -1,5 +1,7 @@
 package graphics;
+
 import java.awt.image.*;
+import graphics.*;
 
 /**
  * Initalizes all assets
@@ -12,7 +14,7 @@ public class Assets {
 
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("resources\\townmap.png"));
-        menu = ImageLoader.loadImage("resources\\Backgrounds\\grassbg1.gif");
+        menu = ImageLoader.loadImage("resources\\Backgrounds\\menubg.gif");
         car = ImageLoader.loadImage("resources\\Sprites\\Player\\playersprites.gif");
         customer = ImageLoader.loadImage("resources\\Sprites\\Enemies\\arachnik.gif");
 

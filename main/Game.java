@@ -1,8 +1,11 @@
+package main;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import graphics.*;
 import input.MouseManager;
+import states.*;
 
 public class Game implements Runnable {
 
@@ -17,10 +20,12 @@ public class Game implements Runnable {
 
     // States
     private GameStateManager gsm;
-    private State gameState, menuState, pickMapState;
 
     // Input
     private MouseManager mouseManager;
+
+    // Handler
+    private Handler handler;
 
     public Game() {
         mouseManager = new MouseManager();
@@ -34,12 +39,10 @@ public class Game implements Runnable {
         gameFrame.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
-        gsm = new GameStateManager();
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
-        pickMapState = new PickMapState(this);
+        handler = new Handler(this);
 
-        gsm.setState(gameState);
+        gsm = new GameStateManager(handler);
+        gsm.setState(GameStateManager.MENUSTATE);
     }
  
     /**
@@ -97,6 +100,10 @@ public class Game implements Runnable {
         thread = new Thread(this);
         thread.start();
 
+    }
+
+    public GameStateManager getGameStateManager() {
+        return gsm;
     }
 
     public synchronized void stop() {

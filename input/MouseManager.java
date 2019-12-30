@@ -1,6 +1,7 @@
 package input;
 
 import java.awt.event.*;
+import main.*;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
@@ -8,7 +9,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     private int mouseX, mouseY;
 
     public MouseManager() {
-
     }
 
     /**

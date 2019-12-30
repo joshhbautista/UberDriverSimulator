@@ -4,6 +4,20 @@
             "type": "java",
             "name": "CodeLens (Launch) - Launcher",
             "request": "launch",
+            "mainClass": "main.Launcher",
+            "projectName": "UberDriverSim_7af68c1c"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "game.Launcher",
+            "projectName": "UberDriverSim_7af68c1c"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
             "mainClass": "Launcher",
             "projectName": "UberDriverSim_7af68c1c"
         }

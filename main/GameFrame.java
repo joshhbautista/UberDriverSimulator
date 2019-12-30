@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.JFrame;
 import java.awt.*;
 
@@ -7,8 +9,8 @@ public class GameFrame {
     private static Canvas canvas;
 
     private String title;
-    private final int WIDTH = 880;
-    private final int HEIGHT = 1280;
+    private final int WIDTH = 800;
+    private final int HEIGHT = 800;
 
     public GameFrame(String title) {
         this.title = title;
