@@ -2,6 +2,7 @@ package main;
 
 import input.*;
 import states.GameStateManager;
+import javax.swing.*;
 
 public class Handler {
 
@@ -17,6 +18,10 @@ public class Handler {
     
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public JFrame getFrame() {
+        return game.getGameFrame().getFrame();
     }
 
     public MouseManager getMouseManager() {

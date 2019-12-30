@@ -31,6 +31,8 @@ public class MenuState extends State {
 
         menuFrame.pack();
         */
+        menuLabel = new JLabel("Menu");
+        menuLabel.setSize(200,200);
     }
 
 
@@ -44,7 +46,11 @@ public class MenuState extends State {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(Assets.menu, 0, 0, 800, 800, null);
-        //menuFrame.dispose();
+        
+        //menuFrame.removeAll();
+        handler.getFrame().getContentPane().add(menuLabel);
+        handler.getFrame().repaint();
+        handler.getFrame().revalidate();
     }
 
 
