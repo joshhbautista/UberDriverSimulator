@@ -25,7 +25,6 @@ public class Assets {
         startButtons[0] = tutSheet.crop(width * 6, height * 4, 64, 32);
         startButtons[1] = tutSheet.crop(width * 6, height * 5, 64, 32);
 
-
         //menu = sheet.crop(0, 0, width, height);
     }
 }
