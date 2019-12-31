@@ -1,6 +1,6 @@
 package states;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.Dimension;
 
@@ -35,7 +35,7 @@ public class GameState extends State {
     }
 
     @Override
-    public void render(Graphics graphics) {
+    public void render(Graphics2D graphics) {
         graphics.fillRect(0, 0, 100, 100);
         //car.render(graphics);
         //customer.render(graphics);

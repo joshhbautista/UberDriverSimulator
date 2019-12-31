@@ -1,6 +1,6 @@
 package states;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -87,7 +87,7 @@ public class MenuState extends State implements ActionListener {
     }
 
     @Override
-    public void render(Graphics graphics) {
+    public void render(Graphics2D graphics) {
     }
 
     @Override

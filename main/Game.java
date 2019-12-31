@@ -53,7 +53,7 @@ public class Game {
                 gameFrame.getCanvas().createBufferStrategy(3);
                 return;
             }
-            graphics = bufferStrategy.getDrawGraphics();
+            Graphics2D graphics = (Graphics2D) bufferStrategy.getDrawGraphics();
 
             // Adding resources to graphics object
             if (gsm.getState() != null) {

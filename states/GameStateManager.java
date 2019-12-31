@@ -40,7 +40,7 @@ public class GameStateManager {
         currentState.update();
     }
 
-    public void render(Graphics graphics) {
+    public void render(Graphics2D graphics) {
         currentState.render(graphics);
     }
 

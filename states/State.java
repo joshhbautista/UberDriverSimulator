@@ -1,6 +1,6 @@
 package states;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import main.*;
 
 public abstract class State {
@@ -13,7 +13,7 @@ public abstract class State {
 
     public abstract void update();
 
-    public abstract void render(Graphics graphics);
+    public abstract void render(Graphics2D graphics);
 
     public Game getGame() {
         return game;

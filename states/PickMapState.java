@@ -1,6 +1,6 @@
 package states;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import main.*;
 
 public class PickMapState extends State {
@@ -19,7 +19,7 @@ public class PickMapState extends State {
     }
 
     @Override
-    public void render(Graphics graphics) {
+    public void render(Graphics2D graphics) {
 
     }
 
