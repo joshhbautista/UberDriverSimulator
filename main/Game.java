@@ -9,6 +9,8 @@ import input.MouseManager;
 public class Game {
 
     public Game() {
+        Assets.init();
+
         new Menu();
 
         /*
@@ -17,7 +19,16 @@ public class Game {
         gameFrame.getCanvas().addMouseListener(mouseManager);
         gameFrame.getCanvas().addMouseMotionListener(mouseManager);
         */
-        Assets.init();
+        
     }
+
+    /*
+    TODO ask about dimensions - what to do to cover all users
+    proper GAPP - proper game dev vs GAPP
+    how will we be marked (see above)
+    ask - static is okay??
+    should sounds files be treated as constant
+
+    */
     
 }

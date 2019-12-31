@@ -28,7 +28,7 @@ public class Customer extends Entity {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.customer, (int) x, (int) y, width, height, null);
+        graphics.drawImage(Assets.customers[0], (int) x, (int) y, width, height, null);
     }
 
     

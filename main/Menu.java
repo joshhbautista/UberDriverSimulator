@@ -26,15 +26,13 @@ public class Menu extends JFrame implements ActionListener {
     JLabel title;
     JLabel background;
 
-    private AudioPlayer backgroundMusic;
-
     public Menu() {
         super("Uber Driver Simulator");
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(1200, 1000));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        background = new JLabel(new ImageIcon("resources\\townmap.PNG"));
-        background.setSize(new Dimension(800, 800));
+        background = new JLabel(new ImageIcon("resources\\townmap.jpg"));
+        background.setSize(new Dimension(1200, 1000));
         setContentPane(background);
         setLayout(new GridBagLayout());
 
@@ -46,14 +44,15 @@ public class Menu extends JFrame implements ActionListener {
 
         playButton = new JButton();
         quitButton = new JButton();
-        title = new JLabel("Uber Driving Simulator");
+        title = new JLabel("Uber Driver Simulator");
 
-        playButton.setIcon(new ImageIcon("resources\\Menu\\playbutton.png"));
+        playButton.setIcon(Assets.playButton);
         playButton.setBorderPainted(false);
         playButton.setBorder(null);
-        quitButton.setIcon(new ImageIcon("resources\\Menu\\quitbutton.png"));
+        quitButton.setIcon(Assets.quitButton);
         quitButton.setBorderPainted(false);
         quitButton.setBorder(null);
+
         title.setFont(buttonFont);
 
         playButton.setActionCommand("play");
@@ -69,8 +68,7 @@ public class Menu extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        backgroundMusic = new AudioPlayer("resources\\Music\\level1-1.wav");
-        backgroundMusic.play();
+        Assets.menuBgMusic.play();
     }
 
 
@@ -78,11 +76,12 @@ public class Menu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play") {
             new GameFrame(new GamePanel());
+            Assets.menuBgMusic.stop();
             dispose();
             
         }
         if (e.getActionCommand() == "quit") {
-            backgroundMusic.stop();
+            Assets.menuBgMusic.stop();
             dispose();
         }
     }
