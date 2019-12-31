@@ -25,9 +25,11 @@ public class Menu extends JFrame implements ActionListener {
     JButton quitButton;
     JLabel title;
     JLabel background;
+    Game game;
 
-    public Menu() {
+    public Menu(Game game) {
         super("Uber Driver Simulator");
+        this.game = game;
         setPreferredSize(new Dimension(1200, 1000));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -75,13 +77,14 @@ public class Menu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play") {
-            new GameFrame(new GamePanel());
+            game.setState("game");
             Assets.menuBgMusic.stop();
             dispose();
             
         }
         if (e.getActionCommand() == "quit") {
             Assets.menuBgMusic.stop();
+            game.stop();
             dispose();
         }
     }
