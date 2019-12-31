@@ -3,13 +3,14 @@ package entities;
 import java.awt.Graphics;
 
 import graphics.Assets;
+import main.Hud;
 
 public class Customer extends Entity {
 
     private float fare;
 
     public Customer(float x, float y) {
-        super(x, y, 300, 300);
+        super(x, y, 60, 100);
         fare = 0; // TODO implement random fare method
     }
 
@@ -22,7 +23,7 @@ public class Customer extends Entity {
     }
 
     @Override
-    public void update() {
+    public void update(Hud hud) {
         y += 1;
     }
 

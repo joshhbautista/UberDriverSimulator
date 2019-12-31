@@ -1,7 +1,8 @@
 package entities;
 
-
 import java.awt.Graphics;
+
+import main.Hud;
 
 public abstract class Entity {
 
@@ -47,7 +48,7 @@ public abstract class Entity {
         this.height = height;
     }
 
-    public abstract void update();
+    public abstract void update(Hud hud);
     
     public abstract void render(Graphics graphics);
 

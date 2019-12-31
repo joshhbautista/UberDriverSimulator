@@ -17,7 +17,7 @@ public class Assets {
 
     public static BufferedImage car, townMap, menu;
     public static BufferedImage[] customers;
-    public static Icon playButton, quitButton;
+    public static Icon playButton, quitButton, settingsButton;
     public static BufferedImage[] startButtons;
     public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX;
 
@@ -33,6 +33,7 @@ public class Assets {
         // Icons
         playButton = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
         quitButton = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
+        settingsButton = ImageLoader.loadIcon("resources\\HUD\\settingsbutton.png");
 
         // SFX
         menuBgMusic = new AudioPlayer("resources\\Music\\menubg.wav");

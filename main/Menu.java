@@ -30,11 +30,11 @@ public class Menu extends JFrame implements ActionListener {
     public Menu(Game game) {
         super("Uber Driver Simulator");
         this.game = game;
-        setPreferredSize(new Dimension(1200, 1000));
+        setPreferredSize(new Dimension(1600, 900));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         background = new JLabel(new ImageIcon("resources\\townmap.jpg"));
-        background.setSize(new Dimension(1200, 1000));
+        background.setSize(new Dimension(1600, 900));
         setContentPane(background);
         setLayout(new GridBagLayout());
 

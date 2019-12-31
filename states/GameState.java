@@ -23,7 +23,7 @@ public class GameState extends State {
 
     public void updateFrame() {
         canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(1200, 1000));
+        canvas.setPreferredSize(new Dimension(1600, 900));
         
         getGame().getFrame().add(canvas);
         getGame().getFrame().pack();
@@ -31,7 +31,7 @@ public class GameState extends State {
 
     @Override
     public void update() {
-        car.update();
+;
     }
 
     @Override

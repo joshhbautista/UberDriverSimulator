@@ -16,9 +16,10 @@ public class Game {
     private int FPS = 60;
     private long targetTime = 1000 / FPS;
 
-    private String currentState = null;
+    private String currentState = "";
 
     private GamePanel gamePanel;
+    private Hud hud;
 
     public Game() {
         run();
@@ -28,14 +29,14 @@ public class Game {
         Assets.init();
         start();
 
-        new Menu(this);
+        currentState = "menu";
     }
  
     /**
      * This method is called every frame
      */
     private void update() {
-        gamePanel.update();
+        gamePanel.update(hud);
     }
 
     private void render() {
@@ -52,12 +53,19 @@ public class Game {
         init();
 
         while (running) {
-            System.out.println(""); // why does this only run when I put this???
+            System.out.println(currentState);
+
+            // MENU STATE
+            if (currentState == "menu") {
+                new Menu(this);
+                currentState = "menu playing";
+            }
 
             // GAME STATE
             if (currentState == "game") {
                 gamePanel = new GamePanel();
-                new GameFrame(gamePanel);
+                hud = new Hud();
+                new GameFrame(gamePanel, hud);
                 currentState = "game playing";
             }
 
@@ -121,6 +129,7 @@ public class Game {
     how will we be marked (see above)
     ask - static is okay??
     should sounds files be treated as constant
+    should car class be PlayerCar or Player or Car?
 
     */
     
