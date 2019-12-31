@@ -29,6 +29,8 @@ public class Game {
         gameFrame = new GameFrame(title);
         Assets.init();
 
+        start();
+
         gsm = new GameStateManager(this);
         gsm.setState(GameStateManager.MENUSTATE);
     }
@@ -44,13 +46,13 @@ public class Game {
     }
 
     private void render() {
-        graphics = gameFrame.getFrame().getGraphics();
+        graphics = gameFrame.getCanvas().getGraphics();
 
         // Adding resources to graphics object
         if (gsm.getState() != null) {
             gsm.getState().render(graphics);
         }
-    
+
         // End adding resources
         graphics.dispose();
     }

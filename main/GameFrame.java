@@ -6,6 +6,7 @@ import java.awt.*;
 public class GameFrame {
 
     private static JFrame frame;
+    private static Canvas canvas;
 
     private String title;
     private final int WIDTH = 1200;
@@ -24,11 +25,17 @@ public class GameFrame {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
-        frame.pack();
+        canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(width, height));
+        
+        frame.add(canvas);
 
         frame.setVisible(true);
     }
 
+    public Canvas getCanvas() {
+        return canvas;
+    }
 
     public JFrame getFrame() {
         return frame;

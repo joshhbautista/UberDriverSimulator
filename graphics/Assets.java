@@ -1,29 +1,46 @@
 package graphics;
 
 import java.awt.image.*;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
+import audio.AudioPlayer;
 import graphics.*;
 
 /**
- * Initalizes all assets
+ * Initalizes assets
  */
 public class Assets {
 
     private static final int width = 32, height = 32;
 
-    public static BufferedImage car, townMap, menu, customer;
+    public static BufferedImage car, townMap, menu;
+    public static BufferedImage[] customers;
+    public static Icon playButton, quitButton;
     public static BufferedImage[] startButtons;
+    public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX;
 
     public static void init() {
+        // Images
         SpriteSheet tutSheet = new SpriteSheet(ImageLoader.loadImage("resources\\tutsheet.png"));
-        menu = ImageLoader.loadImage("resources\\Backgrounds\\menubg.gif");
-        car = ImageLoader.loadImage("resources\\Sprites\\Player\\playersprites.gif");
-        customer = ImageLoader.loadImage("resources\\Sprites\\Enemies\\arachnik.gif");
+        car = ImageLoader.loadImage("resources\\Vehicles\\Audi.png");
+        townMap = ImageLoader.loadImage("resources\\townmap.jpg");
+
+        customers = new BufferedImage[1];
+        customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
+
+        // Icons
+        playButton = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
+        quitButton = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
+
+        // SFX
+        menuBgMusic = new AudioPlayer("resources\\Music\\menubg.wav");
+        gameBgMusic = new AudioPlayer("resources\\Music\\gamebg.wav");
+        carDoorsSFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
 
 
         // Load all assets from spritesheet here
-        startButtons = new BufferedImage[2];
-        startButtons[0] = tutSheet.crop(width * 6, height * 4, 64, 32);
-        startButtons[1] = tutSheet.crop(width * 6, height * 5, 64, 32);
 
 
         //menu = sheet.crop(0, 0, width, height);

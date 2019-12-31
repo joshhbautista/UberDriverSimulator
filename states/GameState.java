@@ -12,8 +12,13 @@ public class GameState extends State {
 
     public GameState(Game game) {
         super(game);
+
         car = new Car(100, 100);
         customer = new Customer(300, 300);
+    }
+
+    public void updateFrame() {
+
     }
 
     @Override
@@ -23,9 +28,9 @@ public class GameState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.townMap, 0, 0, 800, 800, null);
-        car.render(graphics);
-        customer.render(graphics);
+        graphics.drawImage(Assets.car, 0, 0, null);
+        //car.render(graphics);
+        //customer.render(graphics);
     }
 
 }
