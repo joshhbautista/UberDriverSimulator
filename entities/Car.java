@@ -13,7 +13,8 @@ public class Car extends Entity {
 
     @Override
     public void update() {
-
+        x += 1;
+        y += 1;
     }
 
     @Override

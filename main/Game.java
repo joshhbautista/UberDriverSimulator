@@ -7,76 +7,87 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 import graphics.*;
-import states.*;
 
 public class Game {
 
-    private GameFrame gameFrame;
-    private final String title = "Uber Driver Simulator";
+    private JFrame gameFrame;
 
     private boolean running = false;
+    private int FPS = 60;
+    private long targetTime = 1000 / FPS;
 
-    private BufferStrategy bufferStrategy;
+    private String currentState = null;
 
-    private Graphics graphics;
-    // States
-    private GameStateManager gsm;
+    private GamePanel gamePanel;
 
     public Game() {
         run();
     }
 
     private void init() {
-        gameFrame = new GameFrame(title);
         Assets.init();
-
         start();
 
-        gsm = new GameStateManager(this);
-        gsm.setState(GameStateManager.MENUSTATE);
+        new Menu(this);
     }
  
     /**
      * This method is called every frame
      */
     private void update() {
-        if (gsm.getState() != null) {
-            gsm.getState().update();
-        }
-
+        gamePanel.update();
     }
 
     private void render() {
-        if (gsm.getState() != gsm.menuState) {
-            bufferStrategy = gameFrame.getCanvas().getBufferStrategy();
-            if (bufferStrategy == null) {
-                gameFrame.getCanvas().createBufferStrategy(3);
-                return;
-            }
-            Graphics2D graphics = (Graphics2D) bufferStrategy.getDrawGraphics();
-
-            // Adding resources to graphics object
-            if (gsm.getState() != null) {
-                gsm.getState().render(graphics);
-            }
-
-            // End adding resources
-            bufferStrategy.show();
-            graphics.dispose();
-        }
+        gamePanel.repaint();
     }
     
     public void run() {
 
+        long start;
+        long elapsed;
+        long wait;
+
+        // -----------GAME LOOP------------ //
         init();
 
         while (running) {
-            update();
-            render();
+            System.out.println(""); // why does this only run when I put this???
+
+            // GAME STATE
+            if (currentState == "game") {
+                gamePanel = new GamePanel();
+                new GameFrame(gamePanel);
+                currentState = "game playing";
+            }
+
+            // PLAY AGAIN STATE
+            if (currentState == "play again") {
+
+            }
+
+            // GAME PLAYING STATE
+            if (currentState == "game playing") {
+                start = System.nanoTime();
+
+                update();
+                render();
+    
+                elapsed = System.nanoTime() - start;
+    
+                wait = targetTime - elapsed / 1000000;
+    
+                try {
+                    Thread.sleep(wait);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } 
+            }
         }
+    }
 
-        stop();
-
+    public void setState(String state) {
+        currentState = state;
     }
 
     public void start() {
@@ -85,10 +96,6 @@ public class Game {
         }
         
         running = true;
-    }
-
-    public GameStateManager getGameStateManager() {
-        return gsm;
     }
 
     public void stop() {
@@ -100,10 +107,20 @@ public class Game {
     }
 
     public JFrame getFrame() {
-        return gameFrame.getFrame();
-    }
-
-    public GameFrame getGameFrame() {
         return gameFrame;
     }
+
+
 }
+
+    
+
+    /*
+    TODO ask about dimensions - what to do to cover all users
+    proper GAPP - proper game dev vs GAPP
+    how will we be marked (see above)
+    ask - static is okay??
+    should sounds files be treated as constant
+
+    */
+    
