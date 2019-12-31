@@ -3,11 +3,12 @@ package states;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import main.*;
+import java.awt.Graphics;
 
 public class GameStateManager {
 
     private State currentState = null;
-    private State gameState, menuState, pickMapState;
+    public State gameState, menuState, pickMapState;
 
     public static final int MENUSTATE = 0;
     public static final int PICKMAPSTATE = 1;
@@ -35,21 +36,13 @@ public class GameStateManager {
         return currentState;
     }
 
-    /*
     public void update() {
-        gameStates.get(currentState).update();
+        currentState.update();
     }
 
-    public void draw(Graphics graphics) {
-        gameStates.get(currentState).draw();
+    public void render(Graphics graphics) {
+        currentState.render(graphics);
     }
 
-    public void keyPressed(int k) {
-        gameStates.get(currentState).keyPressed(k);
-    }
 
-    public void keyReleased(int k) {
-        gameStates.get(currentState).keyReleased(k);
-    }
-    */
 }

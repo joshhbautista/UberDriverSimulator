@@ -1,6 +1,9 @@
 package states;
 
 import java.awt.Graphics;
+import java.awt.Canvas;
+import java.awt.Dimension;
+
 import graphics.Assets;
 import entities.*;
 import main.*;
@@ -9,6 +12,7 @@ public class GameState extends State {
 
     private Car car;
     private Customer customer;
+    private Canvas canvas;
 
     public GameState(Game game) {
         super(game);
@@ -18,7 +22,11 @@ public class GameState extends State {
     }
 
     public void updateFrame() {
-
+        canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(1200, 1000));
+        
+        getGame().getFrame().add(canvas);
+        getGame().getFrame().pack();
     }
 
     @Override
@@ -28,7 +36,7 @@ public class GameState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.car, 0, 0, null);
+        graphics.fillRect(0, 0, 100, 100);
         //car.render(graphics);
         //customer.render(graphics);
     }

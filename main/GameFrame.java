@@ -25,11 +25,6 @@ public class GameFrame {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width, height));
-        
-        frame.add(canvas);
-
         frame.setVisible(true);
     }
 

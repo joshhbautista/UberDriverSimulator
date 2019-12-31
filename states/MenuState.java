@@ -35,11 +35,10 @@ public class MenuState extends State implements ActionListener {
         menuPanel = new JPanel(new GridBagLayout());
         menuPanel.setOpaque(false);
 
-        getGame().getGameFrame().getCanvas().setVisible(false);
         getGame().getFrame().setLayout(new GridBagLayout());
         
         background = new JLabel(new ImageIcon("resources\\townmap.jpg"));
-        background.setPreferredSize(new Dimension(1200, 1000));
+        background.setPreferredSize(new Dimension(1150, 950));
         getGame().getFrame().setContentPane(background);
         getGame().getFrame().setLayout(new GridBagLayout());
 
@@ -70,6 +69,7 @@ public class MenuState extends State implements ActionListener {
         menuPanel.add(title, c); 
         menuPanel.add(playButton, c);
         menuPanel.add(quitButton, c);
+        //getGame().getGameFrame().getCanvas().setVisible(false);
         
         getGame().getFrame().add(menuPanel);
         getGame().getFrame().pack();
@@ -88,7 +88,6 @@ public class MenuState extends State implements ActionListener {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.car, 0, 0, null);
     }
 
     @Override
@@ -97,7 +96,6 @@ public class MenuState extends State implements ActionListener {
             Assets.menuBgMusic.stop();
             menuPanel.setVisible(false);
             background.setVisible(false);
-            getGame().getGameFrame().getCanvas().setVisible(true);
             getGame().getFrame().revalidate(); 
             getGame().getFrame().repaint();
             getGame().getGameStateManager().setState(GameStateManager.GAMESTATE);

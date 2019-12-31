@@ -16,8 +16,9 @@ public class Game {
 
     private boolean running = false;
 
-    private Graphics graphics;
+    private BufferStrategy bufferStrategy;
 
+    private Graphics graphics;
     // States
     private GameStateManager gsm;
 
@@ -46,15 +47,23 @@ public class Game {
     }
 
     private void render() {
-        graphics = gameFrame.getCanvas().getGraphics();
+        if (gsm.getState() != gsm.menuState) {
+            bufferStrategy = gameFrame.getCanvas().getBufferStrategy();
+            if (bufferStrategy == null) {
+                gameFrame.getCanvas().createBufferStrategy(3);
+                return;
+            }
+            graphics = bufferStrategy.getDrawGraphics();
 
-        // Adding resources to graphics object
-        if (gsm.getState() != null) {
-            gsm.getState().render(graphics);
+            // Adding resources to graphics object
+            if (gsm.getState() != null) {
+                gsm.getState().render(graphics);
+            }
+
+            // End adding resources
+            bufferStrategy.show();
+            graphics.dispose();
         }
-
-        // End adding resources
-        graphics.dispose();
     }
     
     public void run() {
