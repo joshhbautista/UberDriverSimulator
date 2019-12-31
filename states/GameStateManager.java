@@ -13,10 +13,10 @@ public class GameStateManager {
     public static final int PICKMAPSTATE = 1;
     public static final int GAMESTATE = 2;
 
-    public GameStateManager(Handler handler) {
-        gameState = new GameState(handler);
-        menuState = new MenuState(handler);
-        pickMapState = new PickMapState(handler);
+    public GameStateManager(Game game) {
+        menuState = new MenuState(game);
+        gameState = new GameState(game);
+        pickMapState = new PickMapState(game);
     }
 
     public void setState(int state) {

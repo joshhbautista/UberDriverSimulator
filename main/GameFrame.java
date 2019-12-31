@@ -6,11 +6,10 @@ import java.awt.*;
 public class GameFrame {
 
     private static JFrame frame;
-    private static Canvas canvas;
 
     private String title;
-    private final int WIDTH = 800;
-    private final int HEIGHT = 800;
+    private final int WIDTH = 1200;
+    private final int HEIGHT = 1000;
 
     public GameFrame(String title) {
         this.title = title;
@@ -24,20 +23,15 @@ public class GameFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width, height));
-
-        frame.add(canvas);
         frame.pack();
+
+        frame.setVisible(true);
     }
 
-    public Canvas getCanvas() {
-        return canvas;
-    }
 
     public JFrame getFrame() {
         return frame;
     }
+
 }

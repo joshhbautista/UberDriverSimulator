@@ -10,8 +10,8 @@ public class GameState extends State {
     private Car car;
     private Customer customer;
 
-    public GameState(Handler handler) {
-        super(handler);
+    public GameState(Game game) {
+        super(game);
         car = new Car(100, 100);
         customer = new Customer(300, 300);
     }

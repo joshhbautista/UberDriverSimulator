@@ -6,8 +6,8 @@ import main.*;
 public class PickMapState extends State {
 
 
-    public PickMapState(Handler handler) {
-        super(handler);
+    public PickMapState(Game game) {
+        super(game);
     }
 
 
