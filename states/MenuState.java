@@ -98,7 +98,7 @@ public class MenuState extends State implements ActionListener {
             background.setVisible(false);
             getGame().getFrame().revalidate(); 
             getGame().getFrame().repaint();
-            getGame().getGameStateManager().setState(GameStateManager.GAMESTATE);
+            //getGame().getGameStateManager().setState(GameStateManager.GAMESTATE);
         }
         if (e.getActionCommand() == "quit") {
             Assets.menuBgMusic.stop();

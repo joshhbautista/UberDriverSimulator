@@ -1,7 +1,8 @@
 package entities;
 
-
 import java.awt.Graphics;
+
+import graphics.Assets;
 
 public class Customer extends Entity {
 
