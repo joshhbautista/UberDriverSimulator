@@ -24,12 +24,15 @@ import javax.swing.SwingUtilities;
 
 import audio.AudioPlayer;
 import entities.Car;
+import entities.Customer;
 import graphics.Assets;
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements MouseListener, MouseMotionListener {
 
     private BufferedImage townMap;
     private Car car;
+    private Customer customer;
 
     public GamePanel() {
         addMouseListener(this);
@@ -39,10 +42,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         Assets.gameBgMusic.play();
         Assets.carDoorsSFX.play();
         car = new Car(100, 100);
+        customer = new Customer(300, 300);
     }
 
     public void update() {
         car.update();
+        customer.update();
     }
 
     @Override
@@ -50,6 +55,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         super.paintComponent(g);
         g.drawImage(townMap, 0, 0, 1200, 1000, null);
         car.render(g);
+        customer.render(g);
     }
 
 

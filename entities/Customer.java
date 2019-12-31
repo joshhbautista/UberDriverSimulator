@@ -23,12 +23,12 @@ public class Customer extends Entity {
 
     @Override
     public void update() {
-
+        y += 1;
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.customers[0], (int) x, (int) y, width, height, null);
+        graphics.drawImage(Assets.customers[0], (int) x, (int) y, super.width, super.height, null);
     }
 
     
