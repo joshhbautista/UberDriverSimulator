@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
 import graphics.Assets;
 import main.Hud;
@@ -26,6 +27,11 @@ public class Car extends Entity {
         hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
         hud.getFuelLeftLabel().setText("Fuel Left: " + fuelLeft + "L");
         hud.getFuelLeftBar().setValue((int) fuelLeft);
+        if (fuelLeft < 5)
+            hud.getFuelLeftBar().setForeground(Color.YELLOW);
+        if (fuelLeft < 2) {
+           hud.getFuelLeftBar().setForeground(Color.RED); 
+        }
     }
 
     @Override

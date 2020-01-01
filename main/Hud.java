@@ -25,6 +25,7 @@ public class Hud extends JPanel {
     private JProgressBar fuelLeftBar;
     private JLabel TBD;
     private JButton settingsButton;
+    private JLabel timeLeft;
 
     public Hud() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -32,14 +33,13 @@ public class Hud extends JPanel {
         setBackground(Color.WHITE);
 
         // -------------- Money Made Label ----------- //
-        moneyMadeLabel = new JLabel("Money Made: ");
+        moneyMadeLabel = new JLabel();
         moneyMadeLabel.setFont(new Font("", Font.BOLD, 30));
         moneyMadeLabel.setSize(new Dimension(100, 50));
-        add(Box.createHorizontalGlue());
         add(moneyMadeLabel);
 
         // -------------- Fuel Left Label --------------- // 
-        fuelLeftLabel = new JLabel("Fuel Left: ");
+        fuelLeftLabel = new JLabel();
         fuelLeftLabel.setFont(new Font("", Font.BOLD, 30));
         fuelLeftLabel.setSize(new Dimension(100, 50));
         add(Box.createHorizontalGlue());
@@ -48,7 +48,16 @@ public class Hud extends JPanel {
         // ---------------------- Fuel Left Bar ----------------- //
         fuelLeftBar = new JProgressBar(0, 10);
         fuelLeftBar.setOrientation(SwingConstants.HORIZONTAL);
+        fuelLeftBar.setBorder(new LineBorder(Color.BLACK, 3));
+        fuelLeftBar.setForeground(Color.GREEN);
         add(fuelLeftBar);
+
+        // ------------------ Work Hours Left ------------------ //
+        timeLeft = new JLabel();
+        timeLeft.setFont(new Font("", Font.BOLD, 30));
+        timeLeft.setSize(new Dimension(100, 50));
+        add(Box.createHorizontalGlue());
+        add(timeLeft);
 
         // --------- Settings Button -------------- //
         settingsButton = new JButton();
@@ -70,5 +79,9 @@ public class Hud extends JPanel {
 
     public JProgressBar getFuelLeftBar() {
         return fuelLeftBar;
+    }
+
+    public JLabel getTimeLeftLabel() {
+        return timeLeft;
     }
 }

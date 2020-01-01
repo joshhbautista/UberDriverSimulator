@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -15,8 +17,10 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
@@ -25,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import audio.AudioPlayer;
 import entities.Car;
@@ -38,10 +43,11 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     private Car car;
     private Customer customer;
 
-    // HUD Objects
-    private JLabel moneyMadeLabel;
-    private JLabel fuelLeftLabel;
-    private JLabel TBD;
+    private Timer timeLeftTimer;
+    private int timeLeftInSecs;
+    private String timeLeftStr;
+
+    private Hud hud;
 
     public GamePanel() {
         addMouseListener(this);
@@ -52,9 +58,22 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         Assets.carDoorsSFX.play();
         car = new Car(100, 100);
         customer = new Customer(300, 300);
+        timeLeftInSecs = 300;
+
+        // Timer
+        timeLeftTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeLeftInSecs--;
+                timeLeftStr = String.format("%d:%02d", timeLeftInSecs / 60, timeLeftInSecs % 60);
+                hud.getTimeLeftLabel().setText("Time Left: " + timeLeftStr);
+            }
+        });
+        timeLeftTimer.start();
     }
 
     public void update(Hud hud) {
+        this.hud = hud;
         car.update(hud);
         customer.update(hud);
     }

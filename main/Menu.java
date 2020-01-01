@@ -53,7 +53,8 @@ public class Menu extends JFrame implements ActionListener {
         quitButton.setBorderPainted(false);
         quitButton.setBorder(null);
 
-        title.setFont(new Font("", Font.BOLD, 50));
+        title.setFont(new Font("", Font.BOLD, 80));
+        title.setForeground(Color.RED);
 
         playButton.setActionCommand("play");
         playButton.addActionListener(this);
