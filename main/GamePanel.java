@@ -10,9 +10,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -37,7 +38,7 @@ import entities.Customer;
 import graphics.Assets;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements MouseListener, MouseMotionListener {
+public class GamePanel extends JPanel implements MouseListener {
 
     private BufferedImage townMap;
     private Car car;
@@ -51,7 +52,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 
     public GamePanel() {
         addMouseListener(this);
-        addMouseMotionListener(this);
+        addKeyListener(this);
         townMap = Assets.townMap;
         setPreferredSize(new Dimension(1600, 900));
         Assets.gameBgMusic.play();
@@ -60,7 +61,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         customer = new Customer(300, 300);
         timeLeftInSecs = 300;
 
-        // Timer
+        // ----------------- Timer ------------------------- //
         timeLeftTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,6 +77,10 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         this.hud = hud;
         car.update(hud);
         customer.update(hud);
+
+        if (timeLeftInSecs == 0) {
+
+        }
     }
 
     @Override
@@ -86,22 +91,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         customer.render(g);
     }
 
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
-
 
     }
 
@@ -114,18 +105,15 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mouseReleased(MouseEvent e) {
 
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
 
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
 
     }
 

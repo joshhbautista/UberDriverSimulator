@@ -11,7 +11,6 @@ public class Car extends Entity {
     private double fuelLeft;
     private double moneyMade;
 
-
     public Car(float x, float y) {
         super(x, y, 100, 110);
 
@@ -22,11 +21,10 @@ public class Car extends Entity {
 
     @Override
     public void update(Hud hud) {
-        x += 1;
-        y += 1;
         hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
         hud.getFuelLeftLabel().setText("Fuel Left: " + fuelLeft + "L");
         hud.getFuelLeftBar().setValue((int) fuelLeft);
+
         if (fuelLeft < 5)
             hud.getFuelLeftBar().setForeground(Color.YELLOW);
         if (fuelLeft < 2) {
