@@ -16,7 +16,7 @@ public class Car extends Entity {
 
         // TODO TEST
         moneyMade = 12;
-        fuelLeft = 10.0;
+        fuelLeft = 9.0;
     }
 
     @Override
@@ -25,6 +25,7 @@ public class Car extends Entity {
         y += 1;
         hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
         hud.getFuelLeftLabel().setText("Fuel Left: " + fuelLeft + "L");
+        hud.getFuelLeftBar().setValue((int) fuelLeft);
     }
 
     @Override

@@ -1,13 +1,19 @@
 package main;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import graphics.Assets;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,31 +22,40 @@ public class Hud extends JPanel {
 
     private JLabel moneyMadeLabel;
     private JLabel fuelLeftLabel;
+    private JProgressBar fuelLeftBar;
     private JLabel TBD;
     private JButton settingsButton;
 
     public Hud() {
-        setLayout(new GridBagLayout());
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setBorder(new LineBorder(Color.BLACK, 5));
         setBackground(Color.WHITE);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10, 15, 10, 15);
 
+        // -------------- Money Made Label ----------- //
         moneyMadeLabel = new JLabel("Money Made: ");
+        moneyMadeLabel.setFont(new Font("", Font.BOLD, 30));
         moneyMadeLabel.setSize(new Dimension(100, 50));
-        gbc.gridy = 5;
-        gbc.gridx = 1;
-        add(moneyMadeLabel, gbc);
+        add(Box.createHorizontalGlue());
+        add(moneyMadeLabel);
 
+        // -------------- Fuel Left Label --------------- // 
         fuelLeftLabel = new JLabel("Fuel Left: ");
+        fuelLeftLabel.setFont(new Font("", Font.BOLD, 30));
         fuelLeftLabel.setSize(new Dimension(100, 50));
-        gbc.gridx = 9;
-        add(fuelLeftLabel, gbc);
+        add(Box.createHorizontalGlue());
+        add(fuelLeftLabel);
 
+        // ---------------------- Fuel Left Bar ----------------- //
+        fuelLeftBar = new JProgressBar(0, 10);
+        fuelLeftBar.setOrientation(SwingConstants.HORIZONTAL);
+        add(fuelLeftBar);
+
+        // --------- Settings Button -------------- //
         settingsButton = new JButton();
         settingsButton.setIcon(Assets.settingsButton);
-        settingsButton.setSize(new Dimension(25, 25));
-        add(settingsButton, gbc);
+        add(Box.createHorizontalGlue());
+        add(Box.createHorizontalGlue());
+        add(settingsButton);
 
         setVisible(true);
     }
@@ -51,5 +66,9 @@ public class Hud extends JPanel {
 
     public JLabel getFuelLeftLabel() {
         return fuelLeftLabel;
+    }
+
+    public JProgressBar getFuelLeftBar() {
+        return fuelLeftBar;
     }
 }

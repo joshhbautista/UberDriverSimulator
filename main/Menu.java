@@ -38,8 +38,6 @@ public class Menu extends JFrame implements ActionListener {
         setContentPane(background);
         setLayout(new GridBagLayout());
 
-        Font buttonFont = new Font(Font.DIALOG, Font.PLAIN, 24);
-
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(15, 40, 15, 40);
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -55,7 +53,7 @@ public class Menu extends JFrame implements ActionListener {
         quitButton.setBorderPainted(false);
         quitButton.setBorder(null);
 
-        title.setFont(buttonFont);
+        title.setFont(new Font("", Font.BOLD, 50));
 
         playButton.setActionCommand("play");
         playButton.addActionListener(this);

@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(townMap, 0, 0, 1600, 800, null);
+        g.drawImage(townMap, 0, 0, 1600, 790, null);
         car.render(g);
         customer.render(g);
     }
@@ -70,43 +70,43 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
+
 
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
+
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
+
 
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
         System.out.println(e.getX() + " " + e.getY());
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+
 
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
+
 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
+
 
     }
 
