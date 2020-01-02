@@ -19,7 +19,7 @@ public class Assets {
     public static BufferedImage[] customers;
     public static Icon playButton, quitButton, settingsButton;
     public static BufferedImage[] startButtons;
-    public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX;
+    public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX;
 
     public static void init() {
         // Images
@@ -39,6 +39,7 @@ public class Assets {
         menuBgMusic = new AudioPlayer("resources\\Music\\menubg.wav");
         gameBgMusic = new AudioPlayer("resources\\Music\\gamebg.wav");
         carDoorsSFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
+        customerSpawnSFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
 
 
         // Load all assets from spritesheet here

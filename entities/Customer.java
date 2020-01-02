@@ -24,7 +24,7 @@ public class Customer extends Entity {
 
     @Override
     public void update(Hud hud) {
-        y += 1;
+        
     }
 
     @Override

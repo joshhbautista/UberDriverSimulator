@@ -38,9 +38,11 @@ import entities.Customer;
 import graphics.Assets;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements MouseListener {
+public class GamePanel extends JPanel {
 
     private Game game;
+
+    private final int[][] POSSIBLE_CUSTOMER_LOCATIONS = {{100, 100}, {200, 200}};
 
     private BufferedImage townMap;
     private Car car;
@@ -50,21 +52,29 @@ public class GamePanel extends JPanel implements MouseListener {
     private int timeLeftInSecs;
     private String timeLeftStr;
 
-    private Hud hud;
+    private Timer customerSpawnTimer;
+    private final int CUSTOMER_SPAWN_RATE = 30000;
 
-    private Graphics g;
+    private int numOfCustomersSpawned = 0;
+    private Customer customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10;
+    private boolean[] areCustomersCreated = new boolean[9]; // move init in gamepanel constructor?
+
+    private Hud hud;
 
     public GamePanel(Game game) {
         this.game = game;
-        addMouseListener(this);
         addKeyListener(game.getKeyManager());
         setFocusable(true);
+
         townMap = Assets.townMap;
         setPreferredSize(new Dimension(1600, 900));
+        
         Assets.gameBgMusic.play();
         Assets.carDoorsSFX.play();
+
         car = new Car(game, 100, 100, 100, 110);
-        customer = new Customer(300, 300, 60, 100);
+        spawnCustomer();
+
         timeLeftInSecs = 300;
 
         // ----------------- Timer ------------------------- //
@@ -77,12 +87,23 @@ public class GamePanel extends JPanel implements MouseListener {
             }
         });
         timeLeftTimer.start();
+
+        // ------------------------ Customer Spawn Timer  ----------------- \\
+        customerSpawnTimer = new Timer(CUSTOMER_SPAWN_RATE, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                spawnCustomer();
+                Assets.customerSpawnSFX.play();
+            }
+        });
+        customerSpawnTimer.start(); // TODO remeber to end timers when game ends
     }
 
     public void update(Hud hud) {
         this.hud = hud;
         car.update(hud);
-        customer.update(hud);
+
+        updateCustomers();
 
         if (timeLeftInSecs == 0) {
 
@@ -94,33 +115,65 @@ public class GamePanel extends JPanel implements MouseListener {
         super.paintComponent(g);
         g.drawImage(townMap, 0, 0, 1600, 790, null);
         car.render(g);
-        customer.render(g);
+        renderCustomers(g);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+    private void spawnCustomer() {
+        if (numOfCustomersSpawned == 0)
+            customer1 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 1)
+            customer2 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 2)
+            customer3 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 3)
+            customer4 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 4)
+            customer5 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 5)
+            customer6 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 6)
+            customer7 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++; 
+        if (numOfCustomersSpawned == 7)
+            customer8 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 8)
+            customer9 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
+        if (numOfCustomersSpawned == 9)
+            customer10 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            numOfCustomersSpawned++;
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        System.out.println(e.getX() + " " + e.getY());
-
+    private void updateCustomers() {
+        if (numOfCustomersSpawned == 0) customer1.update(hud);
+        if (numOfCustomersSpawned == 1) customer1.update(hud); customer2.update(hud);
+        if (numOfCustomersSpawned == 2) customer1.update(hud); customer2.update(hud); customer3.update(hud);
+        if (numOfCustomersSpawned == 3) customer1.update(hud); customer2.update(hud); customer4.update(hud);
+        if (numOfCustomersSpawned == 4)
+        if (numOfCustomersSpawned == 5)
+        if (numOfCustomersSpawned == 6)
+        if (numOfCustomersSpawned == 7)
+        if (numOfCustomersSpawned == 8)
+        if (numOfCustomersSpawned == 9);
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
+    private void renderCustomers(Graphics g) {
+        if (numOfCustomersSpawned == 0) customer1.render(g);
+        if (numOfCustomersSpawned == 1) customer1.render(g); customer2.render(g);
+        if (numOfCustomersSpawned == 2) customer1.render(g); customer2.render(g); customer3.render(g);
+        if (numOfCustomersSpawned == 3) customer1.render(g); customer2.render(g); customer4.render(g);
+        if (numOfCustomersSpawned == 4)
+        if (numOfCustomersSpawned == 5)
+        if (numOfCustomersSpawned == 6)
+        if (numOfCustomersSpawned == 7)
+        if (numOfCustomersSpawned == 8)
+        if (numOfCustomersSpawned == 9);
     }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
 }
