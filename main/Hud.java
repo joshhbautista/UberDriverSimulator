@@ -31,6 +31,7 @@ public class Hud extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(new LineBorder(Color.BLACK, 5));
         setBackground(Color.WHITE);
+        setFocusable(false);
 
         // -------------- Money Made Label ----------- //
         moneyMadeLabel = new JLabel();

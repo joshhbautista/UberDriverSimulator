@@ -38,7 +38,9 @@ import entities.Customer;
 import graphics.Assets;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements MouseListener {
+public class GamePanel extends JPanel implements MouseListener, KeyListener {
+
+    private Game game;
 
     private BufferedImage townMap;
     private Car car;
@@ -50,14 +52,18 @@ public class GamePanel extends JPanel implements MouseListener {
 
     private Hud hud;
 
-    public GamePanel() {
+    private Graphics g;
+
+    public GamePanel(Game game) {
+        this.game = game;
         addMouseListener(this);
         addKeyListener(this);
+        setFocusable(true);
         townMap = Assets.townMap;
         setPreferredSize(new Dimension(1600, 900));
         Assets.gameBgMusic.play();
         Assets.carDoorsSFX.play();
-        car = new Car(100, 100);
+        car = new Car(game, 100, 100);
         customer = new Customer(300, 300);
         timeLeftInSecs = 300;
 
@@ -114,6 +120,41 @@ public class GamePanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        // ---------------------- Car Movement ------------------------ \\
+        if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
+            car.setFuelLeft(car.getFuelLeft() - 0.1);
+            car.setY(car.getY() - 5);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
+            car.setFuelLeft(car.getFuelLeft() - 0.1);
+            car.setY(car.getY() + 5);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
+            car.setFuelLeft(car.getFuelLeft() - 0.1);
+            car.setX(car.getX() - 5);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            car.setFuelLeft(car.getFuelLeft() - 0.1);
+            car.setX(car.getX() + 5);
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
 
     }
 

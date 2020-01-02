@@ -23,6 +23,7 @@ public class Game {
 
     public Game() {
         run();
+
     }
 
     private void init() {
@@ -63,7 +64,7 @@ public class Game {
 
             // GAME STATE
             if (currentState == "game") {
-                gamePanel = new GamePanel();
+                gamePanel = new GamePanel(this);
                 hud = new Hud();
                 new GameFrame(gamePanel, hud);
                 currentState = "game playing";
@@ -117,7 +118,6 @@ public class Game {
     public JFrame getFrame() {
         return gameFrame;
     }
-
 
 }
 
