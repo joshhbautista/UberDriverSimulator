@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 import graphics.*;
+import input.KeyManager;
 
 public class Game {
 
@@ -21,12 +22,15 @@ public class Game {
     private GamePanel gamePanel;
     private Hud hud;
 
+    private KeyManager keyManager;
+
     public Game() {
         run();
 
     }
 
     private void init() {
+        keyManager = new KeyManager();
         Assets.init();
         start();
 
@@ -38,6 +42,7 @@ public class Game {
      */
     private void update() {
         gamePanel.update(hud);
+        keyManager.update();
     }
 
     private void render() {
@@ -117,6 +122,10 @@ public class Game {
 
     public JFrame getFrame() {
         return gameFrame;
+    }
+
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
 
 }

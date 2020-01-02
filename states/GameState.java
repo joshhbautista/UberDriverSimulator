@@ -16,9 +16,6 @@ public class GameState extends State {
 
     public GameState(Game game) {
         super(game);
-
-        car = new Car(game, 100, 100);
-        customer = new Customer(300, 300);
     }
 
     public void updateFrame() {

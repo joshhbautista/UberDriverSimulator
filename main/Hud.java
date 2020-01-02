@@ -47,7 +47,7 @@ public class Hud extends JPanel {
         add(fuelLeftLabel);
 
         // ---------------------- Fuel Left Bar ----------------- //
-        fuelLeftBar = new JProgressBar(0, 10);
+        fuelLeftBar = new JProgressBar(0, 100);
         fuelLeftBar.setOrientation(SwingConstants.HORIZONTAL);
         fuelLeftBar.setBorder(new LineBorder(Color.BLACK, 3));
         fuelLeftBar.setForeground(Color.GREEN);

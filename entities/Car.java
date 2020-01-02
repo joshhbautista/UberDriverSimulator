@@ -13,32 +13,49 @@ public class Car extends Entity {
     private double fuelLeft;
     private double moneyMade;
 
-    public Car(Game game, float x, float y) {
-        super(x, y, 100, 110);
+    public Car(Game game, float x, float y, int width, int height) {
+        super(x, y, width, height);
         this.game = game;
 
         // TODO TEST
         moneyMade = 12;
-        fuelLeft = 9.0;
+        fuelLeft = 100.0;
     }
 
     @Override
     public void update(Hud hud) {
 
+        // ---------------------- Car Movement ------------------------ \\
+        if (game.getKeyManager().getIsUpPressed()) {
+            fuelLeft -= 0.01;
+            y -= 2;
+        }
+        if (game.getKeyManager().getIsDownPressed()) {
+            fuelLeft -= 0.01;
+            y += 2;
+        }
+        if (game.getKeyManager().getIsLeftPressed()) {
+            fuelLeft -= 0.01;
+            x -= 2;
+        }
+        if (game.getKeyManager().getIsRightPressed()) {
+            fuelLeft -= 0.01;
+            x += 2;
+        }
+
         hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
-        hud.getFuelLeftLabel().setText("Fuel Left: " + fuelLeft + "L");
+        hud.getFuelLeftLabel().setText("Fuel Left: " + String.format("%.1f", fuelLeft) + " L");
         hud.getFuelLeftBar().setValue((int) fuelLeft);
 
-        if (fuelLeft < 5)
+        if (fuelLeft < 50)
             hud.getFuelLeftBar().setForeground(Color.YELLOW);
-        if (fuelLeft < 2) {
+        if (fuelLeft < 20) {
            hud.getFuelLeftBar().setForeground(Color.RED); 
         }
     }
 
     @Override
     public void render(Graphics graphics) {
-        System.out.println("is g null car " + (graphics == null));
         graphics.drawImage(Assets.car, (int) x, (int) y, super.width, super.height, null);
     }
 

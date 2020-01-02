@@ -9,8 +9,8 @@ public class Customer extends Entity {
 
     private float fare;
 
-    public Customer(float x, float y) {
-        super(x, y, 60, 100);
+    public Customer(float x, float y, int width, int height) {
+        super(x, y, width, height);
         fare = 0; // TODO implement random fare method
     }
 
