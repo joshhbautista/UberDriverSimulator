@@ -7,18 +7,18 @@ import main.Hud;
 
 public class Customer extends Entity {
 
-    private float fare;
+    private double fare;
 
-    public Customer(float x, float y, int width, int height) {
+    public Customer(float x, float y, int width, int height, double fare) {
         super(x, y, width, height);
-        fare = 0; // TODO implement random fare method
+        this.fare = fare; // TODO implement random fare method
     }
 
-    public float getFare() {
+    public double getFare() {
         return fare;
     }
 
-    public void setFare(float fare) {
+    public void setFare(double fare) {
         this.fare = fare;
     }
 
@@ -29,7 +29,7 @@ public class Customer extends Entity {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.customers[0], (int) x, (int) y, super.width, super.height, null);
+        graphics.drawImage(Assets.customers[0], (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
     }
 
     

@@ -1,9 +1,5 @@
 package main;
 
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JFrame;
 
 import graphics.*;
@@ -11,42 +7,43 @@ import input.KeyManager;
 
 public class Game {
 
-    private JFrame gameFrame;
+    private GameFrame gameFrame;
+    private GamePanel gamePanel;
+    private Hud hud;
+    private KeyManager keyManager;
 
-    private boolean running = false;
+    private boolean isGameRunning = false;
     private int FPS = 60;
     private long targetTime = 1000 / FPS;
 
     private String currentState = "";
 
-    private GamePanel gamePanel;
-    private Hud hud;
-
-    private KeyManager keyManager;
-
     public Game() {
         run();
-
     }
 
-    private void init() {
+    private void initializeAssets() {
         keyManager = new KeyManager();
         Assets.init();
         start();
 
         currentState = "menu";
     }
- 
-    /**
-     * This method is called every frame
-     */
-    private void update() {
-        gamePanel.update(hud);
-        keyManager.update();
+
+    public void start() {
+        if (isGameRunning) {
+            return;
+        }
+        
+        isGameRunning = true;
     }
 
-    private void render() {
-        gamePanel.repaint();
+    public void stop() {
+        if (!isGameRunning) {
+            return;
+        }
+        
+        isGameRunning = false;
     }
     
     public void run() {
@@ -55,10 +52,11 @@ public class Game {
         long elapsed;
         long wait;
 
-        // -----------GAME LOOP------------ //
-        init();
+        initializeAssets();
 
-        while (running) {
+        // ----------------GAME LOOP----------------- \\
+
+        while (isGameRunning) {
             System.out.println(currentState);
 
             // MENU STATE
@@ -69,8 +67,8 @@ public class Game {
 
             // GAME STATE
             if (currentState == "game") {
-                gamePanel = new GamePanel(this);
                 hud = new Hud();
+                gamePanel = new GamePanel(this, hud);
                 new GameFrame(gamePanel, hud);
                 currentState = "game playing";
             }
@@ -100,27 +98,19 @@ public class Game {
         }
     }
 
-    public void setState(String state) {
-        currentState = state;
+    /**
+     * This method is called every frame
+     */
+    private void update() {
+        gamePanel.update();
+        keyManager.update();
     }
 
-    public void start() {
-        if (running) {
-            return;
-        }
-        
-        running = true;
+    private void render() {
+        gamePanel.repaint();
     }
 
-    public void stop() {
-        if (!running) {
-            return;
-        }
-        
-        running = false;
-    }
-
-    public JFrame getFrame() {
+    public GameFrame getFrame() {
         return gameFrame;
     }
 
@@ -128,6 +118,9 @@ public class Game {
         return keyManager;
     }
 
+    public void setState(String state) {
+        currentState = state;
+    }
 }
 
     
@@ -139,6 +132,7 @@ public class Game {
     ask - static is okay??
     should sounds files be treated as constant
     should car class be PlayerCar or Player or Car?
+    do we need setters/getters for ALL attributes or only ones you use?
 
     */
     

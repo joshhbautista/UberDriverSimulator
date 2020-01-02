@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 
 import graphics.Assets;
 import graphics.ImageLoader;
@@ -44,7 +45,7 @@ public class Menu extends JFrame implements ActionListener {
 
         playButton = new JButton();
         quitButton = new JButton();
-        title = new JLabel("Uber Driver Simulator");
+        title = new JLabel();
 
         playButton.setIcon(Assets.playButton);
         playButton.setBorderPainted(false);
@@ -53,8 +54,11 @@ public class Menu extends JFrame implements ActionListener {
         quitButton.setBorderPainted(false);
         quitButton.setBorder(null);
 
+        title.setIcon(Assets.title);
         title.setFont(new Font("", Font.BOLD, 80));
-        title.setForeground(Color.RED);
+        title.setBorder(new LineBorder(Color.BLACK));
+        title.setBackground(Color.BLUE);
+        title.setForeground(Color.BLACK);
 
         playButton.setActionCommand("play");
         playButton.addActionListener(this);

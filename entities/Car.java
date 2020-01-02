@@ -28,19 +28,19 @@ public class Car extends Entity {
         // ---------------------- Car Movement ------------------------ \\
         if (game.getKeyManager().getIsUpPressed()) {
             fuelLeft -= 0.01;
-            y -= 2;
+            super.setY(super.getY() - 2);
         }
         if (game.getKeyManager().getIsDownPressed()) {
             fuelLeft -= 0.01;
-            y += 2;
+            super.setY(super.getY() + 2);
         }
         if (game.getKeyManager().getIsLeftPressed()) {
             fuelLeft -= 0.01;
-            x -= 2;
+            super.setX(super.getX() - 2);
         }
         if (game.getKeyManager().getIsRightPressed()) {
             fuelLeft -= 0.01;
-            x += 2;
+            super.setX(super.getX() + 2);
         }
 
         hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
@@ -56,7 +56,7 @@ public class Car extends Entity {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.car, (int) x, (int) y, super.width, super.height, null);
+        graphics.drawImage(Assets.car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
     }
 
     public void setFuelLeft(double newFuelLeft) {

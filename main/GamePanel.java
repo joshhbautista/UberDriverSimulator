@@ -44,9 +44,7 @@ public class GamePanel extends JPanel {
 
     private final int[][] POSSIBLE_CUSTOMER_LOCATIONS = {{100, 100}, {200, 200}};
 
-    private BufferedImage townMap;
     private Car car;
-    private Customer customer;
 
     private Timer timeLeftTimer;
     private int timeLeftInSecs;
@@ -57,16 +55,15 @@ public class GamePanel extends JPanel {
 
     private int numOfCustomersSpawned = 0;
     private Customer customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10;
-    private boolean[] areCustomersCreated = new boolean[9]; // move init in gamepanel constructor?
 
     private Hud hud;
 
-    public GamePanel(Game game) {
+    public GamePanel(Game game, Hud hud) {
         this.game = game;
+        this.hud = hud;
         addKeyListener(game.getKeyManager());
         setFocusable(true);
 
-        townMap = Assets.townMap;
         setPreferredSize(new Dimension(1600, 900));
         
         Assets.gameBgMusic.play();
@@ -99,8 +96,7 @@ public class GamePanel extends JPanel {
         customerSpawnTimer.start(); // TODO remeber to end timers when game ends
     }
 
-    public void update(Hud hud) {
-        this.hud = hud;
+    public void update() {
         car.update(hud);
 
         updateCustomers();
@@ -113,41 +109,41 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(townMap, 0, 0, 1600, 790, null);
+        g.drawImage(Assets.townMap, 0, 0, 1600, 790, null);
         car.render(g);
         renderCustomers(g);
     }
 
     private void spawnCustomer() {
         if (numOfCustomersSpawned == 0)
-            customer1 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer1 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 1)
-            customer2 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer2 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 2)
-            customer3 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer3 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 3)
-            customer4 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer4 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 4)
-            customer5 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer5 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 5)
-            customer6 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer6 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 6)
-            customer7 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer7 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++; 
         if (numOfCustomersSpawned == 7)
-            customer8 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer8 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 8)
-            customer9 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer9 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
         if (numOfCustomersSpawned == 9)
-            customer10 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100);
+            customer10 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
             numOfCustomersSpawned++;
     }
 

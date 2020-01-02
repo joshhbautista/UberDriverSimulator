@@ -6,8 +6,8 @@ import main.Hud;
 
 public abstract class Entity {
 
-    protected float x, y;
-    protected int width, height;
+    private float x, y;
+    private int width, height;
 
     public Entity(float x, float y, int width, int height) {
         this.x = x;
@@ -51,7 +51,5 @@ public abstract class Entity {
     public abstract void update(Hud hud);
     
     public abstract void render(Graphics graphics);
-
-
 
 }

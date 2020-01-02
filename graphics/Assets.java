@@ -17,7 +17,7 @@ public class Assets {
 
     public static BufferedImage car, townMap, menu;
     public static BufferedImage[] customers;
-    public static Icon playButton, quitButton, settingsButton;
+    public static Icon playButton, quitButton, settingsButton, title;
     public static BufferedImage[] startButtons;
     public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX;
 
@@ -31,6 +31,7 @@ public class Assets {
         customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
 
         // Icons
+        title = ImageLoader.loadIcon("resources\\Menu\\title.PNG");
         playButton = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
         quitButton = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
         settingsButton = ImageLoader.loadIcon("resources\\HUD\\settingsbutton.png");
