@@ -8,28 +8,28 @@ import javax.sound.sampled.Clip;
 
 public class AudioPlayer {
 
-    private Clip clip;
+    private Clip audioToBePlayed;
 
     public AudioPlayer(String path) {
         try {
 
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
+            audioToBePlayed = AudioSystem.getClip();
+            audioToBePlayed.open(audioInputStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-        public void play() {
-            if (clip != null) {
-                clip.setFramePosition(0);
-                clip.start();
-            }
+    public void play() {
+        if (audioToBePlayed != null) {
+            audioToBePlayed.setFramePosition(0);
+            audioToBePlayed.start();
         }
+    }
 
-        public void stop() {
-            clip.stop();
-        }
+    public void stop() {
+        audioToBePlayed.stop();
+    }
 }

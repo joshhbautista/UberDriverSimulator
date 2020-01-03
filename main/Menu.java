@@ -78,7 +78,6 @@ public class Menu extends JFrame implements ActionListener {
         Assets.menuBgMusic.play();
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play") {
