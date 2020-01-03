@@ -68,7 +68,7 @@ public class Game {
             // GAME STATE
             if (currentState == "game") {
                 hud = new Hud();
-                gamePanel = new GamePanel(this, hud);
+                gamePanel = new GamePanel(this);
                 new GameFrame(gamePanel, hud);
                 currentState = "game playing";
             }
@@ -114,8 +114,16 @@ public class Game {
         return gameFrame;
     }
 
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
     public KeyManager getKeyManager() {
         return keyManager;
+    }
+
+    public Hud getHud() {
+        return hud;
     }
 
     public void setState(String state) {

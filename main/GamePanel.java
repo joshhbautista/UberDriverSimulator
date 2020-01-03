@@ -1,38 +1,13 @@
 package main;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Iterator;
 
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import audio.AudioPlayer;
 import entities.Car;
 import entities.Customer;
 import graphics.Assets;
@@ -41,67 +16,38 @@ import graphics.Assets;
 public class GamePanel extends JPanel {
 
     private Game game;
-
-    private final int[][] POSSIBLE_CUSTOMER_LOCATIONS = {{100, 100}, {200, 200}};
-
-    private Car car;
-
-    private Timer timeLeftTimer;
-    private int timeLeftInSecs;
-    private String timeLeftStr;
-
-    private Timer customerSpawnTimer;
-    private final int CUSTOMER_SPAWN_RATE = 30000;
-
-    private int numOfCustomersSpawned = 0;
-    private Customer customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10;
-
     private Hud hud;
 
-    public GamePanel(Game game, Hud hud) {
+    private Customer customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10;
+    private Car car;
+    private Timer customerSpawnTimer;
+
+    private int numOfCustomersDriven = 0;
+
+    private int numOfCustomersSpawned = 0;
+    private final int CUSTOMER_SPAWN_RATE = 30000; // 30 seconds
+    private final int[][] POSSIBLE_CUSTOMER_LOCATIONS = {{100, 100}, {200, 200}};
+
+    public GamePanel(Game game) {
         this.game = game;
-        this.hud = hud;
+        this.hud = game.getHud();
         addKeyListener(game.getKeyManager());
         setFocusable(true);
-
         setPreferredSize(new Dimension(1600, 900));
         
-        Assets.gameBgMusic.play();
-        Assets.carDoorsSFX.play();
+        playBackgroundMusic();
 
-        car = new Car(game, 100, 100, 100, 110);
+        spawnPlayer();
         spawnCustomer();
 
-        timeLeftInSecs = 300;
-
-        // ----------------- Timer ------------------------- //
-        timeLeftTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timeLeftInSecs--;
-                timeLeftStr = String.format("%d:%02d", timeLeftInSecs / 60, timeLeftInSecs % 60);
-                hud.getTimeLeftLabel().setText("Time Left: " + timeLeftStr);
-            }
-        });
-        timeLeftTimer.start();
-
-        // ------------------------ Customer Spawn Timer  ----------------- \\
-        customerSpawnTimer = new Timer(CUSTOMER_SPAWN_RATE, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                spawnCustomer();
-                Assets.customerSpawnSFX.play();
-            }
-        });
-        customerSpawnTimer.start(); // TODO remeber to end timers when game ends
+        startCustomerSpawnTimer();
     }
 
     public void update() {
         car.update(hud);
-
         updateCustomers();
 
-        if (timeLeftInSecs == 0) {
+        if (hud.getTimeLeft() == 0) {
 
         }
     }
@@ -112,6 +58,25 @@ public class GamePanel extends JPanel {
         g.drawImage(Assets.townMap, 0, 0, 1600, 790, null);
         car.render(g);
         renderCustomers(g);
+    }
+
+    private void spawnPlayer() {
+        car = new Car(game, 100, 100, 100, 110);
+    }
+
+    private void playBackgroundMusic() {
+        Assets.gameBgMusic.play();
+    }
+
+    private void startCustomerSpawnTimer() {
+        customerSpawnTimer = new Timer(CUSTOMER_SPAWN_RATE, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                spawnCustomer();
+                Assets.customerSpawnSFX.play();
+            }
+        });
+        customerSpawnTimer.start(); // TODO remeber to end timers when game ends
     }
 
     private void spawnCustomer() {
@@ -171,5 +136,18 @@ public class GamePanel extends JPanel {
         if (numOfCustomersSpawned == 7)
         if (numOfCustomersSpawned == 8)
         if (numOfCustomersSpawned == 9);
+    }
+
+    private void endGame() {
+        hud.getTimeLeftTimer().stop();
+        new EndGameFrame(game);
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public int getNumOfCustomersDriven() {
+        return numOfCustomersDriven;
     }
 }

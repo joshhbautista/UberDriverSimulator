@@ -17,14 +17,21 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import javax.swing.Timer;
 
 public class Hud extends JPanel {
 
     private JLabel moneyMadeLabel;
     private JLabel fuelLeftLabel;
     private JProgressBar fuelLeftBar;
-    private JLabel TBD;
     private JButton settingsButton;
+
+    private Timer timeLeftTimer;
+    private int timeLeftInSecs;
+    private String timeLeftStr;
     private JLabel timeLeft;
 
     public Hud() {
@@ -33,34 +40,47 @@ public class Hud extends JPanel {
         setBackground(Color.WHITE);
         setFocusable(false);
 
-        // -------------- Money Made Label ----------- //
+        // -------------- Money Made Label ----------- \\
         moneyMadeLabel = new JLabel();
         moneyMadeLabel.setFont(new Font("", Font.BOLD, 30));
         moneyMadeLabel.setSize(new Dimension(100, 50));
         add(moneyMadeLabel);
 
-        // -------------- Fuel Left Label --------------- // 
+        // -------------- Fuel Left Label --------------- \\
         fuelLeftLabel = new JLabel();
         fuelLeftLabel.setFont(new Font("", Font.BOLD, 30));
         fuelLeftLabel.setSize(new Dimension(100, 50));
         add(Box.createHorizontalGlue());
         add(fuelLeftLabel);
 
-        // ---------------------- Fuel Left Bar ----------------- //
+        // ---------------------- Fuel Left Bar ----------------- \\
         fuelLeftBar = new JProgressBar(0, 100);
         fuelLeftBar.setOrientation(SwingConstants.HORIZONTAL);
         fuelLeftBar.setBorder(new LineBorder(Color.BLACK, 3));
         fuelLeftBar.setForeground(Color.GREEN);
         add(fuelLeftBar);
 
-        // ------------------ Work Hours Left ------------------ //
+        // -------------------- Time Left Timer ------------------\\
+        timeLeftInSecs = 300;
+
+        timeLeftTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeLeftInSecs--;
+                timeLeftStr = String.format("%d:%02d", timeLeftInSecs / 60, timeLeftInSecs % 60);
+                timeLeft.setText("Time Left: " + timeLeftStr);
+            }
+        });
+        timeLeftTimer.start();
+
+        // ------------------ Time Left Label ------------------ \\
         timeLeft = new JLabel();
         timeLeft.setFont(new Font("", Font.BOLD, 30));
         timeLeft.setSize(new Dimension(100, 50));
         add(Box.createHorizontalGlue());
         add(timeLeft);
 
-        // --------- Settings Button -------------- //
+        // --------- Settings Button -------------- \\
         settingsButton = new JButton();
         settingsButton.setIcon(Assets.settingsButton);
         add(Box.createHorizontalGlue());
@@ -82,7 +102,11 @@ public class Hud extends JPanel {
         return fuelLeftBar;
     }
 
-    public JLabel getTimeLeftLabel() {
-        return timeLeft;
+    public int getTimeLeft() {
+        return timeLeftInSecs;
+    }
+
+    public Timer getTimeLeftTimer() {
+        return timeLeftTimer;
     }
 }

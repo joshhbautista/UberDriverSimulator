@@ -12,6 +12,10 @@ public class GameFrame extends JFrame {
 
     public GameFrame(GamePanel gamePanel, Hud hud) {
         super("Uber Driver Simulator");
+        createGameFrame(gamePanel, hud);
+    }
+
+   private void createGameFrame(GamePanel gamePanel, Hud hud) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -24,7 +28,5 @@ public class GameFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    
+   }
 }
