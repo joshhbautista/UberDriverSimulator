@@ -4,9 +4,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.border.LineBorder;
 
 import entities.Car;
 import entities.Customer;
@@ -47,7 +49,7 @@ public class GamePanel extends JPanel {
         car.update(hud);
         updateCustomers();
 
-        if (hud.getTimeLeft() == 0 || car.getFuelLeft() == 0) {
+        if (hud.getTimeLeft() == 280 || car.getFuelLeft() == 0) {
             endGame();
         }
 
@@ -79,7 +81,7 @@ public class GamePanel extends JPanel {
                 Assets.customerSpawnSFX.play();
             }
         });
-        customerSpawnTimer.start(); // TODO remeber to end timers when game ends
+        customerSpawnTimer.start();
     }
 
     private void spawnCustomer() {
@@ -142,7 +144,11 @@ public class GamePanel extends JPanel {
     }
 
     private void endGame() {
+        game.setState("end");
+        game.stop();
         hud.getTimeLeftTimer().stop();
+        customerSpawnTimer.stop();
+        Assets.gameBgMusic.stop();
         new EndGameFrame(game);
     }
 

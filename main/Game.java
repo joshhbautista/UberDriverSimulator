@@ -93,6 +93,10 @@ public class Game {
                     e.printStackTrace();
                 } 
             }
+
+            if (currentState == "end") {
+                return;
+            }
         }
     }
 
