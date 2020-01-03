@@ -47,9 +47,12 @@ public class GamePanel extends JPanel {
         car.update(hud);
         updateCustomers();
 
-        if (hud.getTimeLeft() == 0) {
-
+        if (hud.getTimeLeft() == 0 || car.getFuelLeft() == 0) {
+            endGame();
         }
+
+        // if (player click drive customer) carCloseEnough = car.checkIfCarCloseEnough(); if (carCloseEnough) car.pickUpCustomer(); customer.giveDirections();
+        // 
     }
 
     @Override

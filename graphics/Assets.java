@@ -1,19 +1,13 @@
 package graphics;
 
 import java.awt.image.*;
-
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 import audio.AudioPlayer;
-import graphics.*;
 
 /**
  * Initalizes assets
  */
 public class Assets {
-
-    private static final int width = 32, height = 32;
 
     public static BufferedImage car, townMap, menu;
     public static BufferedImage[] customers;
@@ -23,7 +17,7 @@ public class Assets {
 
     public static void init() {
         // Images
-        SpriteSheet tutSheet = new SpriteSheet(ImageLoader.loadImage("resources\\tutsheet.png"));
+        //SpriteSheet tutSheet = new SpriteSheet(ImageLoader.loadImage("resources\\tutsheet.png"));
         car = ImageLoader.loadImage("resources\\Vehicles\\Audi.png");
         townMap = ImageLoader.loadImage("resources\\townmap.jpg");
 

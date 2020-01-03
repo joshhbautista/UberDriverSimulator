@@ -1,9 +1,7 @@
 package states;
 
-import java.util.ArrayList;
 import java.awt.Graphics2D;
 import main.*;
-import java.awt.Graphics;
 
 public class GameStateManager {
 

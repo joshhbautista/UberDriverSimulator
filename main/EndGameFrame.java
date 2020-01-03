@@ -2,13 +2,16 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Color;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class EndGameFrame extends JFrame {
 
     private final int WIDTH = 800;
@@ -42,6 +45,7 @@ public class EndGameFrame extends JFrame {
         totalMoneyMade = game.getGamePanel().getCar().getMoneyMade();
 
         statsPanel = new JPanel();
+        statsPanel.setBorder(new LineBorder(Color.BLACK));
         statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
 
         statsTitle = new JLabel();

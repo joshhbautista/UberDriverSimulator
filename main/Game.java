@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JFrame;
-
 import graphics.*;
 import input.KeyManager;
 

@@ -1,10 +1,8 @@
 package graphics;
 
-import java.awt.*;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
 import javax.imageio.*;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

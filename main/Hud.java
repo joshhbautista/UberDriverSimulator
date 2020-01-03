@@ -14,14 +14,11 @@ import graphics.Assets;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class Hud extends JPanel {
 
     private JLabel moneyMadeLabel;
@@ -32,7 +29,7 @@ public class Hud extends JPanel {
     private Timer timeLeftTimer;
     private int timeLeftInSecs;
     private String timeLeftStr;
-    private JLabel timeLeft;
+    private JLabel timeLeftLabel;
 
     public Hud() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -68,17 +65,17 @@ public class Hud extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 timeLeftInSecs--;
                 timeLeftStr = String.format("%d:%02d", timeLeftInSecs / 60, timeLeftInSecs % 60);
-                timeLeft.setText("Time Left: " + timeLeftStr);
+                timeLeftLabel.setText("Time Left: " + timeLeftStr);
             }
         });
         timeLeftTimer.start();
 
         // ------------------ Time Left Label ------------------ \\
-        timeLeft = new JLabel();
-        timeLeft.setFont(new Font("", Font.BOLD, 30));
-        timeLeft.setSize(new Dimension(100, 50));
+        timeLeftLabel = new JLabel();
+        timeLeftLabel.setFont(new Font("", Font.BOLD, 30));
+        timeLeftLabel.setSize(new Dimension(100, 50));
         add(Box.createHorizontalGlue());
-        add(timeLeft);
+        add(timeLeftLabel);
 
         // --------- Settings Button -------------- \\
         settingsButton = new JButton();

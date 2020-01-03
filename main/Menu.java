@@ -16,21 +16,23 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
 import graphics.Assets;
-import graphics.ImageLoader;
-import audio.AudioPlayer;
 
 @SuppressWarnings("serial")
 public class Menu extends JFrame implements ActionListener {
     
-    JButton playButton;
-    JButton quitButton;
-    JLabel title;
-    JLabel background;
-    Game game;
+    private JButton playButton;
+    private JButton quitButton;
+    private JLabel title;
+    private JLabel background;
+    private Game game;
 
     public Menu(Game game) {
         super("Uber Driver Simulator");
         this.game = game;
+        createMenuFrame();
+    }
+
+    private void createMenuFrame() {
         setPreferredSize(new Dimension(1600, 900));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

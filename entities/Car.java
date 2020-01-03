@@ -18,7 +18,7 @@ public class Car extends Entity {
         this.game = game;
 
         // TODO TEST
-        moneyMade = 12;
+        moneyMade = 0;
         fuelLeft = 100.0;
     }
 
@@ -57,6 +57,18 @@ public class Car extends Entity {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(Assets.car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
+    }
+
+    public void pickUpCustomer(Customer customer) {
+
+    }
+
+    public void dropOffCustomer(Customer customer) {
+
+    }
+
+    public void checkIfCustomerIsCloseEnough(Customer customer) {
+
     }
 
     public void setFuelLeft(double newFuelLeft) {
