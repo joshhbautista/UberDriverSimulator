@@ -11,8 +11,8 @@ public class Game {
     private KeyManager keyManager;
 
     private boolean isGameRunning = false;
-    private int FPS = 60;
-    private long targetTime = 1000 / FPS;
+    private int SCREEN_UPDATE_RATE = 60;
+    private long targetTime = 1000 / SCREEN_UPDATE_RATE;
 
     private String currentState = "";
 
@@ -56,6 +56,8 @@ public class Game {
 
         while (isGameRunning) {
             System.out.println(currentState);
+
+            // TODO switch case better way? ask if its ok to do things we havent learned yet
 
             // MENU STATE
             if (currentState == "menu") {
