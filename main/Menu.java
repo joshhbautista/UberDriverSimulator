@@ -75,7 +75,7 @@ public class Menu extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        Assets.menuBgMusic.play();
+        Assets.menuBgMusic.play(6.0f);
     }
 
     @Override

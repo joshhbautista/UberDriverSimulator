@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 import graphics.Assets;
 import main.Game;
@@ -12,10 +13,12 @@ public class Car extends Entity {
     private Game game;
     private double fuelLeft;
     private double moneyMade;
+    private BufferedImage car;
 
     public Car(Game game, float x, float y, int width, int height) {
         super(x, y, width, height);
         this.game = game;
+        car = Assets.audi[0];
 
         // TODO TEST
         moneyMade = 0;
@@ -27,18 +30,22 @@ public class Car extends Entity {
 
         // ---------------------- Car Movement ------------------------ \\
         if (game.getKeyManager().getIsUpPressed()) {
+            car = Assets.audi[0];
             fuelLeft -= 0.01;
             super.setY(super.getY() - 2);
         }
         if (game.getKeyManager().getIsDownPressed()) {
+            car = Assets.audi[2];
             fuelLeft -= 0.01;
             super.setY(super.getY() + 2);
         }
         if (game.getKeyManager().getIsLeftPressed()) {
+            car = Assets.audi[3];
             fuelLeft -= 0.01;
             super.setX(super.getX() - 2);
         }
         if (game.getKeyManager().getIsRightPressed()) {
+            car = Assets.audi[1];
             fuelLeft -= 0.01;
             super.setX(super.getX() + 2);
         }
@@ -56,7 +63,7 @@ public class Car extends Entity {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
+        graphics.drawImage(car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
     }
 
     public void pickUpCustomer(Customer customer) {

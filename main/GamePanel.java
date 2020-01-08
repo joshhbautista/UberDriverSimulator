@@ -70,7 +70,7 @@ public class GamePanel extends JPanel {
     }
 
     private void playBackgroundMusic() {
-        Assets.gameBgMusic.play();
+        Assets.gameBgMusic.play(0);
     }
 
     private void startCustomerSpawnTimer() {
@@ -78,7 +78,7 @@ public class GamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 spawnCustomer();
-                Assets.customerSpawnSFX.play();
+                Assets.customerSpawnSFX.play(0);
             }
         });
         customerSpawnTimer.start();
@@ -144,8 +144,8 @@ public class GamePanel extends JPanel {
     }
 
     private void endGame() {
-        game.setState("end");
         game.stop();
+        game.setState("end");
         hud.getTimeLeftTimer().stop();
         customerSpawnTimer.stop();
         Assets.gameBgMusic.stop();

@@ -71,7 +71,7 @@ public class MenuState extends State implements ActionListener {
         getGame().getFrame().revalidate(); 
         getGame().getFrame().repaint();
         
-        Assets.menuBgMusic.play();
+        Assets.menuBgMusic.play(0);
         
     }
 

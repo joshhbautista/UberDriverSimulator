@@ -3,6 +3,8 @@ package main;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -13,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
-public class EndGameFrame extends JFrame {
+public class EndGameFrame extends JFrame implements ActionListener {
 
     private final int WIDTH = 800;
     private final int HEIGHT = 450;
@@ -46,14 +48,17 @@ public class EndGameFrame extends JFrame {
         totalMoneyMade = game.getGamePanel().getCar().getMoneyMade();
 
         statsPanel = new JPanel();
+        statsPanel.setSize(new Dimension(800, 225));
         statsPanel.setBorder(new LineBorder(Color.BLACK));
         statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
 
         statsTitle = new JLabel();
+        statsTitle.setSize(new Dimension(800, 100));
         statsTitle.setFont(new Font("", Font.BOLD, 36));
         statsTitle.setText("You've earned...");
 
         stats = new JLabel();
+        stats.setSize(new Dimension(800, 225));
         stats.setFont(new Font("", Font.BOLD, 24));
         stats.setText("$" + totalMoneyMade + " by driving " + numOfCustomersDriven + " customers!");
         
@@ -63,7 +68,9 @@ public class EndGameFrame extends JFrame {
         // --------------- Play Again Options ------------- \\
         playAgainPanel = new JPanel();
         playAgainButton = new JButton("Play Again");
+        playAgainButton.setActionCommand("play again");
         quitButton = new JButton("Quit");
+        quitButton.setActionCommand("quit");
         playAgainPanel.setLayout(new BoxLayout(playAgainPanel, BoxLayout.X_AXIS));
         playAgainPanel.add(playAgainButton);
         playAgainPanel.add(quitButton);
@@ -75,5 +82,15 @@ public class EndGameFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand() == "play again") {
+
+        } 
+        if (e.getActionCommand() == "quit") {
+            System.exit(0);
+        }
     }
 }

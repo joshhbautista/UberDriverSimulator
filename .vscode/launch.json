@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "main.Launcher",
+            "projectName": "UberDriverSim_ad0e80dd"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ImageButton",
             "request": "launch",
             "mainClass": "ImageButton",

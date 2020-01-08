@@ -92,7 +92,7 @@ public class Game {
                 try {
                     Thread.sleep(wait);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 } 
             }
 
