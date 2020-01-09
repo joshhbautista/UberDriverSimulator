@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
         this.hud = game.getHud();
         addKeyListener(game.getKeyManager());
         setFocusable(true);
-        setPreferredSize(new Dimension(1600, 900));
+        setPreferredSize(new Dimension(1600, 790));
         
         playBackgroundMusic();
 
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel {
         car.update(hud);
         updateCustomers();
 
-        if (hud.getTimeLeft() == 280 || car.getFuelLeft() == 0) {
+        if (hud.getTimeLeft() == 290 || car.getFuelLeft() == 0) {
             endGame();
         }
 
@@ -66,11 +66,11 @@ public class GamePanel extends JPanel {
     }
 
     private void spawnPlayer() {
-        car = new Car(game, 100, 100, 100, 110);
+        car = new Car(game, 645, 680, 100, 110);
     }
 
     private void playBackgroundMusic() {
-        Assets.gameBgMusic.play(0);
+        Assets.gameBgMusic.play(-3.0f);
     }
 
     private void startCustomerSpawnTimer() {
@@ -149,7 +149,6 @@ public class GamePanel extends JPanel {
         hud.getTimeLeftTimer().stop();
         customerSpawnTimer.stop();
         Assets.gameBgMusic.stop();
-        new EndGameFrame(game);
     }
 
     public Car getCar() {

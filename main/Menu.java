@@ -62,10 +62,10 @@ public class Menu extends JFrame implements ActionListener {
         title.setBackground(Color.BLUE);
         title.setForeground(Color.BLACK);
 
-        playButton.setActionCommand("play");
         playButton.addActionListener(this);
-        quitButton.setActionCommand("quit");
+        playButton.setActionCommand("play");
         quitButton.addActionListener(this);
+        quitButton.setActionCommand("quit");
 
         add(title, c);
         add(playButton, c);
@@ -75,7 +75,7 @@ public class Menu extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        Assets.menuBgMusic.play(6.0f);
+        Assets.menuBgMusic.play(-3.0f);
     }
 
     @Override
@@ -84,12 +84,9 @@ public class Menu extends JFrame implements ActionListener {
             game.setState("game");
             Assets.menuBgMusic.stop();
             dispose();
-            
         }
         if (e.getActionCommand() == "quit") {
-            Assets.menuBgMusic.stop();
-            game.stop();
-            dispose();
+            System.exit(0);
         }
     }
 

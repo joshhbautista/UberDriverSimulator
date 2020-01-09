@@ -69,13 +69,8 @@ public class Game {
             if (currentState == "game") {
                 hud = new Hud();
                 gamePanel = new GamePanel(this);
-                new GameFrame(gamePanel, hud);
+                gameFrame = new GameFrame(gamePanel, hud);
                 currentState = "game playing";
-            }
-
-            // PLAY AGAIN STATE
-            if (currentState == "play again") {
-
             }
 
             // GAME PLAYING STATE
@@ -94,10 +89,6 @@ public class Game {
                 } catch (Exception e) {
                     //e.printStackTrace();
                 } 
-            }
-
-            if (currentState == "end") {
-                return;
             }
         }
     }

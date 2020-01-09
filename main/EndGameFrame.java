@@ -20,6 +20,8 @@ public class EndGameFrame extends JFrame implements ActionListener {
     private final int WIDTH = 800;
     private final int HEIGHT = 450;
 
+    private Game game;
+
     private JPanel statsPanel;
     private JLabel statsTitle;
     private JLabel stats;
@@ -33,6 +35,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
 
     public EndGameFrame(Game game) {
         super("Uber Driver Simulator");
+        this.game = game;
         createEndGameFrame(game);
     }
 
@@ -68,8 +71,10 @@ public class EndGameFrame extends JFrame implements ActionListener {
         // --------------- Play Again Options ------------- \\
         playAgainPanel = new JPanel();
         playAgainButton = new JButton("Play Again");
+        playAgainButton.addActionListener(this);
         playAgainButton.setActionCommand("play again");
         quitButton = new JButton("Quit");
+        quitButton.addActionListener(this);
         quitButton.setActionCommand("quit");
         playAgainPanel.setLayout(new BoxLayout(playAgainPanel, BoxLayout.X_AXIS));
         playAgainPanel.add(playAgainButton);
@@ -87,9 +92,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play again") {
-
-        } 
-        if (e.getActionCommand() == "quit") {
+        } else {
             System.exit(0);
         }
     }

@@ -32,6 +32,7 @@ public class Hud extends JPanel {
     private JLabel timeLeftLabel;
 
     public Hud() {
+        setSize(new Dimension(1600, 110));
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(new LineBorder(Color.BLACK, 5));
         setBackground(Color.WHITE);
@@ -106,4 +107,5 @@ public class Hud extends JPanel {
     public Timer getTimeLeftTimer() {
         return timeLeftTimer;
     }
+
 }
