@@ -29,8 +29,8 @@ public class GamePanel extends JPanel implements MouseListener {
     private int numOfCustomersDriven = 0;
 
     private final int CUSTOMER_SPAWN_RATE = 10000; // 30 seconds
-    private final int[][] SPAWN_LOCATIONS = {{183, 152}, {383, 492}, {1157, 139}, {1226, 549}, {468, 165}, 
-                                            {962, 549}, {858, 150}, {74, 153}, {1108, 225}, {1191, 550}};
+    private final int[][] SPAWN_LOCATIONS = {{183, 67}, {383, 492}, {1080, 67}, {1226, 549}, {468, 165}, 
+                                            {962, 549}, {858, 67}, {54, 67}, {1037, 243}, {1191, 550}};
     private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
     private final int[][] DESTINATION_LOCATIONS = {};
 
@@ -124,8 +124,8 @@ public class GamePanel extends JPanel implements MouseListener {
         for (int i = 0; i < 10; i++) {
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
-            int randomFareIndex = generateRandomIndex(8);
-            customers[i] = new Customer(randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], Assets.fareDisplay[randomFareIndex]);
+            int randomFareIndex = generateRandomIndex(8); // cricket guy - 60, 100
+            customers[i] = new Customer(randomLocation[0], randomLocation[1], 100, 250, POSSIBLE_FARES[randomFareIndex], Assets.fareDisplay[randomFareIndex]);
         }
     }
 

@@ -36,8 +36,9 @@ public class Assets {
         fareDisplay[7] = ImageLoader.loadImage("resources\\FareDisplay\\23.png");
 
         // Customer images
-        customers = new BufferedImage[1];
+        customers = new BufferedImage[10];
         customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
+        customers[1] = ImageLoader.loadImage("resources\\Customers\\elon.png");
 
         // Icons
         title = ImageLoader.loadIcon("resources\\Menu\\title.PNG");
