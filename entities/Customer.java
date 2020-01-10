@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import graphics.Assets;
 import main.Hud;
@@ -8,12 +9,14 @@ import main.Hud;
 public class Customer extends Entity {
 
     private double fare;
+    private BufferedImage fareDisplay;
     private int[][] destination; // TODO random destination
     private boolean hasTimeExpired;
 
-    public Customer(float x, float y, int width, int height, double fare) {
+    public Customer(float x, float y, int width, int height, double fare, BufferedImage fareDisplay) {
         super(x, y, width, height);
         this.fare = fare; // TODO implement random fare method
+        this.fareDisplay = fareDisplay;
     }
 
     public void giveDirections() {
@@ -25,7 +28,7 @@ public class Customer extends Entity {
     }
 
     public void leave() {
-        
+
     }
 
     public double getFare() {
@@ -45,6 +48,7 @@ public class Customer extends Entity {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(Assets.customers[0], (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
+        graphics.drawImage(fareDisplay, (int) (super.getX() + 40), (int) (super.getY() - 65), 125, 75, null);
     }
 
     

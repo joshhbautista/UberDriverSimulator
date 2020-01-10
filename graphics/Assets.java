@@ -10,9 +10,8 @@ import audio.AudioPlayer;
 public class Assets {
 
     public static BufferedImage townMap, menu;
-    public static BufferedImage[] customers, audi;
+    public static BufferedImage[] statButtons, customers, fareDisplay, audi;
     public static Icon playButton, quitButton, settingsButton, title;
-    public static BufferedImage[] startButtons;
     public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX;
 
     public static void init() {
@@ -24,6 +23,10 @@ public class Assets {
         audi[2] = ImageLoader.loadImage("resources\\Vehicles\\AudiDown.png");
         audi[3] = ImageLoader.loadImage("resources\\Vehicles\\AudiLeft.png");
         townMap = ImageLoader.loadImage("resources\\townmap.jpg");
+
+        fareDisplay = new BufferedImage[3];
+        fareDisplay[0] = ImageLoader.loadImage("resources\\FareDisplay\\11.png");
+        fareDisplay[1] = ImageLoader.loadImage("resources\\FareDisplay\\16.png");
 
         customers = new BufferedImage[1];
         customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");

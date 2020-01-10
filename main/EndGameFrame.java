@@ -20,8 +20,6 @@ public class EndGameFrame extends JFrame implements ActionListener {
     private final int WIDTH = 800;
     private final int HEIGHT = 450;
 
-    private Game game;
-
     private JPanel statsPanel;
     private JLabel statsTitle;
     private JLabel stats;
@@ -35,7 +33,6 @@ public class EndGameFrame extends JFrame implements ActionListener {
 
     public EndGameFrame(Game game) {
         super("Uber Driver Simulator");
-        this.game = game;
         createEndGameFrame(game);
     }
 

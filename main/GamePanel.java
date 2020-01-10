@@ -1,21 +1,23 @@
 package main;
 
+import java.math.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.LineBorder;
 
 import entities.Car;
 import entities.Customer;
 import graphics.Assets;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements MouseListener {
 
     private Game game;
     private Hud hud;
@@ -28,15 +30,16 @@ public class GamePanel extends JPanel {
 
     private int numOfCustomersSpawned = 0;
     private final int CUSTOMER_SPAWN_RATE = 30000; // 30 seconds
-    private final int[][] POSSIBLE_CUSTOMER_LOCATIONS = {{100, 100}, {200, 200}};
+    private final int[][] SPAWN_LOCATIONS = {{183, 152}, {383, 592}, {1157, 139}, {1226, 649}, {468, 265}, 
+                                            {962, 649}, {858, 150}, {74, 153}, {1108, 325}, {1191, 650}};
 
     public GamePanel(Game game) {
         this.game = game;
         this.hud = game.getHud();
         addKeyListener(game.getKeyManager());
+        addMouseListener(this);
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
-        
         playBackgroundMusic();
 
         spawnPlayer();
@@ -49,12 +52,14 @@ public class GamePanel extends JPanel {
         car.update(hud);
         updateCustomers();
 
-        if (hud.getTimeLeft() == 290 || car.getFuelLeft() == 0) {
+        if (hud.getTimeLeft() == 240 || car.getFuelLeft() == 0) {
             endGame();
         }
 
-        // if (player click drive customer) carCloseEnough = car.checkIfCarCloseEnough(); if (carCloseEnough) car.pickUpCustomer(); customer.giveDirections();
-        // 
+        // if (player click drive customer) carCloseEnough =
+        // car.checkIfCarCloseEnough(); if (carCloseEnough) car.pickUpCustomer();
+        // customer.giveDirections();
+        //
     }
 
     @Override
@@ -84,63 +89,97 @@ public class GamePanel extends JPanel {
         customerSpawnTimer.start();
     }
 
+    private int[] selectRandomSpawnLocation() {
+        int randomIndex = (int) (Math.random() * 10);
+
+        if ((SPAWN_LOCATIONS[randomIndex] != null)) {
+            int[] randomSpawnLocation = {SPAWN_LOCATIONS[randomIndex][0], SPAWN_LOCATIONS[randomIndex][1]};
+            return randomSpawnLocation;
+        }
+        return null;
+    }
+
     private void spawnCustomer() {
-        if (numOfCustomersSpawned == 0)
-            customer1 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        int[] randomSpawnLocation = new int[2];
+        randomSpawnLocation = selectRandomSpawnLocation();
+        if (numOfCustomersSpawned == 0) {
+            customer1 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 16, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 1)
-            customer2 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 1) {
+            customer2 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 2)
-            customer3 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 2) {
+            customer3 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 3)
-            customer4 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 3) {
+            customer4 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 4)
-            customer5 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 4) {
+            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 5)
-            customer6 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 5) {
+            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 6)
-            customer7 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
-            numOfCustomersSpawned++; 
-        if (numOfCustomersSpawned == 7)
-            customer8 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 6) {
+            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 8)
-            customer9 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 7) {
+            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
-        if (numOfCustomersSpawned == 9)
-            customer10 = new Customer(POSSIBLE_CUSTOMER_LOCATIONS[0][0], POSSIBLE_CUSTOMER_LOCATIONS[0][1], 60, 100, 5);
+        } else if (numOfCustomersSpawned == 8) {
+            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
             numOfCustomersSpawned++;
+        } else {
+            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
+            numOfCustomersSpawned++;
+        }
     }
 
     private void updateCustomers() {
-        if (numOfCustomersSpawned == 0) customer1.update(hud);
-        if (numOfCustomersSpawned == 1) customer1.update(hud); customer2.update(hud);
-        if (numOfCustomersSpawned == 2) customer1.update(hud); customer2.update(hud); customer3.update(hud);
-        if (numOfCustomersSpawned == 3) customer1.update(hud); customer2.update(hud); customer4.update(hud);
-        if (numOfCustomersSpawned == 4)
+        if (numOfCustomersSpawned == 1) {
+            customer1.update(hud);
+        } else if (numOfCustomersSpawned == 2) {
+            customer1.update(hud);
+            customer2.update(hud);
+        } else if (numOfCustomersSpawned == 3) {
+            customer1.update(hud);
+            customer2.update(hud);
+            customer3.update(hud);
+        } else if (numOfCustomersSpawned == 4) {
+            customer1.update(hud);
+            customer2.update(hud);
+            customer3.update(hud);
+            customer4.update(hud);
+        }
         if (numOfCustomersSpawned == 5)
         if (numOfCustomersSpawned == 6)
         if (numOfCustomersSpawned == 7)
         if (numOfCustomersSpawned == 8)
-        if (numOfCustomersSpawned == 9);
+        if (numOfCustomersSpawned == 9)
+        if (numOfCustomersSpawned == 10);
     }
 
     private void renderCustomers(Graphics g) {
-        if (numOfCustomersSpawned == 0) customer1.render(g);
-        if (numOfCustomersSpawned == 1) customer1.render(g); customer2.render(g);
-        if (numOfCustomersSpawned == 2) customer1.render(g); customer2.render(g); customer3.render(g);
-        if (numOfCustomersSpawned == 3) customer1.render(g); customer2.render(g); customer4.render(g);
-        if (numOfCustomersSpawned == 4)
-        if (numOfCustomersSpawned == 5)
+        if (numOfCustomersSpawned == 1) {
+            customer1.render(g);
+        } else if (numOfCustomersSpawned == 2) {
+            customer1.render(g);
+            customer2.render(g);
+        } else if (numOfCustomersSpawned == 3)
+            customer1.render(g);
+            customer2.render(g);
+            customer3.render(g);
+        if (numOfCustomersSpawned == 4) {
+            customer1.render(g);
+            customer2.render(g);
+            customer3.render(g);
+            customer4.render(g);
+        } else if (numOfCustomersSpawned == 5)
         if (numOfCustomersSpawned == 6)
         if (numOfCustomersSpawned == 7)
         if (numOfCustomersSpawned == 8)
-        if (numOfCustomersSpawned == 9);
+        if (numOfCustomersSpawned == 9)
+        if (numOfCustomersSpawned == 10);
     }
 
     private void endGame() {
@@ -157,5 +196,34 @@ public class GamePanel extends JPanel {
 
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JOptionPane.showMessageDialog(null, "X: " + e.getX() + " Y: " + e.getY());
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // TODO Auto-generated method stub
+
     }
 }

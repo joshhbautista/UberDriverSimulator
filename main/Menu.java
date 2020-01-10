@@ -84,8 +84,7 @@ public class Menu extends JFrame implements ActionListener {
             game.setState("game");
             Assets.menuBgMusic.stop();
             dispose();
-        }
-        if (e.getActionCommand() == "quit") {
+        } else {
             System.exit(0);
         }
     }

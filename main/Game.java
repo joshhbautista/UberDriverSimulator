@@ -11,10 +11,10 @@ public class Game {
     private KeyManager keyManager;
 
     private boolean isGameRunning = false;
-    private int SCREEN_UPDATE_RATE = 60;
+    private final int SCREEN_UPDATE_RATE = 60;
     private long targetTime = 1000 / SCREEN_UPDATE_RATE;
 
-    private String currentState = "";
+    private String currentState;
 
     public Game() {
         run();
@@ -89,6 +89,11 @@ public class Game {
                 } catch (Exception e) {
                     //e.printStackTrace();
                 } 
+            }
+
+            // END GAME STATE
+            if (currentState == "end") {
+                new EndGameFrame(this);
             }
         }
     }
