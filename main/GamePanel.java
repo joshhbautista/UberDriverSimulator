@@ -112,7 +112,7 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private void playBackgroundMusic() {
-        Assets.gameBgMusic.play(1.0f);
+        Assets.gameBgMusic.play(-10.0f);
     }
 
     private void startCustomerSpawnTimer() {
@@ -142,7 +142,7 @@ public class GamePanel extends JPanel implements MouseListener {
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
             int randomFareIndex = generateRandomIndex(8); // cricket guy - 60, 100
-            customers[i] = new Customer(randomLocation[0], randomLocation[1], 100, 250, POSSIBLE_FARES[randomFareIndex], Assets.fareDisplay[randomFareIndex]);
+            customers[i] = new Customer(randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], Assets.fareDisplay[randomFareIndex]);
         }
     }
 
