@@ -65,6 +65,7 @@ public class Car extends Entity {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
+        graphics.fillRect((int) super.getX() + 45, (int) super.getY() + 50, 15, 20);
     }
 
     public void pickUpCustomer(Customer customer) {
@@ -96,6 +97,6 @@ public class Car extends Entity {
     }
     
     public Rectangle getCollisionBounds() {
-        return new Rectangle(x, y, width - 10, height - 15);
+        return new Rectangle((int) super.getX() + 45, (int) super.getY() + 50, 15, 20);
     }
 }

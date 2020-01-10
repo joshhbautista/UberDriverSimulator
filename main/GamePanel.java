@@ -2,6 +2,7 @@ package main;
 
 import java.math.*;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,19 +25,22 @@ public class GamePanel extends JPanel implements MouseListener {
 
     private Customer[] customers;
     private Car car;
+    private RoadBounds roadBounds;
     private Timer customerSpawnTimer;
 
     private int numOfCustomersDriven = 0;
+    private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
 
     private final int CUSTOMER_SPAWN_RATE = 10000; // 30 seconds
     private final int[][] SPAWN_LOCATIONS = {{183, 67}, {383, 492}, {1080, 67}, {1226, 549}, {468, 165}, 
-                                            {962, 549}, {858, 67}, {54, 67}, {1037, 243}, {1191, 550}};
-    private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
-    private final int[][] DESTINATION_LOCATIONS = {};
+                                             {962, 549}, {858, 67}, {54, 67}, {1037, 243}, {1191, 550}};
+    private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
+                                                   {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1509, 60}};
 
     public GamePanel(Game game) {
         this.game = game;
         this.hud = game.getHud();
+        roadBounds = new RoadBounds();
         addKeyListener(game.getKeyManager());
         addMouseListener(this);
         setFocusable(true);
@@ -52,6 +56,7 @@ public class GamePanel extends JPanel implements MouseListener {
 
     public void update() {
         car.update(hud);
+        checkCollision();
         customers[0].update(hud);
         customers[1].update(hud);
         customers[2].update(hud);
@@ -63,7 +68,7 @@ public class GamePanel extends JPanel implements MouseListener {
         customers[8].update(hud);
         customers[9].update(hud);
 
-        if (hud.getTimeLeft() == 240 || car.getFuelLeft() == 0) {
+        if (hud.getTimeLeft() == 0 || car.getFuelLeft() == 0) {
             endGame();
         }
 
@@ -90,12 +95,24 @@ public class GamePanel extends JPanel implements MouseListener {
         customers[9].render(g);
     }
 
+    private void checkCollision() {
+        Rectangle[] bounds = roadBounds.getBounds();
+        Rectangle carBounds = car.getCollisionBounds();
+        
+        for (Rectangle bound : bounds) {
+            if (bound.intersects(carBounds)) {
+                car.setX(car.getX() - 5);
+                car.setY(car.getY() - 5);
+            }
+        }
+    }
+
     private void spawnPlayer() {
         car = new Car(game, 645, 680, 100, 110);
     }
 
     private void playBackgroundMusic() {
-        Assets.gameBgMusic.play(-3.0f);
+        Assets.gameBgMusic.play(1.0f);
     }
 
     private void startCustomerSpawnTimer() {
