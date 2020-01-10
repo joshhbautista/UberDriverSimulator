@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements MouseListener {
     private Game game;
     private Hud hud;
 
-    private Customer customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10;
+    private Customer[] customers;
     private Car car;
     private Timer customerSpawnTimer;
 
@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements MouseListener {
         setPreferredSize(new Dimension(1600, 790));
         playBackgroundMusic();
 
+        initializeCustomers();
         spawnPlayer();
         spawnCustomer();
 
@@ -50,7 +51,16 @@ public class GamePanel extends JPanel implements MouseListener {
 
     public void update() {
         car.update(hud);
-        updateCustomers();
+        customers[0].update(hud);
+        customers[1].update(hud);
+        customers[2].update(hud);
+        customers[3].update(hud);
+        customers[4].update(hud);
+        customers[5].update(hud);
+        customers[6].update(hud);
+        customers[7].update(hud);
+        customers[8].update(hud);
+        customers[9].update(hud);
 
         if (hud.getTimeLeft() == 240 || car.getFuelLeft() == 0) {
             endGame();
@@ -67,7 +77,16 @@ public class GamePanel extends JPanel implements MouseListener {
         super.paintComponent(g);
         g.drawImage(Assets.townMap, 0, 0, 1600, 790, null);
         car.render(g);
-        renderCustomers(g);
+        customers[0].render(g);
+        customers[1].render(g);
+        customers[2].render(g);
+        customers[3].render(g);
+        customers[4].render(g);
+        customers[5].render(g);
+        customers[6].render(g);
+        customers[7].render(g);
+        customers[8].render(g);
+        customers[9].render(g);
     }
 
     private void spawnPlayer() {
@@ -89,7 +108,28 @@ public class GamePanel extends JPanel implements MouseListener {
         customerSpawnTimer.start();
     }
 
-    private int[] selectRandomSpawnLocation() {
+    private int generateRandomIndexToSpawn() {
+        int randomIndex = (int) (Math.random() * 10);
+
+        return randomIndex;
+    }
+
+    private void spawnCustomer() {
+        int randomIndex = generateRandomIndexToSpawn();
+        
+        customers[randomIndex].setIsVisible(true);
+    }
+
+    private void initializeCustomers() {
+        customers = new Customer[10];
+        for (int i = 0; i < 10; i++) {
+            int[] randomLocation = new int[2];
+            randomLocation = selectRandomLocation();
+            customers[i] = new Customer(randomLocation[0], randomLocation[1], 60, 100, 16, Assets.fareDisplay[1]);
+        }
+    }
+
+    private int[] selectRandomLocation() {
         int randomIndex = (int) (Math.random() * 10);
 
         if ((SPAWN_LOCATIONS[randomIndex] != null)) {
@@ -97,89 +137,6 @@ public class GamePanel extends JPanel implements MouseListener {
             return randomSpawnLocation;
         }
         return null;
-    }
-
-    private void spawnCustomer() {
-        int[] randomSpawnLocation = new int[2];
-        randomSpawnLocation = selectRandomSpawnLocation();
-        if (numOfCustomersSpawned == 0) {
-            customer1 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 16, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 1) {
-            customer2 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 2) {
-            customer3 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 3) {
-            customer4 = new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 4) {
-            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 5) {
-            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 6) {
-            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 7) {
-            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else if (numOfCustomersSpawned == 8) {
-            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        } else {
-            new Customer(randomSpawnLocation[0], randomSpawnLocation[1], 60, 100, 5, Assets.fareDisplay[1]);
-            numOfCustomersSpawned++;
-        }
-    }
-
-    private void updateCustomers() {
-        if (numOfCustomersSpawned == 1) {
-            customer1.update(hud);
-        } else if (numOfCustomersSpawned == 2) {
-            customer1.update(hud);
-            customer2.update(hud);
-        } else if (numOfCustomersSpawned == 3) {
-            customer1.update(hud);
-            customer2.update(hud);
-            customer3.update(hud);
-        } else if (numOfCustomersSpawned == 4) {
-            customer1.update(hud);
-            customer2.update(hud);
-            customer3.update(hud);
-            customer4.update(hud);
-        }
-        if (numOfCustomersSpawned == 5)
-        if (numOfCustomersSpawned == 6)
-        if (numOfCustomersSpawned == 7)
-        if (numOfCustomersSpawned == 8)
-        if (numOfCustomersSpawned == 9)
-        if (numOfCustomersSpawned == 10);
-    }
-
-    private void renderCustomers(Graphics g) {
-        if (numOfCustomersSpawned == 1) {
-            customer1.render(g);
-        } else if (numOfCustomersSpawned == 2) {
-            customer1.render(g);
-            customer2.render(g);
-        } else if (numOfCustomersSpawned == 3)
-            customer1.render(g);
-            customer2.render(g);
-            customer3.render(g);
-        if (numOfCustomersSpawned == 4) {
-            customer1.render(g);
-            customer2.render(g);
-            customer3.render(g);
-            customer4.render(g);
-        } else if (numOfCustomersSpawned == 5)
-        if (numOfCustomersSpawned == 6)
-        if (numOfCustomersSpawned == 7)
-        if (numOfCustomersSpawned == 8)
-        if (numOfCustomersSpawned == 9)
-        if (numOfCustomersSpawned == 10);
     }
 
     private void endGame() {
