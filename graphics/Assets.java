@@ -24,10 +24,18 @@ public class Assets {
         audi[3] = ImageLoader.loadImage("resources\\Vehicles\\AudiLeft.png");
         townMap = ImageLoader.loadImage("resources\\townmap.jpg");
 
-        fareDisplay = new BufferedImage[3];
+        // Fare bubble icons
+        fareDisplay = new BufferedImage[8];
         fareDisplay[0] = ImageLoader.loadImage("resources\\FareDisplay\\11.png");
-        fareDisplay[1] = ImageLoader.loadImage("resources\\FareDisplay\\16.png");
+        fareDisplay[1] = ImageLoader.loadImage("resources\\FareDisplay\\15.png");
+        fareDisplay[2] = ImageLoader.loadImage("resources\\FareDisplay\\16.png");
+        fareDisplay[3] = ImageLoader.loadImage("resources\\FareDisplay\\17.png");
+        fareDisplay[4] = ImageLoader.loadImage("resources\\FareDisplay\\18.png");
+        fareDisplay[5] = ImageLoader.loadImage("resources\\FareDisplay\\19.png");
+        fareDisplay[6] = ImageLoader.loadImage("resources\\FareDisplay\\21.png");
+        fareDisplay[7] = ImageLoader.loadImage("resources\\FareDisplay\\23.png");
 
+        // Customer images
         customers = new BufferedImage[1];
         customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
 

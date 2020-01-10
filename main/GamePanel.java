@@ -28,10 +28,11 @@ public class GamePanel extends JPanel implements MouseListener {
 
     private int numOfCustomersDriven = 0;
 
-    private int numOfCustomersSpawned = 0;
-    private final int CUSTOMER_SPAWN_RATE = 30000; // 30 seconds
-    private final int[][] SPAWN_LOCATIONS = {{183, 152}, {383, 592}, {1157, 139}, {1226, 649}, {468, 265}, 
-                                            {962, 649}, {858, 150}, {74, 153}, {1108, 325}, {1191, 650}};
+    private final int CUSTOMER_SPAWN_RATE = 10000; // 30 seconds
+    private final int[][] SPAWN_LOCATIONS = {{183, 152}, {383, 492}, {1157, 139}, {1226, 549}, {468, 165}, 
+                                            {962, 549}, {858, 150}, {74, 153}, {1108, 225}, {1191, 550}};
+    private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
+    private final int[][] DESTINATION_LOCATIONS = {};
 
     public GamePanel(Game game) {
         this.game = game;
@@ -108,15 +109,13 @@ public class GamePanel extends JPanel implements MouseListener {
         customerSpawnTimer.start();
     }
 
-    private int generateRandomIndexToSpawn() {
-        int randomIndex = (int) (Math.random() * 10);
-
+    private int generateRandomIndex(int max) {
+        int randomIndex = (int) (Math.random() * max);
         return randomIndex;
     }
 
     private void spawnCustomer() {
-        int randomIndex = generateRandomIndexToSpawn();
-        
+        int randomIndex = generateRandomIndex(10);
         customers[randomIndex].setIsVisible(true);
     }
 
@@ -125,18 +124,21 @@ public class GamePanel extends JPanel implements MouseListener {
         for (int i = 0; i < 10; i++) {
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
-            customers[i] = new Customer(randomLocation[0], randomLocation[1], 60, 100, 16, Assets.fareDisplay[1]);
+            int randomFareIndex = generateRandomIndex(8);
+            customers[i] = new Customer(randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], Assets.fareDisplay[randomFareIndex]);
         }
     }
 
     private int[] selectRandomLocation() {
-        int randomIndex = (int) (Math.random() * 10);
+        int randomIndex = generateRandomIndex(10);
 
         if ((SPAWN_LOCATIONS[randomIndex] != null)) {
             int[] randomSpawnLocation = {SPAWN_LOCATIONS[randomIndex][0], SPAWN_LOCATIONS[randomIndex][1]};
+            SPAWN_LOCATIONS[randomIndex] = null;
             return randomSpawnLocation;
+        } else {
+            return selectRandomLocation();
         }
-        return null;
     }
 
     private void endGame() {

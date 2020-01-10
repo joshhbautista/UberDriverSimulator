@@ -29,10 +29,6 @@ public class Customer extends Entity {
 
     }
 
-    public void leave() {
-
-    }
-
     public double getFare() {
         return fare;
     }
