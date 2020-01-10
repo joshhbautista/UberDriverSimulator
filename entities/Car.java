@@ -3,6 +3,7 @@ package entities;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.Rectangle;
 
 import graphics.Assets;
 import main.Game;
@@ -92,5 +93,9 @@ public class Car extends Entity {
 
     public void setMoneyMade(double newMoneyMade) {
         moneyMade = newMoneyMade;
+    }
+    
+    public Rectangle getCollisionBounds() {
+        return new Rectangle(x, y, width - 10, height - 15);
     }
 }
