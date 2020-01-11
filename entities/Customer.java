@@ -15,18 +15,19 @@ public class Customer extends Entity {
 
     private Game game;
     private double fare;
-    private BufferedImage fareDisplay;
+    private BufferedImage fareDisplay, customerImage;
     private int[] destination;
     private boolean hasTimeExpired;
     private boolean hasBeenPickedUp;
     private boolean isVisible;
     private Rectangle pickUpSpot, dropOffSpot;
 
-    public Customer(Game game, float x, float y, int width, int height, double fare, BufferedImage fareDisplay, int[] destination) {
+    public Customer(Game game, float x, float y, int width, int height, double fare, BufferedImage fareDisplay, BufferedImage customerImage, int[] destination) {
         super(x, y, width, height);
         this.game = game;
         this.fare = fare;
         this.fareDisplay = fareDisplay;
+        this.customerImage = customerImage;
         this.destination = destination;
         isVisible = false;
         hasBeenPickedUp = false;
@@ -69,20 +70,16 @@ public class Customer extends Entity {
     @Override
     public void render(Graphics graphics) {
         if (isVisible) {
-            graphics.drawImage(Assets.customers[0], (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null); // Customer
+            graphics.drawImage(customerImage, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null); // Customer
             graphics.drawImage(fareDisplay, (int) (super.getX() + 35), (int) (super.getY() - 50), 120, 65, null); // Fare display
             if (!hasBeenPickedUp) {
-                graphics.drawImage(Assets.pickUpSymbol, (int) getX() + 12, (int) getY() + 100, 50, 50, null); 
+                graphics.drawImage(Assets.pickUpSymbol, (int) getX() + 4, (int) getY() + 100, 50, 50, null); 
             }
         }
 
         if (hasBeenPickedUp) {
             graphics.drawImage(Assets.dropOffSymbol, (int) destination[0] - 24, (int) destination[1] - 75, 50, 80, null); // Destination symbol
         }
-    }
-
-    public void giveDirections() {
-        
     }
 
     public void payFare() {

@@ -30,6 +30,7 @@ public class Menu extends JFrame implements ActionListener {
         super("Uber Driver Simulator");
         this.game = game;
         createMenuFrame();
+        //playBackgroundMusic(-3.0f);
     }
 
     private void createMenuFrame() {
@@ -74,8 +75,10 @@ public class Menu extends JFrame implements ActionListener {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
 
-        Assets.menuBgMusic.play(-3.0f);
+    private void playBackgroundMusic(float volume) {
+        Assets.menuBgMusic.play(volume);
     }
 
     @Override

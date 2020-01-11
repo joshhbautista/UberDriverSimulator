@@ -11,6 +11,7 @@ public class Game {
     private KeyManager keyManager;
 
     private boolean isGameRunning = false;
+    private boolean playAgain = false;
     private final int SCREEN_UPDATE_RATE = 60;
     private long targetTime = 1000 / SCREEN_UPDATE_RATE;
 
@@ -94,6 +95,7 @@ public class Game {
             // END GAME STATE
             if (currentState == "end") {
                 new EndGameFrame(this);
+                currentState = "play again";
             }
         }
     }
@@ -124,6 +126,18 @@ public class Game {
 
     public Hud getHud() {
         return hud;
+    }
+
+    public boolean getPlayAgain() {
+        return playAgain;
+    }
+
+    public void setPlayAgain(boolean playAgain) {
+        this.playAgain = playAgain;
+    }
+
+    public String getCurrentState() {
+        return currentState;
     }
 
     public void setState(String state) {

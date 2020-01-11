@@ -13,7 +13,7 @@ public class Car extends Entity {
 
     private Game game;
     private double fuelLeft;
-    private double moneyMade;
+    private int moneyMade;
     private boolean isDrivingACustomer;
     private BufferedImage car;
     private float xMove, yMove;
@@ -139,7 +139,7 @@ public class Car extends Entity {
         return moneyMade;
     }
 
-    public void setMoneyMade(double newMoneyMade) {
+    public void setMoneyMade(int newMoneyMade) {
         moneyMade = newMoneyMade;
     }
     

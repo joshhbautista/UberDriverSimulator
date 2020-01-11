@@ -33,9 +33,11 @@ public class GamePanel extends JPanel implements MouseListener {
 
     private final int CUSTOMER_SPAWN_RATE = 20000; // 20 seconds
     private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 49}, {1226, 549}, {468, 165}, 
-                                             {962, 549}, {858, 55}, {54, 55}, {1037, 233}, {1191, 550}};
+                                             {962, 549}, {858, 55}, {54, 55}, {1037, 233}, {1191, 550},
+                                              {451, 278}, {758, 49}, {928, 380}, {1218, 210}};
     private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
-                                                   {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1509, 60}};
+                                                   {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1509, 60},
+                                                   {1497, 60}, {243, 513}, {459, 51}, {854, 358}};
 
     public GamePanel(Game game) {
         this.game = game;
@@ -45,7 +47,7 @@ public class GamePanel extends JPanel implements MouseListener {
         addMouseListener(this);
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
-        //playBackgroundMusic();
+        //playBackgroundMusic(-10.0f);
 
         spawnPlayer();
         initializeCustomers();
@@ -69,7 +71,7 @@ public class GamePanel extends JPanel implements MouseListener {
         customers[9].update(hud);
 
         if (hud.getTimeLeft() == 0 || car.getFuelLeft() == 0) {
-            //endGame();
+            endGame();
         }
 
         // if (player click drive customer) carCloseEnough =
@@ -122,8 +124,8 @@ public class GamePanel extends JPanel implements MouseListener {
         car = new Car(game, 645, 680, 100, 110);
     }
 
-    private void playBackgroundMusic() {
-        Assets.gameBgMusic.play(-10.0f);
+    private void playBackgroundMusic(float volume) {
+        Assets.gameBgMusic.play(volume);
     }
 
     private void startCustomerSpawnTimer() {
@@ -148,19 +150,20 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private void initializeCustomers() {
-        customers = new Customer[10];
-        for (int i = 0; i < 10; i++) {
+        // TODO unique locations
+        customers = new Customer[14];
+        for (int i = 0; i < 14; i++) {
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
             int randomIndex = generateRandomIndex(8); // cricket guy - 60, 100
             int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
             customers[i] = new Customer(game, randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomIndex], 
-                                        Assets.fareDisplay[randomIndex], randomDestination);
+                                        Assets.fareDisplay[randomIndex], Assets.customers[i], randomDestination);
         }
     }
 
     private int[] selectRandomLocation() {
-        int randomIndex = generateRandomIndex(10);
+        int randomIndex = generateRandomIndex(14);
 
         if ((SPAWN_LOCATIONS[randomIndex] != null)) {
             int[] randomSpawnLocation = {SPAWN_LOCATIONS[randomIndex][0], SPAWN_LOCATIONS[randomIndex][1]};
@@ -172,7 +175,6 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private void endGame() {
-        game.stop();
         game.setState("end");
         hud.getTimeLeftTimer().stop();
         customerSpawnTimer.stop();
