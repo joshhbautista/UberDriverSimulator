@@ -38,7 +38,13 @@ public class KeyManager implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;
+    }
 
+    public void resetKeyPresses() {
+        keys[KeyEvent.VK_W] = false;
+        keys[KeyEvent.VK_S] = false;
+        keys[KeyEvent.VK_A] = false;
+        keys[KeyEvent.VK_D] = false;
     }
 
     public boolean getIsUpPressed() {

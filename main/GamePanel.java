@@ -31,9 +31,9 @@ public class GamePanel extends JPanel implements MouseListener {
     private int numOfCustomersDriven = 0;
     private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
 
-    private final int CUSTOMER_SPAWN_RATE = 10000; // 30 seconds
-    private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 52}, {1226, 549}, {468, 165}, 
-                                             {962, 549}, {858, 55}, {54, 55}, {1037, 243}, {1191, 550}};
+    private final int CUSTOMER_SPAWN_RATE = 20000; // 20 seconds
+    private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 49}, {1226, 549}, {468, 165}, 
+                                             {962, 549}, {858, 55}, {54, 55}, {1037, 233}, {1191, 550}};
     private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
                                                    {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1509, 60}};
 
@@ -50,10 +50,7 @@ public class GamePanel extends JPanel implements MouseListener {
         spawnPlayer();
         initializeCustomers();
         spawnCustomer();
-
-        Rectangle rect = new Rectangle(0, 0, 100, 100);
         
-
         startCustomerSpawnTimer();
     }
 

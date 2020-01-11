@@ -31,32 +31,37 @@ public class Customer extends Entity {
         isVisible = false;
         hasBeenPickedUp = false;
 
-        pickUpSpot = new Rectangle(0, 0, 30, 30); // move this when picked up
-        dropOffSpot = new Rectangle(0, 0, 30, 30);
+        pickUpSpot = new Rectangle(0, 0, 25, 20); // move this when picked up
+        dropOffSpot = new Rectangle(0, 0, 25, 20);
     }
 
     @Override
     public void update(Hud hud) {
+
+        // ------------------ If car is near customer ------------------ \\
         if (pickUpSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            int userOption = JOptionPane.showConfirmDialog(null, "Do you want to pick up this customer?", "Uber Driver Simulator", 2);
-            if (userOption == 0) {
-                pickUpSpot.setLocation(0, 0);
-                hasBeenPickedUp = true;
-                isVisible = false;
-            }
+            JOptionPane.showMessageDialog(null, "You have picked up a customer.", "Uber Driver Simulator", 1);
+            game.getKeyManager().resetKeyPresses(); // Reset key presses 
+            pickUpSpot.setLocation(0, 0); // Remove pick up bounds
+            hasBeenPickedUp = true;
+            isVisible = false;
         }
+        // -------------------- If car is at customer destination ------------- \\
         if (dropOffSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            JOptionPane.showMessageDialog(null, "You have earned $" + fare + "!", "Uber Driver Simulator", 1);
+            JOptionPane.showMessageDialog(null, "You dropped off a customer!\nYou have earned $" + fare + "!", "Uber Driver Simulator", 1);
+            game.getKeyManager().resetKeyPresses(); // Reset key presses
             payFare();
             hasBeenPickedUp = false;
-            dropOffSpot.setLocation(0, 0);
+            dropOffSpot.setLocation(0, 0); // Remove drop off bounds
         }
+        // -------------------- If the customer is shown to user ----------------  \\
         if (isVisible) {
-            pickUpSpot.setLocation((int) getX() + 30 , (int) getY() + 105);
+            pickUpSpot.setLocation((int) getX() + 28 , (int) getY() + 100); // Set pick up bounds
         }
+        // -------------------- If the customer has been picked up ------------------ \\
         if (hasBeenPickedUp) {
-            pickUpSpot.setLocation(0, 0);
-            dropOffSpot.setLocation((int) destination[0], (int) destination[1]);
+            pickUpSpot.setLocation(0, 0); // Remove pick up bounds
+            dropOffSpot.setLocation((int) destination[0], (int) destination[1]); // Set drop off bounds at destination
         }
         // (hasTimeExpired) leave();
     }
@@ -64,15 +69,15 @@ public class Customer extends Entity {
     @Override
     public void render(Graphics graphics) {
         if (isVisible) {
-            graphics.drawImage(Assets.customers[0], (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
-            graphics.drawImage(fareDisplay, (int) (super.getX() + 35), (int) (super.getY() - 50), 120, 65, null);
+            graphics.drawImage(Assets.customers[0], (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null); // Customer
+            graphics.drawImage(fareDisplay, (int) (super.getX() + 35), (int) (super.getY() - 50), 120, 65, null); // Fare display
             if (!hasBeenPickedUp) {
-                graphics.fillRect((int) getX() + 30 , (int) getY() + 105, 30, 30);
+                graphics.drawImage(Assets.pickUpSymbol, (int) getX() + 12, (int) getY() + 100, 50, 50, null); 
             }
         }
 
         if (hasBeenPickedUp) {
-            graphics.fillRect((int) destination[0], (int) destination[1], 30, 30);
+            graphics.drawImage(Assets.dropOffSymbol, (int) destination[0] - 24, (int) destination[1] - 75, 50, 80, null); // Destination symbol
         }
     }
 
@@ -101,5 +106,4 @@ public class Customer extends Entity {
     public void setIsVisible(boolean isVisible) {
         this.isVisible = isVisible;
     }
-    
 }

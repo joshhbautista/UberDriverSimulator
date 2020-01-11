@@ -74,22 +74,22 @@ public class Car extends Entity {
         if (game.getKeyManager().getIsUpPressed()) {
             car = Assets.audi[0];
             fuelLeft -= 0.01;
-            yMove = -2;
+            yMove = -1.5f;
         }
         if (game.getKeyManager().getIsDownPressed()) {
             car = Assets.audi[2];
             fuelLeft -= 0.01;
-            yMove = 2;
+            yMove = 1.5f;
         }
         if (game.getKeyManager().getIsLeftPressed()) {
             car = Assets.audi[3];
             fuelLeft -= 0.01;
-            xMove = -2;
+            xMove = -1.5f;
         }
         if (game.getKeyManager().getIsRightPressed()) {
             car = Assets.audi[1];
             fuelLeft -= 0.01;
-            xMove = 2;
+            xMove = 1.5f;
         }
     }
 

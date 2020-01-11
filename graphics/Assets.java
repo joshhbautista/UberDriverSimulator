@@ -9,7 +9,7 @@ import audio.AudioPlayer;
  */
 public class Assets {
 
-    public static BufferedImage townMap, menu;
+    public static BufferedImage townMap, dropOffSymbol, pickUpSymbol;
     public static BufferedImage[] statButtons, customers, fareDisplay, audi;
     public static Icon playButton, quitButton, settingsButton, title;
     public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX;
@@ -40,11 +40,13 @@ public class Assets {
         customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
         customers[1] = ImageLoader.loadImage("resources\\Customers\\elon.png");
 
-        // Icons
+        // Icons & Hud
         title = ImageLoader.loadIcon("resources\\Menu\\title.PNG");
         playButton = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
         quitButton = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
         settingsButton = ImageLoader.loadIcon("resources\\HUD\\settingsbutton.png");
+        dropOffSymbol = ImageLoader.loadImage("resources\\HUD\\dropoffsymbol.png");
+        pickUpSymbol = ImageLoader.loadImage("resources\\HUD\\pickupsymbol.png");
 
         // SFX
         menuBgMusic = new AudioPlayer("resources\\Music\\menubg.wav");
@@ -56,6 +58,5 @@ public class Assets {
         // Load all assets from spritesheet here
 
 
-        //menu = sheet.crop(0, 0, width, height);
     }
 }
