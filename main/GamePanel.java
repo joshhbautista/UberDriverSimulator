@@ -32,8 +32,8 @@ public class GamePanel extends JPanel implements MouseListener {
     private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
 
     private final int CUSTOMER_SPAWN_RATE = 10000; // 30 seconds
-    private final int[][] SPAWN_LOCATIONS = {{183, 67}, {383, 492}, {1080, 67}, {1226, 549}, {468, 165}, 
-                                             {962, 549}, {858, 67}, {54, 67}, {1037, 243}, {1191, 550}};
+    private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 52}, {1226, 549}, {468, 165}, 
+                                             {962, 549}, {858, 55}, {54, 55}, {1037, 243}, {1191, 550}};
     private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
                                                    {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1509, 60}};
 
@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements MouseListener {
         addMouseListener(this);
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
-        playBackgroundMusic();
+        //playBackgroundMusic();
 
         initializeCustomers();
         spawnPlayer();
@@ -69,7 +69,7 @@ public class GamePanel extends JPanel implements MouseListener {
         customers[9].update(hud);
 
         if (hud.getTimeLeft() == 0 || car.getFuelLeft() == 0) {
-            endGame();
+            //endGame();
         }
 
         // if (player click drive customer) carCloseEnough =
@@ -101,8 +101,19 @@ public class GamePanel extends JPanel implements MouseListener {
         
         for (Rectangle bound : bounds) {
             if (bound.intersects(carBounds)) {
-                car.setX(car.getX() - 5);
-                car.setY(car.getY() - 5);
+                if (car.getxMove() > 0) { // right
+                    car.setxMove(0);
+                    car.setX(car.getX() - 3);
+                } if (car.getxMove() < 0) { // left
+                    car.setxMove(0);
+                    car.setX(car.getX() + 3);
+                } if (car.getyMove() > 0) { // down
+                    car.setyMove(0);
+                    car.setY(car.getY() - 3);
+                } if (car.getyMove() < 0) { // up
+                    car.setyMove(0);
+                    car.setY(car.getY() + 3);
+                }
             }
         }
     }

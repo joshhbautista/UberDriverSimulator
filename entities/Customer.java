@@ -51,7 +51,7 @@ public class Customer extends Entity {
     public void render(Graphics graphics) {
         if (isVisible) {
             graphics.drawImage(Assets.customers[0], (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
-            graphics.drawImage(fareDisplay, (int) (super.getX() + 40), (int) (super.getY() - 65), 125, 75, null);
+            graphics.drawImage(fareDisplay, (int) (super.getX() + 35), (int) (super.getY() - 50), 120, 65, null);
         }
     }
 

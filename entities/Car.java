@@ -15,42 +15,67 @@ public class Car extends Entity {
     private double fuelLeft;
     private double moneyMade;
     private BufferedImage car;
+    private float xMove, yMove;
 
     public Car(Game game, float x, float y, int width, int height) {
         super(x, y, width, height);
         this.game = game;
         car = Assets.audi[0];
+        xMove = 0;
+        yMove = 0;
 
         // TODO TEST
         moneyMade = 0;
         fuelLeft = 100.0;
     }
 
-    @Override
-    public void update(Hud hud) {
+    public void move() {
+        moveXPos();
+        moveYPos();
+    }
 
-        // ---------------------- Car Movement ------------------------ \\
+    public void moveXPos() {
+        setX(getX() + xMove);
+    }
+
+    public void moveYPos() {
+        setY(getY() + yMove);
+    }
+
+    private void getInputFromUser() {
+        xMove = 0;
+        yMove = 0;
+
         if (game.getKeyManager().getIsUpPressed()) {
             car = Assets.audi[0];
             fuelLeft -= 0.01;
-            super.setY(super.getY() - 2);
+            yMove = -2;
         }
         if (game.getKeyManager().getIsDownPressed()) {
             car = Assets.audi[2];
             fuelLeft -= 0.01;
-            super.setY(super.getY() + 2);
+            yMove = 2;
         }
         if (game.getKeyManager().getIsLeftPressed()) {
             car = Assets.audi[3];
             fuelLeft -= 0.01;
-            super.setX(super.getX() - 2);
+            xMove = -2;
         }
         if (game.getKeyManager().getIsRightPressed()) {
             car = Assets.audi[1];
             fuelLeft -= 0.01;
-            super.setX(super.getX() + 2);
+            xMove = 2;
         }
+    }
 
+    @Override
+    public void update(Hud hud) {
+
+        // Car Movement
+        getInputFromUser();
+        move();
+        
+        // Hud
         hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
         hud.getFuelLeftLabel().setText("Fuel Left: " + String.format("%.1f", fuelLeft) + " L");
         hud.getFuelLeftBar().setValue((int) fuelLeft);
@@ -78,6 +103,22 @@ public class Car extends Entity {
 
     public void checkIfCustomerIsCloseEnough(Customer customer) {
 
+    }
+
+    public void setxMove(float xMove) {
+        this.xMove = xMove;
+    }
+
+    public float getxMove() {
+        return xMove;
+    }
+
+    public void setyMove(float yMove) {
+        this.yMove = yMove;
+    }
+
+    public float getyMove() {
+        return yMove;
     }
 
     public void setFuelLeft(double newFuelLeft) {
