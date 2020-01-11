@@ -14,6 +14,7 @@ public class Car extends Entity {
     private Game game;
     private double fuelLeft;
     private double moneyMade;
+    private boolean isDrivingACustomer;
     private BufferedImage car;
     private float xMove, yMove;
 
@@ -24,9 +25,33 @@ public class Car extends Entity {
         xMove = 0;
         yMove = 0;
 
-        // TODO TEST
+        isDrivingACustomer = false;
         moneyMade = 0;
         fuelLeft = 100.0;
+    }
+
+    @Override
+    public void update(Hud hud) {
+
+        // Car Movement \\
+        getInputFromUser();
+        move();
+        
+        // ------------------------- Hud --------------------------- \\
+        hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
+        hud.getFuelLeftLabel().setText("Fuel Left: " + String.format("%.1f", fuelLeft) + " L");
+        hud.getFuelLeftBar().setValue((int) fuelLeft);
+
+        if (fuelLeft < 50)
+            hud.getFuelLeftBar().setForeground(Color.YELLOW);
+        if (fuelLeft < 20) {
+           hud.getFuelLeftBar().setForeground(Color.RED); 
+        }
+    }
+
+    @Override
+    public void render(Graphics graphics) {
+        graphics.drawImage(car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
     }
 
     public void move() {
@@ -68,31 +93,6 @@ public class Car extends Entity {
         }
     }
 
-    @Override
-    public void update(Hud hud) {
-
-        // Car Movement
-        getInputFromUser();
-        move();
-        
-        // Hud
-        hud.getMoneyMadeLabel().setText("Money Made: $" + (int) moneyMade);
-        hud.getFuelLeftLabel().setText("Fuel Left: " + String.format("%.1f", fuelLeft) + " L");
-        hud.getFuelLeftBar().setValue((int) fuelLeft);
-
-        if (fuelLeft < 50)
-            hud.getFuelLeftBar().setForeground(Color.YELLOW);
-        if (fuelLeft < 20) {
-           hud.getFuelLeftBar().setForeground(Color.RED); 
-        }
-    }
-
-    @Override
-    public void render(Graphics graphics) {
-        graphics.drawImage(car, (int) super.getX(), (int) super.getY(), super.getWidth(), super.getHeight(), null);
-        graphics.fillRect((int) super.getX() + 42, (int) super.getY() + 45, 15, 20);
-    }
-
     public void pickUpCustomer(Customer customer) {
 
     }
@@ -104,6 +104,8 @@ public class Car extends Entity {
     public void checkIfCustomerIsCloseEnough(Customer customer) {
 
     }
+
+    // ------- SETTERS & GETTERS ------- \\
 
     public void setxMove(float xMove) {
         this.xMove = xMove;
@@ -127,6 +129,10 @@ public class Car extends Entity {
 
     public double getFuelLeft() {
         return fuelLeft;
+    }
+
+    public void addMoneyMade(double moneyMadeToBeAdded) {
+        moneyMade += moneyMadeToBeAdded;
     }
     
     public double getMoneyMade() {

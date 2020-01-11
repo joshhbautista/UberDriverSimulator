@@ -47,9 +47,12 @@ public class GamePanel extends JPanel implements MouseListener {
         setPreferredSize(new Dimension(1600, 790));
         //playBackgroundMusic();
 
-        initializeCustomers();
         spawnPlayer();
+        initializeCustomers();
         spawnCustomer();
+
+        Rectangle rect = new Rectangle(0, 0, 100, 100);
+        
 
         startCustomerSpawnTimer();
     }
@@ -152,8 +155,10 @@ public class GamePanel extends JPanel implements MouseListener {
         for (int i = 0; i < 10; i++) {
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
-            int randomFareIndex = generateRandomIndex(8); // cricket guy - 60, 100
-            customers[i] = new Customer(randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], Assets.fareDisplay[randomFareIndex]);
+            int randomIndex = generateRandomIndex(8); // cricket guy - 60, 100
+            int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
+            customers[i] = new Customer(game, randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomIndex], 
+                                        Assets.fareDisplay[randomIndex], randomDestination);
         }
     }
 
@@ -191,26 +196,11 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
+    public void mousePressed(MouseEvent e) {}
     @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
+    public void mouseReleased(MouseEvent e) {}
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
+    public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
+    public void mouseExited(MouseEvent e) {}
 }
