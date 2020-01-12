@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
 
     public GameFrame(GamePanel gamePanel, Hud hud) {
         super("Uber Driver Simulator");
-        createGameFrame(gamePanel, hud);
+        createGameFrame(gamePanel, hud); // TODO pass it in or make it attributes?
     }
 
    private void createGameFrame(GamePanel gamePanel, Hud hud) {

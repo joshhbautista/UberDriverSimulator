@@ -30,7 +30,7 @@ public class Menu extends JFrame implements ActionListener {
         super("Uber Driver Simulator");
         this.game = game;
         createMenuFrame();
-        //playBackgroundMusic(-3.0f);
+        playBackgroundMusic(-5.0f);
     }
 
     private void createMenuFrame() {

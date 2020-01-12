@@ -12,7 +12,7 @@ public class Assets {
     public static BufferedImage townMap, dropOffSymbol, pickUpSymbol;
     public static BufferedImage[] statButtons, customers, fareDisplay, audi;
     public static Icon playButton, quitButton, settingsButton, title, playAgainButton, quitEndButton;
-    public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX;
+    public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX, dropOffSFX;
 
     public static void init() {
         // Images
@@ -65,6 +65,7 @@ public class Assets {
         // SFX
         menuBgMusic = new AudioPlayer("resources\\Music\\menubg.wav");
         gameBgMusic = new AudioPlayer("resources\\Music\\gamebg.wav");
+        dropOffSFX = new AudioPlayer("resources\\SFX\\dropoff.wav");
         carDoorsSFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
         customerSpawnSFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
 

@@ -23,8 +23,8 @@ import graphics.Assets;
 public class EndGameFrame extends JFrame implements ActionListener {
 
     private Game game;
-    private final int WIDTH = 800;
-    private final int HEIGHT = 450;
+    private final int SCREEN_WIDTH = 800;
+    private final int SCREEN_HEIGHT = 450;
 
     private JPanel statsPanel;
     private JLabel statsTitle;
@@ -35,7 +35,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
     private JButton quitEndButton;
 
     private String numOfCustomersDriven;
-    private double totalMoneyMade;
+    private int totalMoneyMade;
 
     public EndGameFrame(Game game) {
         super("Uber Driver Simulator");
@@ -44,7 +44,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
     }
 
     private void createEndGameFrame() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLayout(new GridBagLayout());

@@ -101,10 +101,6 @@ public class Car extends Entity {
 
     }
 
-    public void checkIfCustomerIsCloseEnough(Customer customer) {
-
-    }
-
     // ------- SETTERS & GETTERS ------- \\
 
     public void setxMove(float xMove) {
@@ -131,11 +127,11 @@ public class Car extends Entity {
         return fuelLeft;
     }
 
-    public void addMoneyMade(double moneyMadeToBeAdded) {
+    public void addMoneyMade(int moneyMadeToBeAdded) {
         moneyMade += moneyMadeToBeAdded;
     }
     
-    public double getMoneyMade() {
+    public int getMoneyMade() {
         return moneyMade;
     }
 

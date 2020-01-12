@@ -33,8 +33,8 @@ public class GamePanel extends JPanel implements MouseListener {
 
     private final int CUSTOMER_SPAWN_RATE = 20000; // 20 seconds
     private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 49}, {1226, 549}, {468, 165}, 
-                                             {962, 549}, {858, 55}, {54, 55}, {1037, 233}, {1191, 550},
-                                              {451, 278}, {758, 49}, {928, 380}, {1218, 210}};
+                                             {962, 549}, {858, 55}, {54, 55}, {1037, 233}, {1100, 550},
+                                              {451, 282}, {758, 49}, {928, 390}, {1218, 220}};
     private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
                                                    {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1509, 60},
                                                    {1497, 60}, {243, 513}, {459, 51}, {854, 358}};
@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements MouseListener {
         addMouseListener(this);
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
-        //playBackgroundMusic(-10.0f);
+        playBackgroundMusic(-10.0f);
 
         spawnPlayer();
         initializeCustomers();
@@ -70,14 +70,9 @@ public class GamePanel extends JPanel implements MouseListener {
         customers[8].update(hud);
         customers[9].update(hud);
 
-        if (hud.getTimeLeft() == 0 || car.getFuelLeft() == 0) {
+        if (hud.getTimeLeft() == 0 || car.getFuelLeft() <= 0) {
             endGame();
         }
-
-        // if (player click drive customer) carCloseEnough =
-        // car.checkIfCarCloseEnough(); if (carCloseEnough) car.pickUpCustomer();
-        // customer.giveDirections();
-        //
     }
 
     @Override
@@ -133,7 +128,6 @@ public class GamePanel extends JPanel implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 spawnCustomer();
-                Assets.customerSpawnSFX.play(0);
             }
         });
         customerSpawnTimer.start();
@@ -147,6 +141,7 @@ public class GamePanel extends JPanel implements MouseListener {
     private void spawnCustomer() {
         int randomIndex = generateRandomIndex(10);
         customers[randomIndex].setIsVisible(true);
+        Assets.customerSpawnSFX.play(0);
     }
 
     private void initializeCustomers() {
@@ -187,6 +182,10 @@ public class GamePanel extends JPanel implements MouseListener {
 
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
+    }
+
+    public void setNumOfCustomersDriven(int numOfCustomersDriven) {
+        this.numOfCustomersDriven = numOfCustomersDriven;
     }
 
     @Override
