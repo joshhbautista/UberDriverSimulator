@@ -99,16 +99,16 @@ public class GamePanel extends JPanel implements MouseListener {
             if (bound.intersects(carBounds)) {
                 if (car.getxMove() > 0) { // right
                     car.setxMove(0);
-                    car.setX(car.getX() - 3);
+                    car.setXPos(car.getXPos() - 3);
                 } if (car.getxMove() < 0) { // left
                     car.setxMove(0);
-                    car.setX(car.getX() + 3);
+                    car.setXPos(car.getXPos() + 3);
                 } if (car.getyMove() > 0) { // down
                     car.setyMove(0);
-                    car.setY(car.getY() - 3);
+                    car.setYPos(car.getYPos() - 3);
                 } if (car.getyMove() < 0) { // up
                     car.setyMove(0);
-                    car.setY(car.getY() + 3);
+                    car.setYPos(car.getYPos() + 3);
                 }
             }
         }

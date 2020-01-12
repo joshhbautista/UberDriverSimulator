@@ -6,30 +6,30 @@ import main.Hud;
 
 public abstract class Entity {
 
-    private float x, y;
+    private float xPos, yPos;
     private int width, height;
 
-    public Entity(float x, float y, int width, int height) {
-        this.x = x;
-        this.y = y;
+    public Entity(float xPos, float yPos, int width, int height) {
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.width = width;
         this.height = height;
     }
 
-    public float getX() {
-        return x;
+    public float getXPos() {
+        return xPos;
     }
 
-    public void setX(float x) {
-        this.x = x;
+    public void setXPos(float xPos) {
+        this.xPos = xPos;
     }
 
-    public float getY() {
-        return y;
+    public float getYPos() {
+        return yPos;
     }
 
-    public void setY(float y) {
-        this.y = y;
+    public void setYPos(float yPos) {
+        this.yPos = yPos;
     }
 
     public int getWidth() {

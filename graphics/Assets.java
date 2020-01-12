@@ -5,18 +5,96 @@ import javax.swing.Icon;
 import audio.AudioPlayer;
 
 /**
- * Initalizes assets
+ * The <code>Assets</code> class loads all assets of the game.
+ * This includes all BufferedImages, Icons, and Audio. The attributes
+ * of this class are allowed to be accessed anywhere.
  */
 public class Assets {
 
-    public static BufferedImage townMap, dropOffSymbol, pickUpSymbol;
-    public static BufferedImage[] statButtons, customers, fareDisplay, audi;
-    public static Icon playButton, quitButton, settingsButton, title, playAgainButton, quitEndButton;
-    public static AudioPlayer menuBgMusic, gameBgMusic, carDoorsSFX, customerSpawnSFX, dropOffSFX;
+    // TODO make this static or use getters?
 
+    /**
+     * The town map image.
+     */
+    public static BufferedImage townMap;
+    /**
+     * The drop off symbol image.
+     */
+    public static BufferedImage dropOffSymbol;
+    /**
+     * The pick up symbol image.
+     */
+    public static BufferedImage pickUpSymbol;
+    /**
+     * Stores the play again and quit button displayed
+     * on the EndGameFrame.
+     */
+    public static BufferedImage[] statButtons;
+    /**
+     * Stores all customer images.
+     */
+    public static BufferedImage[] customers;
+    /**
+     * Stores all fare display images.
+     */
+    public static BufferedImage[] fareDisplay;
+    /**
+     * Stores the up, down, left, and right
+     * images of the audi car.
+     */
+    public static BufferedImage[] audi;
+    /**
+     * The play button icon.
+     */
+    public static Icon playButton;
+    /**
+     * The quit button icon.
+     */
+    public static Icon quitButton;
+    /**
+     * The settings button icon.
+     */
+    public static Icon settingsButton;
+    /**
+     * The title icon.
+     */
+    public static Icon title;
+    /**
+     * The play again button icon.
+     */
+    public static Icon playAgainButton;
+    /**
+     * The quit button displayed at the end
+     * of the game.
+     */
+    public static Icon quitEndButton;
+    /**
+     * The menu background music.
+     */
+    public static AudioPlayer menuBgMusic;
+    /**
+     * The game background music.
+     */
+    public static AudioPlayer gameBgMusic;
+    /**
+     * The car doors close sound effect.
+     */
+    public static AudioPlayer carDoorsSFX;
+    /**
+     * The customer spawn sound effect.
+     */
+    public static AudioPlayer customerSpawnSFX;
+    /**
+     * The drop off sound effect.
+     */
+    public static AudioPlayer dropOffSFX;
+
+    /**
+     * Initializes and loads all assets.
+     */
     public static void init() {
-        // Images
-        //SpriteSheet tutSheet = new SpriteSheet(ImageLoader.loadImage("resources\\tutsheet.png"));
+
+        // Car images
         audi = new BufferedImage[4];
         audi[0] = ImageLoader.loadImage("resources\\Vehicles\\AudiUp.png");
         audi[1] = ImageLoader.loadImage("resources\\Vehicles\\AudiRight.png");
@@ -68,10 +146,6 @@ public class Assets {
         dropOffSFX = new AudioPlayer("resources\\SFX\\dropoff.wav");
         carDoorsSFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
         customerSpawnSFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
-
-
-        // Load all assets from spritesheet here
-
 
     }
 }
