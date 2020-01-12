@@ -1,6 +1,5 @@
 package main;
 
-import java.math.*;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -50,9 +49,9 @@ public class GamePanel extends JPanel implements MouseListener {
         playBackgroundMusic(-10.0f);
 
         spawnPlayer();
+
         initializeCustomers();
         spawnCustomer();
-        
         startCustomerSpawnTimer();
     }
 
@@ -148,12 +147,12 @@ public class GamePanel extends JPanel implements MouseListener {
         // TODO unique locations
         customers = new Customer[14];
         for (int i = 0; i < 14; i++) {
+            int randomFareIndex = generateRandomIndex(8);
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
-            int randomIndex = generateRandomIndex(8); // cricket guy - 60, 100
-            int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
-            customers[i] = new Customer(game, randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomIndex], 
-                                        Assets.fareDisplay[randomIndex], Assets.customers[i], randomDestination);
+            int[] randomDestination = selectRandomDestination();
+            customers[i] = new Customer(game, randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
+                                        Assets.fareDisplay[randomFareIndex], Assets.customers[i], randomDestination);
         }
     }
 
@@ -166,6 +165,17 @@ public class GamePanel extends JPanel implements MouseListener {
             return randomSpawnLocation;
         } else {
             return selectRandomLocation();
+        }
+    }
+
+    private int[] selectRandomDestination() {
+        int randomIndex = generateRandomIndex(14);
+
+        if ((DESTINATION_LOCATIONS[randomIndex] != null)) {
+            int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
+            return randomDestination;
+        } else {
+            return selectRandomDestination();
         }
     }
 
@@ -188,6 +198,8 @@ public class GamePanel extends JPanel implements MouseListener {
         this.numOfCustomersDriven = numOfCustomersDriven;
     }
 
+
+    // TODO Remove when done
     @Override
     public void mouseClicked(MouseEvent e) {
         JOptionPane.showMessageDialog(null, "X: " + e.getX() + " Y: " + e.getY());

@@ -14,7 +14,6 @@ public class Car extends Entity {
     private Game game;
     private double fuelLeft;
     private int moneyMade;
-    private boolean isDrivingACustomer;
     private BufferedImage car;
     private float xMove, yMove;
 
@@ -25,7 +24,6 @@ public class Car extends Entity {
         xMove = 0;
         yMove = 0;
 
-        isDrivingACustomer = false;
         moneyMade = 0;
         fuelLeft = 100.0;
     }

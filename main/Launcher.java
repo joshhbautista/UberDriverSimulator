@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JOptionPane;
-
 public class Launcher {
 
     private static Game game;
