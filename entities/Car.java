@@ -10,7 +10,7 @@ import main.Game;
 import main.Hud;
 
 /**
- * The <code>Car</code> class represents the driveable
+ * The <code>Car</code> class represents the drivable
  * car/player. A <code>Car</code> is an <code>Entity</code>
  * that has an <em>x-position, y-position, width,</em> and <em>height</em>.
  */

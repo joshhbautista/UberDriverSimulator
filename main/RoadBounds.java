@@ -19,11 +19,10 @@ public class RoadBounds {
     public RoadBounds() {
         bounds = new Rectangle[39];
         
-        createRoadBounds(bounds);
+        createRoadBounds();
     }
 
-    private void createRoadBounds(Rectangle[] bounds) {
-        
+    private void createRoadBounds() {
         for (int i = 0; i < 39; i++) {
             int x = roadBoundsAttributes[i][0];
             int y = roadBoundsAttributes[i][1];
@@ -36,5 +35,4 @@ public class RoadBounds {
     public Rectangle[] getBounds() {
         return bounds;
     }
-
 }

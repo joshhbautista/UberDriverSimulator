@@ -35,7 +35,6 @@ public class ImageLoader {
      * @return the <code>Icon</code> of the icon
      */
     public static Icon loadIcon(String path) {
-        // TODO do i need try catch
         try {
             return new ImageIcon(path);
         } catch (Exception e) {

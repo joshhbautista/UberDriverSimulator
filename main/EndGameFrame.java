@@ -114,7 +114,9 @@ public class EndGameFrame extends JFrame implements ActionListener {
             dispose();
             game.getFrame().dispose();
         } else {
-            System.exit(0);
+            game.stop();
+            dispose();
+            game.getFrame().dispose();
         }
     }
 }

@@ -49,7 +49,6 @@ public class KeyManager implements KeyListener {
 
     public boolean getIsUpPressed() {
         return isUpPressed;
-        // TODO should it be named getIsUpPressed or isUpPressed?
     }
 
     public boolean getIsDownPressed() {

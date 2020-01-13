@@ -133,7 +133,7 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private int generateRandomIndex(int max) {
-        int randomIndex = (int) (Math.random() * max);
+        int randomIndex = (int) (Math.random() * (max));
         return randomIndex;
     }
 
@@ -144,7 +144,6 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private void initializeCustomers() {
-        // TODO unique locations
         customers = new Customer[14];
         for (int i = 0; i < 14; i++) {
             int randomFareIndex = generateRandomIndex(8);
@@ -173,6 +172,7 @@ public class GamePanel extends JPanel implements MouseListener {
 
         if ((DESTINATION_LOCATIONS[randomIndex] != null)) {
             int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
+            DESTINATION_LOCATIONS[randomIndex] = null;
             return randomDestination;
         } else {
             return selectRandomDestination();
@@ -190,14 +190,13 @@ public class GamePanel extends JPanel implements MouseListener {
         return car;
     }
 
+    public void addNumOfCustomersDriven(int numOfCustomersDrivenToAdd) {
+        numOfCustomersDriven += numOfCustomersDrivenToAdd;
+    }
+
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
     }
-
-    public void setNumOfCustomersDriven(int numOfCustomersDriven) {
-        this.numOfCustomersDriven = numOfCustomersDriven;
-    }
-
 
     // TODO Remove when done
     @Override

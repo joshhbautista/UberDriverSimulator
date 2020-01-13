@@ -92,7 +92,7 @@ public class Assets {
     /**
      * Initializes and loads all assets.
      */
-    public static void init() {
+    public static void initialize() {
 
         // Car images
         audi = new BufferedImage[4];
@@ -146,6 +146,5 @@ public class Assets {
         dropOffSFX = new AudioPlayer("resources\\SFX\\dropoff.wav");
         carDoorsSFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
         customerSpawnSFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
-
     }
 }

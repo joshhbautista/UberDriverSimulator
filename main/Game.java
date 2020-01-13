@@ -21,9 +21,9 @@ public class Game {
         run();
     }
 
-    private void initializeAssets() {
+    private void initialize() {
         keyManager = new KeyManager();
-        Assets.init();
+        Assets.initialize();
         start();
 
         currentState = "menu";
@@ -51,14 +51,12 @@ public class Game {
         long elapsed;
         long wait;
 
-        initializeAssets();
+        initialize();
 
         // ----------------GAME LOOP----------------- \\
 
         while (isGameRunning) {
             System.out.println(currentState);
-
-            // TODO switch case better way? ask if its ok to do things we havent learned yet
 
             // MENU STATE
             if (currentState == "menu") {
@@ -95,7 +93,7 @@ public class Game {
             // END GAME STATE
             if (currentState == "end") {
                 new EndGameFrame(this);
-                currentState = "play again";
+                currentState = "ask if play again";
             }
         }
     }
@@ -145,16 +143,8 @@ public class Game {
     }
 }
 
-    
-
     /*
-    TODO ask about dimensions - what to do to cover all users
-    proper GAPP - proper game dev vs GAPP
-    how will we be marked (see above)
-    ask - static is okay??
-    should sounds files be treated as constant
     should car class be PlayerCar or Player or Car?
     do we need setters/getters for ALL attributes or only ones you use?
-
     */
     

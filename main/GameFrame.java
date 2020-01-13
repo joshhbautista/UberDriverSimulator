@@ -9,13 +9,18 @@ public class GameFrame extends JFrame {
 
     private final int SCREEN_WIDTH = 1600;
     private final int SCREEN_HEIGHT = 900;
+    private GamePanel gamePanel;
+    private Hud hud;
 
     public GameFrame(GamePanel gamePanel, Hud hud) {
         super("Uber Driver Simulator");
-        createGameFrame(gamePanel, hud); // TODO pass it in or make it attributes?
+        this.gamePanel = gamePanel;
+        this.hud = hud;
+        
+        createGameFrame();
     }
 
-   private void createGameFrame(GamePanel gamePanel, Hud hud) {
+   private void createGameFrame() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);

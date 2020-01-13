@@ -99,7 +99,7 @@ public class Customer extends Entity {
             JOptionPane.showMessageDialog(null, "You dropped off a customer!\nYou have earned $" + fare + "!", "Uber Driver Simulator", 1);
             game.getKeyManager().resetKeyPresses(); // Reset key presses
             payFare();
-            game.getGamePanel().setNumOfCustomersDriven(game.getGamePanel().getNumOfCustomersDriven() + 1); // TODO do this or make a addNumOfCustomersDriven?
+            game.getGamePanel().addNumOfCustomersDriven(1); 
             hasBeenPickedUp = false;
             dropOffSpot.setLocation(0, 0); // Remove drop off bounds
             Assets.dropOffSFX.play(1);
@@ -138,7 +138,7 @@ public class Customer extends Entity {
         game.getGamePanel().getCar().addMoneyMade(fare);
     }
 
-    // --- SETTERS & GETTERS --- \\
+    // ------------------ SETTERS & GETTERS ----------------------- \\
 
     /**
      * Returns the <code>fare</code> attribute of this customer.
