@@ -59,13 +59,13 @@ public class Game {
             System.out.println(currentState);
 
             // MENU STATE
-            if (currentState == "menu") {
+            if (currentState.equals("menu")) {
                 new Menu(this);
                 currentState = "menu playing";
             }
 
             // GAME STATE
-            if (currentState == "game") {
+            if (currentState.equals("game")) {
                 hud = new Hud();
                 gamePanel = new GamePanel(this);
                 gameFrame = new GameFrame(gamePanel, hud);
@@ -73,7 +73,7 @@ public class Game {
             }
 
             // GAME PLAYING STATE
-            if (currentState == "game playing") {
+            if (currentState.equals("game playing")) {
                 start = System.nanoTime();
 
                 update();
@@ -91,7 +91,7 @@ public class Game {
             }
 
             // END GAME STATE
-            if (currentState == "end") {
+            if (currentState.equals("end")) {
                 new EndGameFrame(this);
                 currentState = "ask if play again";
             }
