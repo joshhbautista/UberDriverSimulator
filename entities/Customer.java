@@ -127,7 +127,7 @@ public class Customer extends Entity {
         }
 
         if (hasBeenPickedUp) {
-            graphics.drawImage(Assets.dropOffSymbol, (int) destination[0] - 24, (int) destination[1] - 75, 50, 80, null); // Destination symbol
+            graphics.drawImage(Assets.dropOffSymbol, (int) destination[0] - 20, (int) destination[1] - 65, 60, 70, null); // Destination symbol
         }
     }
 
