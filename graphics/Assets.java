@@ -100,7 +100,7 @@ public class Assets {
         audi[1] = ImageLoader.loadImage("resources\\Vehicles\\AudiRight.png");
         audi[2] = ImageLoader.loadImage("resources\\Vehicles\\AudiDown.png");
         audi[3] = ImageLoader.loadImage("resources\\Vehicles\\AudiLeft.png");
-        townMap = ImageLoader.loadImage("resources\\townmap.jpg");
+        townMap = ImageLoader.loadImage("resources\\HUD\\townmap.jpg");
 
         // Fare bubble icons
         fareDisplay = new BufferedImage[8];
@@ -132,8 +132,8 @@ public class Assets {
 
         // Icons & Hud
         title = ImageLoader.loadIcon("resources\\Menu\\title.PNG");
-        playButton = ImageLoader.loadIcon("resources\\HUD\\playbutton.png");
-        quitButton = ImageLoader.loadIcon("resources\\HUD\\quitbutton.png");
+        playButton = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
+        quitButton = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
         settingsButton = ImageLoader.loadIcon("resources\\HUD\\settingsbutton.png");
         playAgainButton = ImageLoader.loadIcon("resources\\Menu\\playagainbutton.png");
         quitEndButton = ImageLoader.loadIcon("resources\\Menu\\quitbuttonend.png");

@@ -37,7 +37,7 @@ public class Menu extends JFrame implements ActionListener {
         setPreferredSize(new Dimension(1600, 900));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        background = new JLabel(new ImageIcon("resources\\townmap.jpg"));
+        background = new JLabel(new ImageIcon("resources\\HUD\\townmap.jpg"));
         background.setSize(new Dimension(1600, 900));
         setContentPane(background);
         setLayout(new GridBagLayout());
