@@ -2,14 +2,11 @@ package main;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
-import graphics.Assets;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +21,6 @@ public class Hud extends JPanel {
     private JLabel moneyMadeLabel;
     private JLabel fuelLeftLabel;
     private JProgressBar fuelLeftBar;
-    private JButton settingsButton;
 
     private Timer timeLeftTimer;
     private int timeLeftInSecs;
@@ -32,7 +28,7 @@ public class Hud extends JPanel {
     private JLabel timeLeftLabel;
 
     public Hud() {
-        setSize(new Dimension(1600, 110));
+        setSize(new Dimension(1600, 200));
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(new LineBorder(Color.BLACK, 5));
         setBackground(Color.WHITE);
@@ -40,14 +36,14 @@ public class Hud extends JPanel {
 
         // -------------- Money Made Label ----------- \\
         moneyMadeLabel = new JLabel();
-        moneyMadeLabel.setFont(new Font("", Font.BOLD, 30));
-        moneyMadeLabel.setSize(new Dimension(100, 50));
+        moneyMadeLabel.setFont(new Font("", Font.BOLD, 45));
+        moneyMadeLabel.setSize(new Dimension(100, 150));
         add(moneyMadeLabel);
 
         // -------------- Fuel Left Label --------------- \\
         fuelLeftLabel = new JLabel();
-        fuelLeftLabel.setFont(new Font("", Font.BOLD, 30));
-        fuelLeftLabel.setSize(new Dimension(100, 50));
+        fuelLeftLabel.setFont(new Font("", Font.BOLD, 45));
+        fuelLeftLabel.setSize(new Dimension(100, 150));
         add(Box.createHorizontalGlue());
         add(fuelLeftLabel);
 
@@ -73,17 +69,10 @@ public class Hud extends JPanel {
 
         // ------------------ Time Left Label ------------------ \\
         timeLeftLabel = new JLabel();
-        timeLeftLabel.setFont(new Font("", Font.BOLD, 30));
-        timeLeftLabel.setSize(new Dimension(100, 50));
+        timeLeftLabel.setFont(new Font("", Font.BOLD, 45));
+        timeLeftLabel.setSize(new Dimension(100, 150));
         add(Box.createHorizontalGlue());
         add(timeLeftLabel);
-
-        // --------- Settings Button -------------- \\
-        settingsButton = new JButton();
-        settingsButton.setIcon(Assets.settingsButton);
-        add(Box.createHorizontalGlue());
-        add(Box.createHorizontalGlue());
-        add(settingsButton);
 
         setVisible(true);
     }
@@ -107,5 +96,4 @@ public class Hud extends JPanel {
     public Timer getTimeLeftTimer() {
         return timeLeftTimer;
     }
-
 }

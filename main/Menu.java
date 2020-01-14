@@ -15,8 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
-import graphics.Assets;
-
 @SuppressWarnings("serial")
 public class Menu extends JFrame implements ActionListener {
     
@@ -50,14 +48,14 @@ public class Menu extends JFrame implements ActionListener {
         quitButton = new JButton();
         title = new JLabel();
 
-        playButton.setIcon(Assets.playButton);
+        playButton.setIcon(game.getAssets().getPlayButtonIcon());
         playButton.setBorderPainted(false);
         playButton.setBorder(null);
-        quitButton.setIcon(Assets.quitButton);
+        quitButton.setIcon(game.getAssets().getQuitButtonIcon());
         quitButton.setBorderPainted(false);
         quitButton.setBorder(null);
 
-        title.setIcon(Assets.title);
+        title.setIcon(game.getAssets().getTitleIcon());
         title.setFont(new Font("", Font.BOLD, 80));
         title.setBorder(new LineBorder(Color.BLACK));
         title.setBackground(Color.BLUE);
@@ -78,17 +76,19 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     private void playBackgroundMusic(float volume) {
-        Assets.menuBgMusic.play(volume);
+        game.getAssets().getMenuBgMusic().play(volume);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play") {
-            game.setState("game");
-            Assets.menuBgMusic.stop();
+            game.setCurrentState("game");
+            game.getAssets().getMenuBgMusic().stop();
             dispose();
         } else {
-            System.exit(0);
+            game.getAssets().getMenuBgMusic().stop();
+            game.stop();
+            dispose();
         }
     }
 

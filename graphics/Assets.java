@@ -11,140 +11,204 @@ import audio.AudioPlayer;
  */
 public class Assets {
 
-    // TODO make this static or use getters?
-
     /**
      * The town map image.
      */
-    public static BufferedImage townMap;
+    private static BufferedImage TOWN_MAP;
     /**
      * The drop off symbol image.
      */
-    public static BufferedImage dropOffSymbol;
+    private static BufferedImage DROP_OFF_SYMBOL;
     /**
      * The pick up symbol image.
      */
-    public static BufferedImage pickUpSymbol;
-    /**
-     * Stores the play again and quit button displayed
-     * on the EndGameFrame.
-     */
-    public static BufferedImage[] statButtons;
+    private static BufferedImage PICK_UP_SYMBOL;
     /**
      * Stores all customer images.
      */
-    public static BufferedImage[] customers;
+    private static BufferedImage[] CUSTOMERS;
     /**
      * Stores all fare display images.
      */
-    public static BufferedImage[] fareDisplay;
+    private static BufferedImage[] FARE_DISPLAY;
     /**
      * Stores the up, down, left, and right
      * images of the audi car.
      */
-    public static BufferedImage[] audi;
+    private static BufferedImage[] AUDI;
     /**
      * The play button icon.
      */
-    public static Icon playButton;
+    private static Icon PLAY_BUTTON_ICON;
     /**
      * The quit button icon.
      */
-    public static Icon quitButton;
+    private static Icon QUIT_BUTTON_ICON;
     /**
      * The settings button icon.
      */
-    public static Icon settingsButton;
+    private static Icon SETTINGS_BUTTON_ICON;
     /**
      * The title icon.
      */
-    public static Icon title;
+    private static Icon TITLE_ICON;
     /**
      * The play again button icon.
      */
-    public static Icon playAgainButton;
+    private static Icon PLAY_AGAIN_BUTTON_ICON;
     /**
      * The quit button displayed at the end
      * of the game.
      */
-    public static Icon quitEndButton;
+    private static Icon QUIT_END_BUTTON_ICON;
     /**
      * The menu background music.
      */
-    public static AudioPlayer menuBgMusic;
+    private static AudioPlayer MENU_BG_MUSIC;
     /**
      * The game background music.
      */
-    public static AudioPlayer gameBgMusic;
+    private static AudioPlayer GAME_BG_MUSIC;
     /**
      * The car doors close sound effect.
      */
-    public static AudioPlayer carDoorsSFX;
+    private static AudioPlayer CAR_DOORS_SFX;
     /**
      * The customer spawn sound effect.
      */
-    public static AudioPlayer customerSpawnSFX;
+    private static AudioPlayer CUSTOMER_SPAWN_SFX;
     /**
      * The drop off sound effect.
      */
-    public static AudioPlayer dropOffSFX;
+    private static AudioPlayer DROP_OFF_SFX;
+
+    public Assets() {
+        initialize();
+    }
 
     /**
      * Initializes and loads all assets.
      */
-    public static void initialize() {
-
+    private static void initialize() {
         // Car images
-        audi = new BufferedImage[4];
-        audi[0] = ImageLoader.loadImage("resources\\Vehicles\\AudiUp.png");
-        audi[1] = ImageLoader.loadImage("resources\\Vehicles\\AudiRight.png");
-        audi[2] = ImageLoader.loadImage("resources\\Vehicles\\AudiDown.png");
-        audi[3] = ImageLoader.loadImage("resources\\Vehicles\\AudiLeft.png");
-        townMap = ImageLoader.loadImage("resources\\HUD\\townmap.jpg");
+        AUDI = new BufferedImage[4];
+        AUDI[0] = ImageLoader.loadImage("resources\\Vehicles\\AudiUp.png");
+        AUDI[1] = ImageLoader.loadImage("resources\\Vehicles\\AudiRight.png");
+        AUDI[2] = ImageLoader.loadImage("resources\\Vehicles\\AudiDown.png");
+        AUDI[3] = ImageLoader.loadImage("resources\\Vehicles\\AudiLeft.png");
+        TOWN_MAP = ImageLoader.loadImage("resources\\HUD\\townmap.jpg");
 
         // Fare bubble icons
-        fareDisplay = new BufferedImage[8];
-        fareDisplay[0] = ImageLoader.loadImage("resources\\FareDisplay\\11.png");
-        fareDisplay[1] = ImageLoader.loadImage("resources\\FareDisplay\\15.png");
-        fareDisplay[2] = ImageLoader.loadImage("resources\\FareDisplay\\16.png");
-        fareDisplay[3] = ImageLoader.loadImage("resources\\FareDisplay\\17.png");
-        fareDisplay[4] = ImageLoader.loadImage("resources\\FareDisplay\\18.png");
-        fareDisplay[5] = ImageLoader.loadImage("resources\\FareDisplay\\19.png");
-        fareDisplay[6] = ImageLoader.loadImage("resources\\FareDisplay\\21.png");
-        fareDisplay[7] = ImageLoader.loadImage("resources\\FareDisplay\\23.png");
+        FARE_DISPLAY = new BufferedImage[8];
+        FARE_DISPLAY[0] = ImageLoader.loadImage("resources\\FareDisplay\\11.png");
+        FARE_DISPLAY[1] = ImageLoader.loadImage("resources\\FareDisplay\\15.png");
+        FARE_DISPLAY[2] = ImageLoader.loadImage("resources\\FareDisplay\\16.png");
+        FARE_DISPLAY[3] = ImageLoader.loadImage("resources\\FareDisplay\\17.png");
+        FARE_DISPLAY[4] = ImageLoader.loadImage("resources\\FareDisplay\\18.png");
+        FARE_DISPLAY[5] = ImageLoader.loadImage("resources\\FareDisplay\\19.png");
+        FARE_DISPLAY[6] = ImageLoader.loadImage("resources\\FareDisplay\\21.png");
+        FARE_DISPLAY[7] = ImageLoader.loadImage("resources\\FareDisplay\\23.png");
 
         // Customer images
-        customers = new BufferedImage[14];
-        customers[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
-        customers[1] = ImageLoader.loadImage("resources\\Customers\\suitguy.png");
-        customers[2] = ImageLoader.loadImage("resources\\Customers\\elder.png");
-        customers[3] = ImageLoader.loadImage("resources\\Customers\\elder2.png");
-        customers[4] = ImageLoader.loadImage("resources\\Customers\\millenial.png");
-        customers[5] = ImageLoader.loadImage("resources\\Customers\\millenial2.png");
-        customers[6] = ImageLoader.loadImage("resources\\Customers\\millenial3.png");
-        customers[7] = ImageLoader.loadImage("resources\\Customers\\millenial4.png");
-        customers[8] = ImageLoader.loadImage("resources\\Customers\\millenial5.png");
-        customers[9] = ImageLoader.loadImage("resources\\Customers\\millenial6.png");
-        customers[10] = ImageLoader.loadImage("resources\\Customers\\millenialgirl.png");
-        customers[11] = ImageLoader.loadImage("resources\\Customers\\millenialgirl2.png");
-        customers[12] = ImageLoader.loadImage("resources\\Customers\\millenialgirl3.png");
-        customers[13] = ImageLoader.loadImage("resources\\Customers\\millenial4.png");
+        CUSTOMERS = new BufferedImage[14];
+        CUSTOMERS[0] = ImageLoader.loadImage("resources\\Customers\\cricketguy.png");
+        CUSTOMERS[1] = ImageLoader.loadImage("resources\\Customers\\suitguy.png");
+        CUSTOMERS[2] = ImageLoader.loadImage("resources\\Customers\\elder.png");
+        CUSTOMERS[3] = ImageLoader.loadImage("resources\\Customers\\elder2.png");
+        CUSTOMERS[4] = ImageLoader.loadImage("resources\\Customers\\millenial.png");
+        CUSTOMERS[5] = ImageLoader.loadImage("resources\\Customers\\millenial2.png");
+        CUSTOMERS[6] = ImageLoader.loadImage("resources\\Customers\\millenial3.png");
+        CUSTOMERS[7] = ImageLoader.loadImage("resources\\Customers\\millenial4.png");
+        CUSTOMERS[8] = ImageLoader.loadImage("resources\\Customers\\millenial5.png");
+        CUSTOMERS[9] = ImageLoader.loadImage("resources\\Customers\\millenial6.png");
+        CUSTOMERS[10] = ImageLoader.loadImage("resources\\Customers\\millenialgirl.png");
+        CUSTOMERS[11] = ImageLoader.loadImage("resources\\Customers\\millenialgirl2.png");
+        CUSTOMERS[12] = ImageLoader.loadImage("resources\\Customers\\millenialgirl3.png");
+        CUSTOMERS[13] = ImageLoader.loadImage("resources\\Customers\\millenial4.png");
 
         // Icons & Hud
-        title = ImageLoader.loadIcon("resources\\Menu\\title.PNG");
-        playButton = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
-        quitButton = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
-        settingsButton = ImageLoader.loadIcon("resources\\HUD\\settingsbutton.png");
-        playAgainButton = ImageLoader.loadIcon("resources\\Menu\\playagainbutton.png");
-        quitEndButton = ImageLoader.loadIcon("resources\\Menu\\quitbuttonend.png");
-        dropOffSymbol = ImageLoader.loadImage("resources\\HUD\\dropoffsymbol.png");
-        pickUpSymbol = ImageLoader.loadImage("resources\\HUD\\pickupsymbol.png");
+        TITLE_ICON = ImageLoader.loadIcon("resources\\Menu\\title.PNG");
+        PLAY_BUTTON_ICON = ImageLoader.loadIcon("resources\\Menu\\playbutton.png");
+        QUIT_BUTTON_ICON = ImageLoader.loadIcon("resources\\Menu\\quitbutton.png");
+        SETTINGS_BUTTON_ICON = ImageLoader.loadIcon("resources\\HUD\\settingsbutton.png");
+        PLAY_AGAIN_BUTTON_ICON = ImageLoader.loadIcon("resources\\Menu\\playagainbutton.png");
+        QUIT_END_BUTTON_ICON = ImageLoader.loadIcon("resources\\Menu\\quitbuttonend.png");
+        DROP_OFF_SYMBOL = ImageLoader.loadImage("resources\\HUD\\dropoffsymbol.png");
+        PICK_UP_SYMBOL = ImageLoader.loadImage("resources\\HUD\\pickupsymbol.png");
 
         // SFX
-        menuBgMusic = new AudioPlayer("resources\\Music\\menubg.wav");
-        gameBgMusic = new AudioPlayer("resources\\Music\\gamebg.wav");
-        dropOffSFX = new AudioPlayer("resources\\SFX\\dropoff.wav");
-        carDoorsSFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
-        customerSpawnSFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
+        MENU_BG_MUSIC = new AudioPlayer("resources\\Music\\menubg.wav");
+        GAME_BG_MUSIC = new AudioPlayer("resources\\Music\\gamebg.wav");
+        DROP_OFF_SFX = new AudioPlayer("resources\\SFX\\dropoff.wav");
+        CAR_DOORS_SFX = new AudioPlayer("resources\\SFX\\cardoors.wav");
+        CUSTOMER_SPAWN_SFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
+    }
+
+    public BufferedImage[] getAudi() {
+        return AUDI;
+    }
+
+    public BufferedImage getTownMap() {
+        return TOWN_MAP;
+    }
+
+    public BufferedImage getPickUpSymbol() {
+        return PICK_UP_SYMBOL;
+    }
+
+    public BufferedImage getDropOffSymbol() {
+        return DROP_OFF_SYMBOL;
+    }
+
+    public BufferedImage[] getFareDisplay() {
+        return FARE_DISPLAY;
+    }
+
+    public BufferedImage[] getCustomers() {
+        return CUSTOMERS;
+    }
+
+    public Icon getTitleIcon() {
+        return TITLE_ICON;
+    }
+
+    public Icon getPlayButtonIcon() {
+        return PLAY_BUTTON_ICON;
+    }
+
+    public Icon getQuitButtonIcon() {
+        return QUIT_BUTTON_ICON;
+    }
+
+    public Icon getSettingsButtonIcon() {
+        return SETTINGS_BUTTON_ICON;
+    }
+
+    public Icon getPlayAgainButtonIcon() {
+        return PLAY_AGAIN_BUTTON_ICON;
+    }
+
+    public Icon getQuitEndButtonIcon() {
+        return QUIT_END_BUTTON_ICON;
+    }
+
+    public AudioPlayer getMenuBgMusic() {
+        return MENU_BG_MUSIC;
+    }
+
+    public AudioPlayer getGameBgMusic() {
+        return GAME_BG_MUSIC;
+    }
+
+    public AudioPlayer getDropOffSFX() {
+        return DROP_OFF_SFX;
+    }
+
+    public AudioPlayer getCarDoorsSFX() {
+        return CAR_DOORS_SFX;
+    }
+
+    public AudioPlayer getCustomerSpawnSFX() {
+        return CUSTOMER_SPAWN_SFX;
     }
 }

@@ -15,8 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import graphics.Assets;
-
 @SuppressWarnings("serial")
 public class EndGameFrame extends JFrame implements ActionListener {
 
@@ -80,14 +78,14 @@ public class EndGameFrame extends JFrame implements ActionListener {
         // --------------- Play Again Options ------------- \\
         playAgainPanel = new JPanel();
         playAgainButton = new JButton();
-        playAgainButton.setIcon(Assets.playAgainButton);
+        playAgainButton.setIcon(game.getAssets().getPlayAgainButtonIcon());
         playAgainButton.setBorderPainted(false);
         playAgainButton.setBorder(null);
         playAgainButton.addActionListener(this);
         playAgainButton.setActionCommand("play again");
 
         quitEndButton = new JButton();
-        quitEndButton.setIcon(Assets.quitEndButton);
+        quitEndButton.setIcon(game.getAssets().getQuitEndButtonIcon());
         quitEndButton.setBorderPainted(false);
         quitEndButton.setBorder(null);
         quitEndButton.addActionListener(this);

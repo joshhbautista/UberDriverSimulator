@@ -92,7 +92,7 @@ public class Customer extends Entity {
             pickUpSpot.setLocation(0, 0); // Remove pick up bounds
             hasBeenPickedUp = true;
             isVisible = false;
-            Assets.carDoorsSFX.play(6.0f);
+            game.getAssets().getCarDoorsSFX().play(6.0f);
         }
         // -------------------- If car is at customer destination ------------- \\
         if (dropOffSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
@@ -102,8 +102,8 @@ public class Customer extends Entity {
             game.getGamePanel().addNumOfCustomersDriven(1); 
             hasBeenPickedUp = false;
             dropOffSpot.setLocation(0, 0); // Remove drop off bounds
-            Assets.dropOffSFX.play(1);
-            Assets.carDoorsSFX.play(6.0f);
+            game.getAssets().getDropOffSFX().play(0);
+            game.getAssets().getCarDoorsSFX().play(6.0f);
         }
         // -------------------- If the customer is shown to user ----------------  \\
         if (isVisible) {
@@ -122,12 +122,12 @@ public class Customer extends Entity {
             graphics.drawImage(customerImage, (int) super.getXPos(), (int) super.getYPos(), super.getWidth(), super.getHeight(), null); // Customer
             graphics.drawImage(fareDisplay, (int) (super.getXPos() + 35), (int) (super.getYPos() - 50), 120, 65, null); // Fare display
             if (!hasBeenPickedUp) {
-                graphics.drawImage(Assets.pickUpSymbol, (int) getXPos() + 6, (int) getYPos() + 100, 50, 50, null); 
+                graphics.drawImage(game.getAssets().getPickUpSymbol(), (int) getXPos() + 6, (int) getYPos() + 100, 50, 50, null); 
             }
         }
 
         if (hasBeenPickedUp) {
-            graphics.drawImage(Assets.dropOffSymbol, (int) destination[0] - 20, (int) destination[1] - 65, 60, 70, null); // Destination symbol
+            graphics.drawImage(game.getAssets().getDropOffSymbol(), (int) destination[0] - 20, (int) destination[1] - 65, 60, 70, null); // Destination symbol
         }
     }
 
@@ -141,34 +141,6 @@ public class Customer extends Entity {
     // ------------------ SETTERS & GETTERS ----------------------- \\
 
     /**
-     * Returns the <code>fare</code> attribute of this customer.
-     * 
-     * @return the <code>fare</code> property as an int
-     */
-    public int getFare() {
-        return fare;
-    }
-
-    /**
-     * Sets how much the customer is willing to pay the driver/player.
-     * 
-     * @param fare how much the customer is willing to pay the driver/player
-     */
-    public void setFare(int fare) {
-        this.fare = fare;
-    }
-
-    /**
-     * Sets if the customer has been picked up or not.
-     * 
-     * @param hasBeenPickedUp a boolean telling if the customer
-     * has been picked up or not
-     */
-    public void setHasBeenPickedUp(boolean hasBeenPickedUp) {
-        this.hasBeenPickedUp = hasBeenPickedUp;
-    }
-
-    /**
      * Sets if the customer should be visible to the player or not.
      * 
      * @param isVisible a boolean telling if the customer 
@@ -176,5 +148,14 @@ public class Customer extends Entity {
      */
     public void setIsVisible(boolean isVisible) {
         this.isVisible = isVisible;
+    }
+
+    /**
+     * Returns the <code>isVisible</code> attribute of this customer.
+     * 
+     * @return a boolean telling if the customer is visible to the player
+     */
+    public boolean getIsVisible() {
+        return isVisible;
     }
 }

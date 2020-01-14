@@ -9,8 +9,9 @@ public class Game {
     private GamePanel gamePanel;
     private Hud hud;
     private KeyManager keyManager;
+    private Assets assets;
 
-    private boolean isGameRunning = false;
+    private boolean isGameRunning;
     private boolean playAgain = false;
     private final int SCREEN_UPDATE_RATE = 60;
     private long targetTime = 1000 / SCREEN_UPDATE_RATE;
@@ -23,10 +24,8 @@ public class Game {
 
     private void initialize() {
         keyManager = new KeyManager();
-        Assets.initialize();
+        assets = new Assets();
         start();
-
-        currentState = "menu";
     }
 
     public void start() {
@@ -34,6 +33,7 @@ public class Game {
             return;
         }
         
+        currentState = "menu";
         isGameRunning = true;
     }
 
@@ -58,22 +58,21 @@ public class Game {
         while (isGameRunning) {
             System.out.println(currentState);
 
-            // MENU STATE
             if (currentState.equals("menu")) {
                 new Menu(this);
-                currentState = "menu playing";
+                currentState = "playing menu";
             }
-
+            
             // GAME STATE
             if (currentState.equals("game")) {
                 hud = new Hud();
                 gamePanel = new GamePanel(this);
                 gameFrame = new GameFrame(gamePanel, hud);
-                currentState = "game playing";
+                currentState = "playing game";
             }
 
             // GAME PLAYING STATE
-            if (currentState.equals("game playing")) {
+            if (currentState.equals("playing game")) {
                 start = System.nanoTime();
 
                 update();
@@ -93,7 +92,7 @@ public class Game {
             // END GAME STATE
             if (currentState.equals("end")) {
                 new EndGameFrame(this);
-                currentState = "ask if play again";
+                currentState = "prompt play again";
             }
         }
     }
@@ -134,12 +133,12 @@ public class Game {
         this.playAgain = playAgain;
     }
 
-    public String getCurrentState() {
-        return currentState;
+    public void setCurrentState(String currentState) {
+        this.currentState = currentState;
     }
 
-    public void setState(String state) {
-        currentState = state;
+    public Assets getAssets() {
+        return assets;
     }
 }
 

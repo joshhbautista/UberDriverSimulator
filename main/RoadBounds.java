@@ -18,7 +18,6 @@ public class RoadBounds {
     
     public RoadBounds() {
         bounds = new Rectangle[39];
-        
         createRoadBounds();
     }
 

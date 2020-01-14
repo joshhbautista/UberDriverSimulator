@@ -5,19 +5,15 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import entities.Car;
 import entities.Customer;
-import graphics.Assets;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements MouseListener {
+public class GamePanel extends JPanel {
 
     private Game game;
     private Hud hud;
@@ -43,7 +39,6 @@ public class GamePanel extends JPanel implements MouseListener {
         this.hud = game.getHud();
         roadBounds = new RoadBounds();
         addKeyListener(game.getKeyManager());
-        addMouseListener(this);
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
         playBackgroundMusic(-10.0f);
@@ -69,7 +64,7 @@ public class GamePanel extends JPanel implements MouseListener {
         customers[8].update(hud);
         customers[9].update(hud);
 
-        if (hud.getTimeLeft() == 0 || car.getFuelLeft() <= 0) {
+        if (hud.getTimeLeft() == 270 || car.getFuelLeft() <= 0) {
             endGame();
         }
     }
@@ -77,7 +72,7 @@ public class GamePanel extends JPanel implements MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(Assets.townMap, 0, 0, 1600, 790, null);
+        g.drawImage(game.getAssets().getTownMap(), 0, 0, 1600, 790, null);
         car.render(g);
         customers[0].render(g);
         customers[1].render(g);
@@ -119,7 +114,7 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private void playBackgroundMusic(float volume) {
-        Assets.gameBgMusic.play(volume);
+        game.getAssets().getGameBgMusic().play(volume);
     }
 
     private void startCustomerSpawnTimer() {
@@ -139,8 +134,11 @@ public class GamePanel extends JPanel implements MouseListener {
 
     private void spawnCustomer() {
         int randomIndex = generateRandomIndex(10);
+        if (customers[randomIndex].getIsVisible() == true) {
+            spawnCustomer();
+        }
         customers[randomIndex].setIsVisible(true);
-        Assets.customerSpawnSFX.play(0);
+        game.getAssets().getCustomerSpawnSFX().play(0);
     }
 
     private void initializeCustomers() {
@@ -151,7 +149,7 @@ public class GamePanel extends JPanel implements MouseListener {
             randomLocation = selectRandomLocation();
             int[] randomDestination = selectRandomDestination();
             customers[i] = new Customer(game, randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
-                                        Assets.fareDisplay[randomFareIndex], Assets.customers[i], randomDestination);
+                                        game.getAssets().getFareDisplay()[randomFareIndex], game.getAssets().getCustomers()[i], randomDestination);
         }
     }
 
@@ -180,10 +178,10 @@ public class GamePanel extends JPanel implements MouseListener {
     }
 
     private void endGame() {
-        game.setState("end");
+        game.setCurrentState("end");
         hud.getTimeLeftTimer().stop();
         customerSpawnTimer.stop();
-        Assets.gameBgMusic.stop();
+        game.getAssets().getGameBgMusic().stop();
     }
 
     public Car getCar() {
@@ -197,19 +195,4 @@ public class GamePanel extends JPanel implements MouseListener {
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
     }
-
-    // TODO Remove when done
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        JOptionPane.showMessageDialog(null, "X: " + e.getX() + " Y: " + e.getY());
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-    @Override
-    public void mouseExited(MouseEvent e) {}
 }

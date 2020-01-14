@@ -54,7 +54,7 @@ public class Car extends Entity {
     public Car(Game game, float xPos, float yPos, int width, int height) {
         super(xPos, yPos, width, height);
         this.game = game;
-        car = Assets.audi[0];
+        car = game.getAssets().getAudi()[0];
         xMove = 0;
         yMove = 0;
 
@@ -117,22 +117,22 @@ public class Car extends Entity {
         yMove = 0;
 
         if (game.getKeyManager().getIsUpPressed()) {
-            car = Assets.audi[0];
+            car = game.getAssets().getAudi()[0];
             fuelLeft -= 0.01;
             yMove = -1.5f;
         }
         if (game.getKeyManager().getIsDownPressed()) {
-            car = Assets.audi[2];
+            car = game.getAssets().getAudi()[2];
             fuelLeft -= 0.01;
             yMove = 1.5f;
         }
         if (game.getKeyManager().getIsLeftPressed()) {
-            car = Assets.audi[3];
+            car = game.getAssets().getAudi()[3];
             fuelLeft -= 0.01;
             xMove = -1.5f;
         }
         if (game.getKeyManager().getIsRightPressed()) {
-            car = Assets.audi[1];
+            car = game.getAssets().getAudi()[1];
             fuelLeft -= 0.01;
             xMove = 1.5f;
         }
@@ -221,15 +221,6 @@ public class Car extends Entity {
      */
     public int getMoneyMade() {
         return moneyMade;
-    }
-
-    /**
-     * Sets how much money the player has made so far.
-     * 
-     * @param moneyMade how much money the player has made so far
-     */
-    public void setMoneyMade(int moneyMade) {
-        this.moneyMade = moneyMade;
     }
     
     /**
