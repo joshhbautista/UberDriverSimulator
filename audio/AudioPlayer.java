@@ -12,6 +12,9 @@ import javax.sound.sampled.FloatControl;
  * plays all the audio files to be played. This 
  * includes all <em>background music</em> and 
  * <em>sound effects</em>.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 public class AudioPlayer {
 

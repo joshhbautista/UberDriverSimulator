@@ -14,6 +14,9 @@ import main.Hud;
  * The <code>Customer</code> class represents a customer that 
  * appears in the game. A <code>Customer</code> is an <code>Entity</code>
  * that has a <em>x-position, y-position, width,</em> and <em>height.</em>
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 public class Customer extends Entity {
 

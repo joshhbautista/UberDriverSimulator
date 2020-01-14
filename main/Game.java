@@ -3,13 +3,15 @@ package main;
 import graphics.*;
 import input.KeyManager;
 
-// TODO Javadoc @version only on game ? and overrride methods?
 /**
  * The <code>Game</code> class houses the game loop. It is the main game
  * class that controls the states of the game. (e.g. the "Menu" 
  * state, the "Game" state, etc) The overall flow of the game can be 
  * controlled in this class. This class contains all game objects and main
  * update and render methods.
+ * 
+ * @version 1/14/2020
+ * @author Joshua Bautista
  */
 public class Game {
 
@@ -172,43 +174,73 @@ public class Game {
     /**
      * Returns the <code>GameFrame</code> object.
      * 
-     * @return 
+     * @return the JFrame that displays the game
      */
     public GameFrame getFrame() {
         return gameFrame;
     }
 
+    /**
+     * Returns the <code>GamePanel</code> object.
+     * 
+     * @return the JPanel that displays the player interaction with the town map
+     */
     public GamePanel getGamePanel() {
         return gamePanel;
     }
 
+    /**
+     * Returns the <code>KeyManager</code> object.
+     * 
+     * @return the keyboard input handler
+     */
     public KeyManager getKeyManager() {
         return keyManager;
     }
 
+    /**
+     * Returns the <code>Hud</code> object.
+     * 
+     * @return the JPanel that displays the current stats
+     */
     public Hud getHud() {
         return hud;
     }
 
+    /**
+     * Returns the <code>playAgain</code> attribute of the game.
+     * 
+     * @return a boolean telling if the user wants to play again or not
+     */
     public boolean getPlayAgain() {
         return playAgain;
     }
 
+    /**
+     * Sets if the user wants to play again.
+     */
     public void setPlayAgain(boolean playAgain) {
         this.playAgain = playAgain;
     }
 
+    /**
+     * Sets the current state of the game.
+     */
     public void setCurrentState(String currentState) {
         this.currentState = currentState;
     }
 
+    /**
+     * Returns the <code>Assets</code> attribute of the game.
+     * 
+     * @return a class that contains all of the game assets
+     */
     public Assets getAssets() {
         return assets;
     }
 }
 
     /*
-    should car class be PlayerCar or Player or Car?
-    do we need setters/getters for ALL attributes or only ones you use?
+    TODO should car class be PlayerCar or Player or Car?
     */
     

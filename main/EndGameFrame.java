@@ -22,6 +22,9 @@ import entities.Customer;
  * end game stats. This includes the total money made and number 
  * of customers driven. It also contains buttons that ask the user
  * if they want to play again or not.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 @SuppressWarnings("serial")
 public class EndGameFrame extends JFrame implements ActionListener {
@@ -60,14 +63,13 @@ public class EndGameFrame extends JFrame implements ActionListener {
      */
     private JPanel playAgainPanel;
     /**
-     * The play again button JButton
+     * The play again button JButton.
      */
     private JButton playAgainButton;
     /**
-     * The quit end frame JButton
+     * The quit end frame JButton.
      */
     private JButton quitEndButton;
-
     /**
      * A String representing the total number of customers driven.
      */
@@ -89,7 +91,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * Creates and displays the JFrame
+     * Creates and displays the JFrame.
      */
     private void createEndGameFrame() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -129,7 +131,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
         int highestFarePaid = game.getGamePanel().getHighestFarePaid();
         String nameOfHighestPayingCustomer;
         if (highestFarePaid != 0) {
-            nameOfHighestPayingCustomer = searchForHighestPayingCustomers(highestFarePaid);
+            nameOfHighestPayingCustomer = searchForHighestPayingCustomer(highestFarePaid);
             highestPayingCustomer.setText("Your highest paying customer was " + nameOfHighestPayingCustomer + " with a $"
              + highestFarePaid + " fare!");
         } else {
@@ -139,6 +141,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
         statsPanel.add(statsTitle, panelGBC);
         statsPanel.add(stats, panelGBC);
         statsPanel.add(highestPayingCustomer, panelGBC);
+        
         // --------------- Play Again Options ------------- \\
         playAgainPanel = new JPanel();
         playAgainButton = new JButton();
@@ -168,15 +171,28 @@ public class EndGameFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    private String searchForHighestPayingCustomers(int fareToSearchFor) {
+    /**
+     * Searches for the highest paying customer that the player 
+     * has driven using a linear search algorithm.
+     * 
+     * @return a String representing the name of the highest paying
+     * customer
+     */
+    private String searchForHighestPayingCustomer(int highestFareToSearchFor) {
         Customer[] customers = game.getGamePanel().getCustomers();
 
-        Customer highestPayingCustomer = linearSearch(customers, fareToSearchFor);
+        Customer highestPayingCustomer = searchForFareUsingLinearSearch(customers, highestFareToSearchFor);
 
         return highestPayingCustomer.getName();
     }
 
-    private Customer linearSearch(Customer[] customers, int fareToSearchFor) {
+    /**
+     * Searches for a specified fare using the linear search algorithm.
+     * 
+     * @return a <code>Customer</code> object representing the customer
+     * that paid the highest fare to the player
+     */
+    private Customer searchForFareUsingLinearSearch(Customer[] customers, int fareToSearchFor) {
         for (int i = 0; i < customers.length; i++) {
             if (customers[i].getFare() == fareToSearchFor) {
                 if (customers[i].getHasBeenDroppedOff()) {

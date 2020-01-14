@@ -6,6 +6,9 @@ import java.awt.event.KeyListener;
 /**
  * The <code>KeyManager</code> class handles all keyboard input 
  * by the user.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 public class KeyManager implements KeyListener {
 

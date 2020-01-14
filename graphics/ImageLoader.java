@@ -10,6 +10,9 @@ import javax.swing.ImageIcon;
 /**
  * The <code>ImageLoader</code> class loads
  * images.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 public class ImageLoader {
 

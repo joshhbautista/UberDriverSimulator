@@ -8,6 +8,9 @@ import audio.AudioPlayer;
  * The <code>Assets</code> class loads all assets of the game.
  * This includes all BufferedImages, Icons, and Audio. The attributes
  * of this class are allowed to be accessed anywhere.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 public class Assets {
 

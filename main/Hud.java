@@ -15,6 +15,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+/**
+ * The <code>Hud</code> class is a JPanel that displays 
+ * the current stats of the game. This includes the total
+ * amount of money made, fuel left, and time left.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
+ */
 @SuppressWarnings("serial")
 public class Hud extends JPanel {
 

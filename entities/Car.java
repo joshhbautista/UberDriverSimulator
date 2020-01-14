@@ -12,6 +12,9 @@ import main.Hud;
  * The <code>Car</code> class represents the drivable
  * car/player. A <code>Car</code> is an <code>Entity</code>
  * that has an <em>x-position, y-position, width,</em> and <em>height</em>.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
  */
 public class Car extends Entity {
 
