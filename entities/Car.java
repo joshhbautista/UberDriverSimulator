@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 
-import graphics.Assets;
 import main.Game;
 import main.Hud;
 

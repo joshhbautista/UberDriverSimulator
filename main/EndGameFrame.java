@@ -15,30 +15,82 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import entities.Customer;
+/**
+ * The <code>EndGameFrame</code> class is the JFrame that displays
+ * the end game frame to the user. The end game frame displays the 
+ * end game stats. This includes the total money made and number 
+ * of customers driven. It also contains buttons that ask the user
+ * if they want to play again or not.
+ */
 @SuppressWarnings("serial")
 public class EndGameFrame extends JFrame implements ActionListener {
 
+    /**
+     * The <code>Game</code> object to be communicated with.
+     */
     private Game game;
+    /**
+     * The width of the <code>EndGameFrame</code>.
+     */
     private final int SCREEN_WIDTH = 800;
+    /**
+     * The height of the <code>EndGameFrame</code>.
+     */
     private final int SCREEN_HEIGHT = 450;
 
+    /**
+     * The JPanel that displays all the stats.
+     */
     private JPanel statsPanel;
+    /**
+     * The JLabel that displays the title of the stats panel.
+     */
     private JLabel statsTitle;
+    /**
+     * The JLabel that displays the stats itself.
+     */
     private JLabel stats;
-
+    /**
+     * The JLabel that displays the highest paying customer.
+     */
+    private JLabel highestPayingCustomer;
+    /**
+     * The JPanel that contains play again and quit button.
+     */
     private JPanel playAgainPanel;
+    /**
+     * The play again button JButton
+     */
     private JButton playAgainButton;
+    /**
+     * The quit end frame JButton
+     */
     private JButton quitEndButton;
 
+    /**
+     * A String representing the total number of customers driven.
+     */
     private String numOfCustomersDriven;
+    /**
+     * An int representing the total amount of money made.
+     */
     private int totalMoneyMade;
 
+    /**
+     * Creates and displays the <code>EndGameFrame</code>.
+     * 
+     * @param game The <code<Game</code> object to be communicated with
+     */
     public EndGameFrame(Game game) {
         super("Uber Driver Simulator");
         this.game = game;
         createEndGameFrame();
     }
 
+    /**
+     * Creates and displays the JFrame
+     */
     private void createEndGameFrame() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,14 +119,26 @@ public class EndGameFrame extends JFrame implements ActionListener {
         statsTitle = new JLabel();
         statsTitle.setFont(new Font("", Font.BOLD, 48));
         statsTitle.setText("You've earned...");
-
         stats = new JLabel();
-        stats.setFont(new Font("", Font.BOLD, 36));
+        stats.setFont(new Font("", Font.BOLD, 24));
         stats.setText("$" + totalMoneyMade + " by driving " + numOfCustomersDriven + " customers!");
-        
+
+        highestPayingCustomer = new JLabel();
+        highestPayingCustomer.setFont(new Font("", Font.BOLD, 24));
+
+        int highestFarePaid = game.getGamePanel().getHighestFarePaid();
+        String nameOfHighestPayingCustomer;
+        if (highestFarePaid != 0) {
+            nameOfHighestPayingCustomer = searchForHighestPayingCustomers(highestFarePaid);
+            highestPayingCustomer.setText("Your highest paying customer was " + nameOfHighestPayingCustomer + " with a $"
+             + highestFarePaid + " fare!");
+        } else {
+            highestPayingCustomer.setText("");
+        }
+
         statsPanel.add(statsTitle, panelGBC);
         statsPanel.add(stats, panelGBC);
-
+        statsPanel.add(highestPayingCustomer, panelGBC);
         // --------------- Play Again Options ------------- \\
         playAgainPanel = new JPanel();
         playAgainButton = new JButton();
@@ -102,6 +166,25 @@ public class EndGameFrame extends JFrame implements ActionListener {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private String searchForHighestPayingCustomers(int fareToSearchFor) {
+        Customer[] customers = game.getGamePanel().getCustomers();
+
+        Customer highestPayingCustomer = linearSearch(customers, fareToSearchFor);
+
+        return highestPayingCustomer.getName();
+    }
+
+    private Customer linearSearch(Customer[] customers, int fareToSearchFor) {
+        for (int i = 0; i < customers.length; i++) {
+            if (customers[i].getFare() == fareToSearchFor) {
+                if (customers[i].getHasBeenDroppedOff()) {
+                    return customers[i];
+                }
+            }
+        }
+        return null;
     }
 
     @Override

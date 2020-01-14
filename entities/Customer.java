@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import java.awt.Rectangle;
 
-import graphics.Assets;
 import main.Game;
 import main.Hud;
 
@@ -26,6 +25,10 @@ public class Customer extends Entity {
      * The amount of money the customer is willing to pay as an int.
      */
     private int fare;
+    /**
+     * The customer's name
+     */
+    private String name;
     /**
      * The fare display image as a BufferedImage. 
      */
@@ -54,6 +57,10 @@ public class Customer extends Entity {
      * The <code>Rectangle</code> object that represents the drop off spot bounds.
      */
     private Rectangle dropOffSpot;
+    /**
+     * A boolean telling if the customer has been dropped off by the player.
+     */
+    private boolean hasBeenDroppedOff;
 
     /**
      * Creates a <code>Customer</code> with the following attributes.
@@ -68,15 +75,17 @@ public class Customer extends Entity {
      * @param customerImage the customer image
      * @param destination the destination the customer wants to be dropped off at
      */
-    public Customer(Game game, float xPos, float yPos, int width, int height, int fare, BufferedImage fareDisplay, BufferedImage customerImage, int[] destination) {
+    public Customer(Game game, String name, float xPos, float yPos, int width, int height, int fare, BufferedImage fareDisplay, BufferedImage customerImage, int[] destination) {
         super(xPos, yPos, width, height);
         this.game = game;
+        this.name = name;
         this.fare = fare;
         this.fareDisplay = fareDisplay;
         this.customerImage = customerImage;
         this.destination = destination;
         isVisible = false;
         hasBeenPickedUp = false;
+        hasBeenDroppedOff = false;
 
         pickUpSpot = new Rectangle(0, 0, 30, 30); 
         dropOffSpot = new Rectangle(0, 0, 30, 30);
@@ -87,7 +96,7 @@ public class Customer extends Entity {
 
         // ------------------ If car is near customer ------------------ \\
         if (pickUpSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            JOptionPane.showMessageDialog(null, "You have picked up a customer.", "Uber Driver Simulator", 1);
+            JOptionPane.showMessageDialog(null, "You have picked up customer " + name + "!", "Uber Driver Simulator", 1);
             game.getKeyManager().resetKeyPresses(); // Reset key presses 
             pickUpSpot.setLocation(0, 0); // Remove pick up bounds
             hasBeenPickedUp = true;
@@ -96,11 +105,12 @@ public class Customer extends Entity {
         }
         // -------------------- If car is at customer destination ------------- \\
         if (dropOffSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            JOptionPane.showMessageDialog(null, "You dropped off a customer!\nYou have earned $" + fare + "!", "Uber Driver Simulator", 1);
+            JOptionPane.showMessageDialog(null, name + " has been dropped off!\n\nThey have paid you $" + fare + "!", "Uber Driver Simulator", 1);
             game.getKeyManager().resetKeyPresses(); // Reset key presses
             payFare();
             game.getGamePanel().addNumOfCustomersDriven(1); 
             hasBeenPickedUp = false;
+            hasBeenDroppedOff = true;
             dropOffSpot.setLocation(0, 0); // Remove drop off bounds
             game.getAssets().getDropOffSFX().play(0);
             game.getAssets().getCarDoorsSFX().play(6.0f);
@@ -136,6 +146,9 @@ public class Customer extends Entity {
      */
     public void payFare() {
         game.getGamePanel().getCar().addMoneyMade(fare);
+        if (fare > game.getGamePanel().getHighestFarePaid()) {
+            game.getGamePanel().setHighestFarePaid(fare);
+        }
     }
 
     // ------------------ SETTERS & GETTERS ----------------------- \\
@@ -157,5 +170,32 @@ public class Customer extends Entity {
      */
     public boolean getIsVisible() {
         return isVisible;
+    }
+
+    /**
+     * Returns the <code>fare</code> attribute of this customer.
+     * 
+     * @return An int representing how much the customer will pay the driver
+     */
+    public int getFare() {
+        return fare;
+    }
+
+    /**
+     * Returns the <code>name</code> attribute of this customer.
+     * 
+     * @return A String representing the name of this customer
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Returns the <code>hasBeenDroppedOff</code> attribute of this customer.
+     * 
+     * @return A boolean telling if the customer has been dropped off
+     */
+    public boolean getHasBeenDroppedOff() {
+        return hasBeenDroppedOff;
     }
 }

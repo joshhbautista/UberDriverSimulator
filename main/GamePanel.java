@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -23,13 +25,19 @@ public class GamePanel extends JPanel {
     private RoadBounds roadBounds;
     private Timer customerSpawnTimer;
 
+    private int highestFarePaid = 0;
     private int numOfCustomersDriven = 0;
     private final int[] POSSIBLE_FARES = {11, 15, 16, 17, 18, 19, 21, 23};
-
     private final int CUSTOMER_SPAWN_RATE = 20000; // 20 seconds
+
+    private final ArrayList<String> CUSTOMER_NAMES = new ArrayList<String>(Arrays.asList("Avery", "Payton", 
+                                                    "Quinn", "Hayden", "Sage", "Rylan", "Eden", "Elliott", "Shane", 
+                                                    "Ariel", "Kyrie", "Lyric", "Finley", "Morgan"));
+
     private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 49}, {1226, 549}, {468, 165}, 
                                              {962, 549}, {858, 55}, {54, 55}, {1037, 233}, {1100, 550},
-                                              {451, 282}, {758, 49}, {928, 390}, {1218, 220}};
+                                             {451, 282}, {758, 49}, {928, 390}, {1218, 220}};
+
     private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
                                                    {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1439, 65},
                                                    {1347, 175}, {243, 513}, {459, 51}, {854, 358}};
@@ -63,8 +71,7 @@ public class GamePanel extends JPanel {
         customers[7].update(hud);
         customers[8].update(hud);
         customers[9].update(hud);
-
-        if (hud.getTimeLeft() == 270 || car.getFuelLeft() <= 0) {
+        if (hud.getTimeLeft() == 0 || car.getFuelLeft() <= 0) {
             endGame();
         }
     }
@@ -145,11 +152,29 @@ public class GamePanel extends JPanel {
         customers = new Customer[14];
         for (int i = 0; i < 14; i++) {
             int randomFareIndex = generateRandomIndex(8);
+            sortCustomerNamesAlphabetically();
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
             int[] randomDestination = selectRandomDestination();
-            customers[i] = new Customer(game, randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
+            customers[i] = new Customer(game, CUSTOMER_NAMES.get(i), randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
                                         game.getAssets().getFareDisplay()[randomFareIndex], game.getAssets().getCustomers()[i], randomDestination);
+        }
+    }
+
+    private void sortCustomerNamesAlphabetically() {
+        sortAlphabeticallyUsingInsertionSort(CUSTOMER_NAMES);
+    }
+
+    private void sortAlphabeticallyUsingInsertionSort(ArrayList<String> CUSTOMER_NAMES) {
+        for (int i = 1; i < CUSTOMER_NAMES.size(); i++) {
+            String key = CUSTOMER_NAMES.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && key.compareTo(CUSTOMER_NAMES.get(j)) < 0) {
+                CUSTOMER_NAMES.set(j + 1, CUSTOMER_NAMES.get(j));
+                j--;
+            }
+            CUSTOMER_NAMES.set(j + 1, key);
         }
     }
 
@@ -194,5 +219,17 @@ public class GamePanel extends JPanel {
 
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
+    }
+
+    public Customer[] getCustomers() {
+        return customers;
+    }
+
+    public int getHighestFarePaid() {
+        return highestFarePaid;
+    }
+
+    public void setHighestFarePaid(int highestFarePaid) {
+        this.highestFarePaid = highestFarePaid;
     }
 }

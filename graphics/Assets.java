@@ -144,70 +144,155 @@ public class Assets {
         CUSTOMER_SPAWN_SFX = new AudioPlayer("resources\\SFX\\customerspawn.wav");
     }
 
+    /**
+     * Returns the <code>audi</code> car image.
+     * 
+     * @return the player's car image
+     */
     public BufferedImage[] getAudi() {
         return AUDI;
     }
 
+    /**
+     * Returns the <code>townMap</code> image.
+     * 
+     * @return the townmap background
+     */
     public BufferedImage getTownMap() {
         return TOWN_MAP;
     }
 
+    /**
+     * Returns the <code>pickUpSymbol</code> image.
+     * 
+     * @return the pick up symbol image
+     */
     public BufferedImage getPickUpSymbol() {
         return PICK_UP_SYMBOL;
     }
 
+    /**
+     * Returns the <code>dropOffSymbol</code> image.
+     * 
+     * @return the drop off symbol image
+     */
     public BufferedImage getDropOffSymbol() {
         return DROP_OFF_SYMBOL;
     }
 
+    /**
+     * Returns the <code>fareDisplay</code> image.
+     * 
+     * @return the fare display image
+     */
     public BufferedImage[] getFareDisplay() {
         return FARE_DISPLAY;
     }
 
+    /**
+     * Returns the <code>customers</code> image array.
+     * 
+     * @return the customers image array
+     */
     public BufferedImage[] getCustomers() {
         return CUSTOMERS;
     }
 
+    /**
+     * Returns the <code>titleIcon</code> icon.
+     * 
+     * @return the title icon 
+     */
     public Icon getTitleIcon() {
         return TITLE_ICON;
     }
 
+    /**
+     * Returns the <code>playButtonIcon</code> icon.
+     * 
+     * @return the play button icon
+     */
     public Icon getPlayButtonIcon() {
         return PLAY_BUTTON_ICON;
     }
 
+    /**
+     * Returns the <code>quitButtonIcon</code> icon.
+     * 
+     * @return the quit button icon
+     */
     public Icon getQuitButtonIcon() {
         return QUIT_BUTTON_ICON;
     }
 
+    /**
+     * Returns the <code>settingsButtonIcon</code> icon. 
+     * 
+     * @return the settings button icon
+     */
     public Icon getSettingsButtonIcon() {
         return SETTINGS_BUTTON_ICON;
     }
 
+    /**
+     * Returns the <code>playAgainButtonIcon</code> icon.
+     * 
+     * @return the play again button icon
+     */
     public Icon getPlayAgainButtonIcon() {
         return PLAY_AGAIN_BUTTON_ICON;
     }
 
+    /**
+     * Returns the <code>quitEndButtonIcon</code> icon.
+     * 
+     * @return the quit end button icon
+     */
     public Icon getQuitEndButtonIcon() {
         return QUIT_END_BUTTON_ICON;
     }
 
+    /**
+     * Returns the <code>menuBgMusic</code> AudioPlayer.
+     * 
+     * @return the menu background music audio player
+     */
     public AudioPlayer getMenuBgMusic() {
         return MENU_BG_MUSIC;
     }
 
+    /**
+     * Returns the <code>gameBgMusic</code> AudioPlayer.
+     * 
+     * @return the game background music audio player
+     */
     public AudioPlayer getGameBgMusic() {
         return GAME_BG_MUSIC;
     }
 
+    /**
+     * Returns the <code>dropOffSFX</code> AudioPlayer.
+     * 
+     * @return the drop off sound effect audio player
+     */
     public AudioPlayer getDropOffSFX() {
         return DROP_OFF_SFX;
     }
 
+    /**
+     * Returns the <code>carDoorsSFX</code> AudioPlayer.
+     * 
+     * @return the car doors sound effect audio player
+     */
     public AudioPlayer getCarDoorsSFX() {
         return CAR_DOORS_SFX;
     }
 
+    /**
+     * Returns the <code>customerSpawnSFX</code> AudioPlayer.
+     * 
+     * @return the customer spawn sound effect audio player
+     */
     public AudioPlayer getCustomerSpawnSFX() {
         return CUSTOMER_SPAWN_SFX;
     }
