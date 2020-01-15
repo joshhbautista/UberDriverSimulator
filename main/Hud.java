@@ -26,16 +26,47 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class Hud extends JPanel {
 
+    /**
+     * A JLabel that displays the total amount of money made.
+     */
     private JLabel moneyMadeLabel;
+    /**
+     * A JLabel that displays the amount of fuel left.
+     */
     private JLabel fuelLeftLabel;
+    /**
+     * A JProgressBar that visually displays how much fuel is 
+     * left by a bar.
+     */
     private JProgressBar fuelLeftBar;
-
+    /**
+     * A Timer that keeps track of how much time is left in the game.
+     */
     private Timer timeLeftTimer;
+    /**
+     * An int representing the amount of time left in seconds.
+     */
     private int timeLeftInSecs;
+    /**
+     * A String representing the amount of time left in seconds.
+     */
     private String timeLeftStr;
+    /**
+     * A JLabel that displays how much time is remaining.
+     */
     private JLabel timeLeftLabel;
 
+    /**
+     * Creates and displays the Hud.
+     */
     public Hud() {
+        createHudFrame();
+    }
+
+    /**
+     * Creates the Hud JFrame.
+     */
+    private void createHudFrame() {
         setSize(new Dimension(1600, 200));
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(new LineBorder(Color.BLACK, 5));
@@ -85,22 +116,49 @@ public class Hud extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * Returns the <code>moneyMadeLabel</code> JLabel.
+     * 
+     * @return the JLabel that displays how much money has been made
+     */
     public JLabel getMoneyMadeLabel() {
         return moneyMadeLabel;
     }
 
+    /**
+     * Returns the <code>fueLLeftLabel</code> JLabel.
+     * 
+     * @return the JLabel that displays the amount of fuel left
+     */
     public JLabel getFuelLeftLabel() {
         return fuelLeftLabel;
     }
 
+    /**
+     * Returns the <code>fuelLeftBar</code> JProgressBar.
+     * 
+     * @return the JProgressBar that visually displays how 
+     * much fuel is left
+     */
     public JProgressBar getFuelLeftBar() {
         return fuelLeftBar;
     }
 
+    /**
+     * Returns the <code>timeLeftInSecs</code> of the game.
+     * 
+     * @return an int representing how much time is left
+     */
     public int getTimeLeft() {
         return timeLeftInSecs;
     }
 
+    /**
+     * Returns the <code>timeLeftTimer</code> Timer.
+     * 
+     * @return a Timer that keeps track of the time left 
+     * in the game
+     */
     public Timer getTimeLeftTimer() {
         return timeLeftTimer;
     }

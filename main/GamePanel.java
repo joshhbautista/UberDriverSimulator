@@ -77,7 +77,7 @@ public class GamePanel extends JPanel {
                                                     "Ariel", "Kyrie", "Lyric", "Finley", "Morgan"));
 
     /**
-     * An int array representing the possible spawn locations
+     * An 2D int array representing the possible spawn locations
      * the customers can spawn at.
      */
     private final int[][] SPAWN_LOCATIONS = {{183, 55}, {383, 492}, {1080, 49}, {1226, 549}, {468, 165}, 
@@ -85,33 +85,31 @@ public class GamePanel extends JPanel {
                                              {451, 282}, {758, 49}, {928, 390}, {1218, 220}};
 
     /**
-     * An int array representing the possible destination locations
+     * An 2D int array representing the possible destination locations
      * the customers can request to be dropped off at.
      */
     private final int[][] DESTINATION_LOCATIONS = {{1347, 251}, {34, 513}, {44, 173}, {1175, 513}, {567, 172}, 
                                                    {607, 511}, {853, 610}, {1056, 753}, {692, 287}, {1439, 65},
                                                    {1347, 175}, {243, 513}, {459, 51}, {854, 358}};
-    private final ArrayList<int[]> POSSIBLE_SPAWN_LOCATIONS = new ArrayList<int[]>(14);
-    private final ArrayList<int[]> POSSIBLE_DESTINATION_LOCATIONS = new ArrayList<int[]>(14);
     
     /**
-     * Creates the GamePanel.
+     * Creates the GamePanel and initializes all game objects.
      * 
      * @param game the <code>Game</code> object to be communicated with
      */
     public GamePanel(Game game) {
         this.game = game;
         this.hud = game.getHud();
-        roadBounds = new RoadBounds();
+        this.roadBounds = new RoadBounds();
         addKeyListener(game.getKeyManager());
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
         playBackgroundMusic(-10.0f);
 
-        spawnPlayer();
-
         initializeCustomers();
+        spawnPlayer();
         spawnCustomer();
+
         startCustomerSpawnTimer();
     }
 
@@ -124,6 +122,14 @@ public class GamePanel extends JPanel {
 
         stopCarIfCollidesWithRoad();
 
+        updateCustomers();
+
+        if (hud.getTimeLeft() == 269 || car.getFuelLeft() <= 0) {
+            endGame();
+        }
+    }
+
+    private void updateCustomers() {
         customers[0].update(hud);
         customers[1].update(hud);
         customers[2].update(hud);
@@ -134,10 +140,10 @@ public class GamePanel extends JPanel {
         customers[7].update(hud);
         customers[8].update(hud);
         customers[9].update(hud);
-
-        if (hud.getTimeLeft() == 0 || car.getFuelLeft() <= 0) {
-            endGame();
-        }
+        customers[10].update(hud);
+        customers[11].update(hud);
+        customers[12].update(hud);
+        customers[13].update(hud);
     }
 
     /**
@@ -150,6 +156,10 @@ public class GamePanel extends JPanel {
 
         car.render(g);
 
+        renderCustomers(g);
+    }
+
+    private void renderCustomers(Graphics g) {
         customers[0].render(g);
         customers[1].render(g);
         customers[2].render(g);
@@ -160,6 +170,10 @@ public class GamePanel extends JPanel {
         customers[7].render(g);
         customers[8].render(g);
         customers[9].render(g);
+        customers[10].render(g);
+        customers[11].render(g);
+        customers[12].render(g);
+        customers[13].render(g);
     }
 
     /**
@@ -251,7 +265,7 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < 14; i++) {
             int randomFareIndex = generateRandomIndex(8);
 
-            sortCustomerNamesAlphabetically();
+            sortCustomerNamesAlphabeticallyUsingInsertion();
 
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
@@ -264,13 +278,10 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * 
+     * Sorts the <code>CUSTOMER_NAMES</code> String array 
+     * alphabetically using the insertion sort algorithm.
      */
-    private void sortCustomerNamesAlphabetically() {
-        sortAlphabeticallyUsingInsertionSort(CUSTOMER_NAMES);
-    }
-
-    private void sortAlphabeticallyUsingInsertionSort(ArrayList<String> CUSTOMER_NAMES) {
+    private void sortCustomerNamesAlphabeticallyUsingInsertion() {
         for (int i = 1; i < CUSTOMER_NAMES.size(); i++) {
             String key = CUSTOMER_NAMES.get(i);
             int j = i - 1;
@@ -283,6 +294,13 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Randomly returns a location from the <code>SPAWN_LOCATIONS</code>
+     * int[] array. Once returned, sets that index in the array as null as to not reuse that
+     * location again, ensuring that all of the customers locations are unique.
+     * 
+     * @return an int array representing a random location from <code>SPAWN_LOCATIONS</code>
+     */
     private int[] selectRandomLocation() {
         int randomIndex = generateRandomIndex(14);
 
@@ -295,6 +313,13 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Randomly returns a destination from the <code>DESTINATION_LOCATIONS</code>
+     * int[] array. Once returned, sets that index in the array as null as to not reuse that
+     * location again, ensuring that all of the customers destination locations are unique.
+     * 
+     * @return an int array representing a random destination from <code>DESTINATION_LOCATIONS</code>
+     */
     private int[] selectRandomDestination() {
         int randomIndex = generateRandomIndex(14);
 
@@ -307,6 +332,10 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Ends the current game by setting the game's current
+     * state to "end" and stopping all timers and music.
+     */
     private void endGame() {
         game.setCurrentState("end");
         hud.getTimeLeftTimer().stop();
@@ -314,26 +343,58 @@ public class GamePanel extends JPanel {
         game.getAssets().getGameBgMusic().stop();
     }
 
+    /**
+     * Returns the <code>Car</code> object of this Game.
+     * 
+     * @return a <code>Car</code> object the player is driving
+     */
     public Car getCar() {
         return car;
     }
 
+    /**
+     * Adds a specified number to the <code>numOfCustomersDriven</code>
+     * property.
+     * 
+     * @param numOfCustomersDrivenToAdd the number of customers driven to add
+     */
     public void addNumOfCustomersDriven(int numOfCustomersDrivenToAdd) {
         numOfCustomersDriven += numOfCustomersDrivenToAdd;
     }
 
+    /**
+     * Returns the <code>numOfCustomerDriven</code> property of this Game.
+     * 
+     * @return an int representign the total number of customers driven
+     */
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
     }
 
+    /**
+     * Returns the <code>customers</code> Customer array of this Game.
+     * 
+     * @return a Customer array that contains all of the customers
+     */
     public Customer[] getCustomers() {
         return customers;
     }
 
+    /**
+     * Returns the <code>highestFarePaid</code> property of this Game.
+     * 
+     * @return an int representign the highest fare paid by the customer
+     */
     public int getHighestFarePaid() {
         return highestFarePaid;
     }
 
+    /**
+     * Sets the highest fare paid by a customer.
+     * 
+     * @param highestFarePaid an int representing the highest fare
+     * paid by a customer
+     */
     public void setHighestFarePaid(int highestFarePaid) {
         this.highestFarePaid = highestFarePaid;
     }

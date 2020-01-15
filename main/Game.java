@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.JOptionPane;
+
 import graphics.*;
 import input.KeyManager;
 
@@ -35,7 +37,6 @@ public class Game {
      * The <code>Assets</code> object that loads all assets of the game.
      */
     private Assets assets;
-
     /**
      * A boolean telling if the game is running or not.
      */
@@ -110,7 +111,7 @@ public class Game {
 
         initialize();
 
-        // ----------------GAME LOOP----------------- \\
+        // ---------------- GAME LOOP ----------------- \\
 
         while (isGameRunning) {
             System.out.println(currentState);
@@ -122,6 +123,7 @@ public class Game {
             
             // GAME STATE
             if (currentState.equals("game")) {
+                displayGameDescription();
                 hud = new Hud();
                 gamePanel = new GamePanel(this);
                 gameFrame = new GameFrame(gamePanel, hud);
@@ -169,6 +171,18 @@ public class Game {
      */
     private void render() {
         gamePanel.repaint();
+    }
+
+    /**
+     * Displays the game description to the user.
+     */
+    private void displayGameDescription() {
+        JOptionPane.showMessageDialog(null, "Welcome to Uber Driver Simulator!\n\nYou are an Uber driver and "
+         + "your job is to pick up as much customers as you can before your fuel runs out or when time runs out! "
+         + "\n\nUse the \'WASD\' keys to drive your car. If you want to pick up a customer, simply drive near the "
+         + "pick up symbol below them.\nOnce they are picked up, they will let you know where to drop them off by displaying " 
+         + "a taxi marker on your screen.\nTo drop them off, simply drive to the marker.\nIf you wish to exit the game, press the "
+         + " \'X\' button in the top right of your scren. Happy driving!", "Uber Driver Simulator", 1);
     }
 
     /**

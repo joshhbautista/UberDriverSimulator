@@ -9,7 +9,7 @@ import main.Game;
 import main.Hud;
 
 /**
- * The <code>Car</code> class represents the drivable
+ * The <code>Car</code> class represents a drivable
  * car/player. A <code>Car</code> is an <code>Entity</code>
  * that has an <em>x-position, y-position, width,</em> and <em>height</em>.
  * 
@@ -64,7 +64,10 @@ public class Car extends Entity {
         fuelLeft = 100.0;
     }
 
-    // TODO javadoc update and render?
+    /**
+     * This method is called every frame. It is used to 
+     * continously check for updates.
+     */
     @Override
     public void update(Hud hud) {
 
@@ -84,6 +87,10 @@ public class Car extends Entity {
         }
     }
 
+    /**
+     * This method is called every frame. It is used to draw the 
+     * car onto the screen according to player keyboard input.
+     */
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(car, (int) super.getXPos(), (int) super.getYPos(), super.getWidth(), super.getHeight(), null);
@@ -148,7 +155,7 @@ public class Car extends Entity {
 
     }
 
-    // ------- SETTERS & GETTERS ------- \\
+    // ------------------ SETTERS & GETTERS ----------------------- \\
 
     /**
      * Sets the speed that the car moves on the x-axis.

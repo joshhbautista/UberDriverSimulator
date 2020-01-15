@@ -91,7 +91,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * Creates and displays the JFrame.
+     * Creates the EndGameFrame JFrame.
      */
     private void createEndGameFrame() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -132,7 +132,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
         String nameOfHighestPayingCustomer;
         if (highestFarePaid != 0) {
             nameOfHighestPayingCustomer = searchForHighestPayingCustomer(highestFarePaid);
-            highestPayingCustomer.setText("Your highest paying customer was " + nameOfHighestPayingCustomer + " with a $"
+            highestPayingCustomer.setText("Your first highest paying customer was " + nameOfHighestPayingCustomer + " with a $"
              + highestFarePaid + " fare!");
         } else {
             highestPayingCustomer.setText("");
@@ -203,6 +203,10 @@ public class EndGameFrame extends JFrame implements ActionListener {
         return null;
     }
 
+    /**
+     * This method is callec every time an action is performed.
+     * Used to check for button clicks.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play again") {

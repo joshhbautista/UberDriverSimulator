@@ -15,15 +15,44 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+/**
+ * The <code>Menu</code> class is a JFrame that displays the 
+ * menu of the game to the user. It contains a "Play" and "Quit"
+ * button.
+ * 
+ * @author Joshua Bautista
+ * @version 1/14/2020
+ */
 @SuppressWarnings("serial")
 public class Menu extends JFrame implements ActionListener {
     
+    /**
+     * A JButton that checks if the user wants to play.
+     */
     private JButton playButton;
+    /**
+     * A JButton that checks if the user wants to quit.
+     */
     private JButton quitButton;
+    /**
+     * A JLabel that displays the title of the game.
+     */
     private JLabel title;
+    /**
+     * A JLabel that contains the menu background image.
+     */
     private JLabel background;
+    /**
+     * The <code>Game</code> object to be communicated with.
+     */
     private Game game;
 
+    /**
+     * Creates and displays the menu.
+     * 
+     * @param game the <code>Game</code> object to be 
+     * communicated with
+     */
     public Menu(Game game) {
         super("Uber Driver Simulator");
         this.game = game;
@@ -31,6 +60,9 @@ public class Menu extends JFrame implements ActionListener {
         playBackgroundMusic(-5.0f);
     }
 
+    /**
+     * Creates the Menu JFrame.
+     */
     private void createMenuFrame() {
         setPreferredSize(new Dimension(1600, 900));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,10 +107,21 @@ public class Menu extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    /**
+     * Plays the menu background music with a 
+     * specified volume.
+     * 
+     * @param volume a float representing how loud 
+     * the music should be played
+     */
     private void playBackgroundMusic(float volume) {
         game.getAssets().getMenuBgMusic().play(volume);
     }
 
+    /**
+     * This method is called everytime an action is 
+     * performed. Used to check for button presses.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play") {

@@ -90,10 +90,17 @@ public class Customer extends Entity {
         hasBeenPickedUp = false;
         hasBeenDroppedOff = false;
 
-        pickUpSpot = new Rectangle(0, 0, 30, 30); 
+        pickUpSpot = new Rectangle(0, 0, 30, 30); // this.pickupSpot?
         dropOffSpot = new Rectangle(0, 0, 30, 30);
     }
 
+    /**
+     * This method is called every frame and takes care
+     * of all the game updates.
+     * 
+     * @param hud the <code>Hud</code> object to be 
+     * communicated with
+     */
     @Override
     public void update(Hud hud) {
 
@@ -129,6 +136,13 @@ public class Customer extends Entity {
         }
     }
 
+    /**
+     * This method is called every frame and draws
+     * all of the customer images to the screen.
+     * 
+     * @param graphics the <code>Graphics</code> object from the
+     * <code>GamePanel</code> JPanel to be drawn on
+     */
     @Override
     public void render(Graphics graphics) {
         if (isVisible) {
