@@ -5,8 +5,6 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -51,15 +49,14 @@ public class GamePanel extends JPanel {
      * A <code>Timer</code> object that keeps track of how often a customer is spawned.
      */
     private Timer customerSpawnTimer;
-
     /**
      * An int representing the highest fare paid by a customer.
      */
-    private int highestFarePaid = 0;
+    private int highestFarePaid;
     /**
      * An int representing the total number of customers driven by the player.
      */
-    private int numOfCustomersDriven = 0;
+    private int numOfCustomersDriven;
     /**
      * An int array that contains all of the possible fares the customers can pay.
      */
@@ -70,11 +67,11 @@ public class GamePanel extends JPanel {
     private final int CUSTOMER_SPAWN_RATE = 20000; // 20 seconds
 
     /**
-     * An ArrayList that contains all of the names of the customers.
+     * An String array that contains all of the names of the customers.
      */
-    private final ArrayList<String> CUSTOMER_NAMES = new ArrayList<String>(Arrays.asList("Avery", "Payton", 
-                                                    "Quinn", "Hayden", "Sage", "Rylan", "Eden", "Elliott", "Shane", 
-                                                    "Ariel", "Kyrie", "Lyric", "Finley", "Morgan"));
+    private String[] customerNames = {"Avery", "Payton", "Quinn", "Hayden", "Sage", "Rylan", 
+                                        "Eden", "Elliott", "Shane", "Ariel", "Kyrie", "Lyric", 
+                                        "Finley", "Morgan"};
 
     /**
      * An 2D int array representing the possible spawn locations
@@ -101,10 +98,12 @@ public class GamePanel extends JPanel {
         this.game = game;
         this.hud = game.getHud();
         this.roadBounds = new RoadBounds();
+        highestFarePaid = 0;
+        numOfCustomersDriven = 0;
         addKeyListener(game.getKeyManager());
         setFocusable(true);
         setPreferredSize(new Dimension(1600, 790));
-        playBackgroundMusic(-10.0f);
+        playBackgroundMusic(2.0f);
 
         initializeCustomers();
         spawnPlayer();
@@ -124,7 +123,7 @@ public class GamePanel extends JPanel {
 
         updateCustomers();
 
-        if (hud.getTimeLeft() == 269 || car.getFuelLeft() <= 0) {
+        if (hud.getTimeLeft() == 0 || car.getFuelLeft() <= 0) {
             endGame();
         }
     }
@@ -254,7 +253,7 @@ public class GamePanel extends JPanel {
             spawnCustomer();
         }
         customers[randomIndex].setIsVisible(true);
-        game.getAssets().getCustomerSpawnSFX().play(0);
+        game.getAssets().getCustomerSpawnSFX().play(5);
     }
 
     /**
@@ -272,25 +271,25 @@ public class GamePanel extends JPanel {
 
             int[] randomDestination = selectRandomDestination();
 
-            customers[i] = new Customer(game, CUSTOMER_NAMES.get(i), randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
+            customers[i] = new Customer(game, customerNames[i], randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
                                         game.getAssets().getFareDisplay()[randomFareIndex], game.getAssets().getCustomers()[i], randomDestination);
         }
     }
 
     /**
-     * Sorts the <code>CUSTOMER_NAMES</code> String array 
+     * Sorts the <code>customerNames</code> String array 
      * alphabetically using the insertion sort algorithm.
      */
     private void sortCustomerNamesAlphabeticallyUsingInsertion() {
-        for (int i = 1; i < CUSTOMER_NAMES.size(); i++) {
-            String key = CUSTOMER_NAMES.get(i);
+        for (int i = 1; i < customerNames.length; i++) {
+            String key = customerNames[i];
             int j = i - 1;
 
-            while (j >= 0 && key.compareTo(CUSTOMER_NAMES.get(j)) < 0) {
-                CUSTOMER_NAMES.set(j + 1, CUSTOMER_NAMES.get(j));
+            while (j >= 0 && key.compareTo(customerNames[j]) < 0) {
+                customerNames[j + 1] = customerNames[j];
                 j--;
             }
-            CUSTOMER_NAMES.set(j + 1, key);
+            customerNames[j + 1] = key;
         }
     }
 
@@ -365,7 +364,7 @@ public class GamePanel extends JPanel {
     /**
      * Returns the <code>numOfCustomerDriven</code> property of this Game.
      * 
-     * @return an int representign the total number of customers driven
+     * @return an int representing the total number of customers driven
      */
     public int getNumOfCustomersDriven() {
         return numOfCustomersDriven;
@@ -383,7 +382,7 @@ public class GamePanel extends JPanel {
     /**
      * Returns the <code>highestFarePaid</code> property of this Game.
      * 
-     * @return an int representign the highest fare paid by the customer
+     * @return an int representing the highest fare paid by the customer
      */
     public int getHighestFarePaid() {
         return highestFarePaid;

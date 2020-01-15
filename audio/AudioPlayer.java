@@ -34,7 +34,6 @@ public class AudioPlayer {
      */
     public AudioPlayer(String path) {
         try {
-
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path));
             audioToBePlayed = AudioSystem.getClip();
             audioToBePlayed.open(audioInputStream);

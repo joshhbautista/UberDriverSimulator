@@ -2,10 +2,8 @@ package entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
-import javax.swing.JOptionPane;
-
 import java.awt.Rectangle;
+import javax.swing.JOptionPane;
 
 import main.Game;
 import main.Hud;
@@ -95,35 +93,22 @@ public class Customer extends Entity {
     }
 
     /**
-     * This method is called every frame and takes care
-     * of all the game updates.
+     * This method is called every frame and takes care of all 
+     * the game updates.
      * 
-     * @param hud the <code>Hud</code> object to be 
-     * communicated with
+     * @param hud the <code>Hud</code> object to be communicated with
      */
     @Override
     public void update(Hud hud) {
 
-        // ------------------ If car is near customer ------------------ \\
+        // ------------------ If car is on customer pickup symbol ------------------ \\
         if (pickUpSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            JOptionPane.showMessageDialog(null, "You have picked up customer " + name + "!", "Uber Driver Simulator", 1);
-            game.getKeyManager().resetKeyPresses(); // Reset key presses 
-            pickUpSpot.setLocation(0, 0); // Remove pick up bounds
-            hasBeenPickedUp = true;
-            isVisible = false;
-            game.getAssets().getCarDoorsSFX().play(6.0f);
+            getPickedUp();
         }
         // -------------------- If car is at customer destination ------------- \\
         if (dropOffSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            JOptionPane.showMessageDialog(null, name + " has been dropped off!\n\nThey have paid you $" + fare + "!", "Uber Driver Simulator", 1);
-            game.getKeyManager().resetKeyPresses(); // Reset key presses
+            getDroppedOff();
             payFare();
-            game.getGamePanel().addNumOfCustomersDriven(1); 
-            hasBeenPickedUp = false;
-            hasBeenDroppedOff = true;
-            dropOffSpot.setLocation(0, 0); // Remove drop off bounds
-            game.getAssets().getDropOffSFX().play(0);
-            game.getAssets().getCarDoorsSFX().play(6.0f);
         }
         // -------------------- If the customer is shown to user ----------------  \\
         if (isVisible) {
@@ -156,6 +141,32 @@ public class Customer extends Entity {
         if (hasBeenPickedUp) {
             graphics.drawImage(game.getAssets().getDropOffSymbol(), (int) destination[0] - 20, (int) destination[1] - 65, 60, 70, null); // Destination symbol
         }
+    }
+
+    /**
+     * Simulates the customer getting picked up by the player.
+     */
+    private void getPickedUp() {
+        JOptionPane.showMessageDialog(null, name + " has been picked up!", "Uber Driver Simulator", 1);
+        game.getKeyManager().resetKeyPresses(); // Reset key presses 
+        pickUpSpot.setLocation(0, 0); // Remove pick up bounds
+        hasBeenPickedUp = true;
+        isVisible = false;
+        game.getAssets().getCarDoorsSFX().play(6.0f);
+    }
+
+    /**
+     * Simulates getting dropped off by the player.
+     */
+    private void getDroppedOff() {
+        JOptionPane.showMessageDialog(null, name + " has been dropped off!\n\nThey have paid you $" + fare + "!", "Uber Driver Simulator", 1);
+        game.getKeyManager().resetKeyPresses(); // Reset key presses
+        game.getGamePanel().addNumOfCustomersDriven(1); 
+        hasBeenPickedUp = false;
+        hasBeenDroppedOff = true;
+        dropOffSpot.setLocation(0, 0); // Remove drop off bounds
+        game.getAssets().getDropOffSFX().play(-2.0f);
+        game.getAssets().getCarDoorsSFX().play(6.0f);
     }
 
     /**

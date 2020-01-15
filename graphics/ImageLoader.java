@@ -8,8 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- * The <code>ImageLoader</code> class loads
- * images.
+ * The <code>ImageLoader</code> class load images.
  * 
  * @author Joshua Bautista
  * @version 1/14/2020

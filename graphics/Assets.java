@@ -85,6 +85,9 @@ public class Assets {
      */
     private static AudioPlayer DROP_OFF_SFX;
 
+    /**
+     * Initializes all the assets.
+     */
     public Assets() {
         initialize();
     }
@@ -99,6 +102,8 @@ public class Assets {
         AUDI[1] = ImageLoader.loadImage("resources\\Vehicles\\AudiRight.png");
         AUDI[2] = ImageLoader.loadImage("resources\\Vehicles\\AudiDown.png");
         AUDI[3] = ImageLoader.loadImage("resources\\Vehicles\\AudiLeft.png");
+
+        // Town map background
         TOWN_MAP = ImageLoader.loadImage("resources\\HUD\\townmap.jpg");
 
         // Fare bubble icons

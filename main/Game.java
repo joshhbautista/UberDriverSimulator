@@ -53,7 +53,6 @@ public class Game {
      * A long representing the target time to be updated.
      */
     private long targetTime = 1000 / SCREEN_UPDATE_RATE;
-
     /**
      * A String representing the current state of the game.
      */
@@ -67,7 +66,8 @@ public class Game {
     }
 
     /**
-     * Initializes all needed game objects and assets.
+     * Initializes all needed game objects and assets 
+     * and calls the start method.
      */
     private void initialize() {
         keyManager = new KeyManager();
@@ -116,13 +116,14 @@ public class Game {
         while (isGameRunning) {
             System.out.println(currentState);
 
+            // -------- MENU STATE ----- \\
             if (currentState.equals("menu")) {
                 new Menu(this);
                 currentState = "playing menu";
             }
             
-            // GAME STATE
-            if (currentState.equals("game")) {
+            // -------- INIT GAME STATE -------- \\
+            if (currentState.equals("init game")) {
                 displayGameDescription();
                 hud = new Hud();
                 gamePanel = new GamePanel(this);
@@ -130,7 +131,7 @@ public class Game {
                 currentState = "playing game";
             }
 
-            // GAME PLAYING STATE
+            // ---------- PLAYING GAME STATE -------- \\ 
             if (currentState.equals("playing game")) {
                 start = System.nanoTime();
 
@@ -148,7 +149,7 @@ public class Game {
                 } 
             }
 
-            // END GAME STATE
+            // -------- END GAME STATE ------- \\
             if (currentState.equals("end")) {
                 new EndGameFrame(this);
                 currentState = "prompt play again";
@@ -182,7 +183,7 @@ public class Game {
          + "\n\nUse the \'WASD\' keys to drive your car. If you want to pick up a customer, simply drive near the "
          + "pick up symbol below them.\nOnce they are picked up, they will let you know where to drop them off by displaying " 
          + "a taxi marker on your screen.\nTo drop them off, simply drive to the marker.\nIf you wish to exit the game, press the "
-         + " \'X\' button in the top right of your scren. Happy driving!", "Uber Driver Simulator", 1);
+         + " \'X\' button in the top right of your screen. Happy driving!", "Uber Driver Simulator", 1);
     }
 
     /**
@@ -253,8 +254,6 @@ public class Game {
         return assets;
     }
 }
-
     /*
     TODO should car class be PlayerCar or Player or Car?
     */
-    

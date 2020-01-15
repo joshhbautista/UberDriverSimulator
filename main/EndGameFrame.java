@@ -101,6 +101,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
         setFocusable(false);
         getContentPane();
 
+        // ------------ GridBagConstraints ------------- \\
         GridBagConstraints frameGBC = new GridBagConstraints();
         frameGBC.insets = new Insets(0, 5, 0, 5);
         frameGBC.gridwidth = GridBagConstraints.REMAINDER;
@@ -111,7 +112,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
         panelGBC.insets = new Insets(0, 0, 20, 0);
         panelGBC.gridwidth = GridBagConstraints.REMAINDER;
         
-        // ------------ End Game Stats ----------- \\
+        // --------------------- End Game Stats --------------------- \\
         numOfCustomersDriven = game.getGamePanel().getNumOfCustomersDriven() + "";
         totalMoneyMade = game.getGamePanel().getCar().getMoneyMade();
 
@@ -121,8 +122,9 @@ public class EndGameFrame extends JFrame implements ActionListener {
         statsTitle = new JLabel();
         statsTitle.setFont(new Font("", Font.BOLD, 48));
         statsTitle.setText("You've earned...");
+
         stats = new JLabel();
-        stats.setFont(new Font("", Font.BOLD, 24));
+        stats.setFont(new Font("", Font.BOLD, 30));
         stats.setText("$" + totalMoneyMade + " by driving " + numOfCustomersDriven + " customers!");
 
         highestPayingCustomer = new JLabel();
@@ -132,7 +134,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
         String nameOfHighestPayingCustomer;
         if (highestFarePaid != 0) {
             nameOfHighestPayingCustomer = searchForHighestPayingCustomer(highestFarePaid);
-            highestPayingCustomer.setText("Your first highest paying customer was " + nameOfHighestPayingCustomer + " with a $"
+            highestPayingCustomer.setText("One of your highest paying customer(s) was " + nameOfHighestPayingCustomer + " with a $"
              + highestFarePaid + " fare!");
         } else {
             highestPayingCustomer.setText("");
@@ -180,7 +182,6 @@ public class EndGameFrame extends JFrame implements ActionListener {
      */
     private String searchForHighestPayingCustomer(int highestFareToSearchFor) {
         Customer[] customers = game.getGamePanel().getCustomers();
-
         Customer highestPayingCustomer = searchForFareUsingLinearSearch(customers, highestFareToSearchFor);
 
         return highestPayingCustomer.getName();
@@ -204,7 +205,7 @@ public class EndGameFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * This method is callec every time an action is performed.
+     * This method is called every time an action is performed.
      * Used to check for button clicks.
      */
     @Override

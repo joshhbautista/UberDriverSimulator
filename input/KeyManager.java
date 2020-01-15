@@ -17,7 +17,7 @@ public class KeyManager implements KeyListener {
      */
     private boolean[] keys;
     /**
-     * A boolean telling if the certain key is pressed.
+     * A boolean telling if the respective key is pressed.
      */
     private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
 
@@ -25,7 +25,6 @@ public class KeyManager implements KeyListener {
      * Initializes the <code>keys</code> boolean array.
      */
     public KeyManager() {
-        // An array representing all keys on the keyboard
         keys = new boolean[256];
 
         isUpPressed = false;
@@ -46,19 +45,33 @@ public class KeyManager implements KeyListener {
         isRightPressed = keys[KeyEvent.VK_D];
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
+    /**
+     * This method is called every time a key is pressed. It is used
+     * to set the corresponding pressed key to true in the <code>keys
+     * </code> boolean array.
+     * 
+     * @param e the <code>KeyEvent</code>
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()] = true;
     }
 
+    /**
+     * This method is called every time a key is released. It is used
+     * to set the corresponding released key to false in the <code>keys
+     * </code> boolean array.
+     * 
+     * @param e the <code>KeyEvent</code>
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;
+    }
+
+    // Unneeded implemented method
+    @Override
+    public void keyTyped(KeyEvent e) {
     }
 
     /**

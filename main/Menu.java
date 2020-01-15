@@ -57,7 +57,7 @@ public class Menu extends JFrame implements ActionListener {
         super("Uber Driver Simulator");
         this.game = game;
         createMenuFrame();
-        playBackgroundMusic(-5.0f);
+        playBackgroundMusic(-2.0f);
     }
 
     /**
@@ -119,13 +119,13 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     /**
-     * This method is called everytime an action is 
+     * This method is called every time an action is 
      * performed. Used to check for button presses.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "play") {
-            game.setCurrentState("game");
+            game.setCurrentState("init game");
             game.getAssets().getMenuBgMusic().stop();
             dispose();
         } else {

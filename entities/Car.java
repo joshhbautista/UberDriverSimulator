@@ -66,7 +66,7 @@ public class Car extends Entity {
 
     /**
      * This method is called every frame. It is used to 
-     * continously check for updates.
+     * continuously check for updates.
      */
     @Override
     public void update(Hud hud) {
@@ -80,6 +80,7 @@ public class Car extends Entity {
         hud.getFuelLeftLabel().setText("Fuel Left: " + String.format("%.1f", fuelLeft) + " L");
         hud.getFuelLeftBar().setValue((int) fuelLeft);
 
+        // ------- FuelLeftBar Colours ----- \\
         if (fuelLeft < 50)
             hud.getFuelLeftBar().setForeground(Color.YELLOW);
         if (fuelLeft < 20) {
@@ -147,14 +148,6 @@ public class Car extends Entity {
         }
     }
 
-    public void pickUpCustomer(Customer customer) {
-
-    }
-
-    public void dropOffCustomer(Customer customer) {
-
-    }
-
     // ------------------ SETTERS & GETTERS ----------------------- \\
 
     /**
@@ -167,8 +160,7 @@ public class Car extends Entity {
     }
 
     /**
-     * Returns the <code>xMove</code> attribute
-     * for this car.
+     * Returns the <code>xMove</code> attribute for this car.
      * 
      * @return the <code>xMove</code> property as a float
      */
@@ -213,8 +205,7 @@ public class Car extends Entity {
     }
 
     /**
-     * Adds a specified amount to the <code>moneyMade</code>
-     * attribute.
+     * Adds a specified amount to the <code>moneyMade</code> attribute.
      * 
      * @param moneyMadeToBeAdded amount to be added to the
      * <code>moneyMade</code> property
