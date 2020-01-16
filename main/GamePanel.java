@@ -96,8 +96,8 @@ public class GamePanel extends JPanel {
      */
     public GamePanel(Game game) {
         this.game = game;
-        this.hud = game.getHud();
-        this.roadBounds = new RoadBounds();
+        hud = game.getHud();
+        roadBounds = new RoadBounds();
         highestFarePaid = 0;
         numOfCustomersDriven = 0;
         addKeyListener(game.getKeyManager());
@@ -128,25 +128,10 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void updateCustomers() {
-        customers[0].update(hud);
-        customers[1].update(hud);
-        customers[2].update(hud);
-        customers[3].update(hud);
-        customers[4].update(hud);
-        customers[5].update(hud);
-        customers[6].update(hud);
-        customers[7].update(hud);
-        customers[8].update(hud);
-        customers[9].update(hud);
-        customers[10].update(hud);
-        customers[11].update(hud);
-        customers[12].update(hud);
-        customers[13].update(hud);
-    }
-
     /**
      * Paints/draws all the assets to the screen.
+     * 
+     * @param g the <code>Graphics</code> objects to be drawn on to
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -156,23 +141,6 @@ public class GamePanel extends JPanel {
         car.render(g);
 
         renderCustomers(g);
-    }
-
-    private void renderCustomers(Graphics g) {
-        customers[0].render(g);
-        customers[1].render(g);
-        customers[2].render(g);
-        customers[3].render(g);
-        customers[4].render(g);
-        customers[5].render(g);
-        customers[6].render(g);
-        customers[7].render(g);
-        customers[8].render(g);
-        customers[9].render(g);
-        customers[10].render(g);
-        customers[11].render(g);
-        customers[12].render(g);
-        customers[13].render(g);
     }
 
     /**
@@ -200,6 +168,48 @@ public class GamePanel extends JPanel {
                 }
             }
         }
+    }
+
+    /**
+     * Renders and draws all customers.
+     * 
+     * @param g the <code>Graphics</code> objects to be drawn to
+     */
+    private void renderCustomers(Graphics g) {
+        customers[0].render(g);
+        customers[1].render(g);
+        customers[2].render(g);
+        customers[3].render(g);
+        customers[4].render(g);
+        customers[5].render(g);
+        customers[6].render(g);
+        customers[7].render(g);
+        customers[8].render(g);
+        customers[9].render(g);
+        customers[10].render(g);
+        customers[11].render(g);
+        customers[12].render(g);
+        customers[13].render(g);
+    }
+
+    /**
+     * Updates all of the customers.
+     */
+    private void updateCustomers() {
+        customers[0].update(hud);
+        customers[1].update(hud);
+        customers[2].update(hud);
+        customers[3].update(hud);
+        customers[4].update(hud);
+        customers[5].update(hud);
+        customers[6].update(hud);
+        customers[7].update(hud);
+        customers[8].update(hud);
+        customers[9].update(hud);
+        customers[10].update(hud);
+        customers[11].update(hud);
+        customers[12].update(hud);
+        customers[13].update(hud);
     }
 
     /**
@@ -236,6 +246,7 @@ public class GamePanel extends JPanel {
      * Generates a random index from 0 to a specified number.
      * 
      * @param max the maximum range to be generated
+     * @return a random generated int
      */
     private int generateRandomIndex(int max) {
         int randomIndex = (int) (Math.random() * (max + 1));
@@ -247,9 +258,9 @@ public class GamePanel extends JPanel {
      * making them visible.
      */
     private void spawnCustomer() {
-        int randomIndex = generateRandomIndex(13);
-        while (customers[randomIndex].getIsVisible() == true) {
-            randomIndex = generateRandomIndex(13);
+        int randomIndex = generateRandomIndex(13); // generate random index from 0-13
+        while (customers[randomIndex].getIsVisible() == true || customers[randomIndex].getHasBeenDroppedOff() == true) {
+            randomIndex = generateRandomIndex(13); // while customer is already visible to player or has already been dropped off, generate a new index
         }
         customers[randomIndex].setIsVisible(true);
         game.getAssets().getCustomerSpawnSFX().play(5);
@@ -263,12 +274,12 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < 14; i++) {
             int randomFareIndex = generateRandomIndex(7);
 
-            sortCustomerNamesAlphabeticallyUsingInsertion();
+            sortCustomerNamesAlphabeticallyUsingInsertion(); // to fit in sort algo
 
             int[] randomLocation = new int[2];
             randomLocation = selectRandomLocation();
 
-            int[] randomDestination = selectRandomDestination();
+            int[] randomDestination = selectRandomDestination(); 
 
             customers[i] = new Customer(game, customerNames[i], randomLocation[0], randomLocation[1], 60, 100, POSSIBLE_FARES[randomFareIndex], 
                                         game.getAssets().getFareDisplay()[randomFareIndex], game.getAssets().getCustomers()[i], randomDestination);
@@ -300,14 +311,16 @@ public class GamePanel extends JPanel {
      * @return an int array representing a random location from <code>SPAWN_LOCATIONS</code>
      */
     private int[] selectRandomLocation() {
-        int randomIndex = generateRandomIndex(13);
+        int randomIndex = generateRandomIndex(13); // generate random index from 0-13
 
-        if ((SPAWN_LOCATIONS[randomIndex] != null)) {
+        if ((SPAWN_LOCATIONS[randomIndex] != null)) { // if spawn location hasn't already been used
             int[] randomSpawnLocation = {SPAWN_LOCATIONS[randomIndex][0], SPAWN_LOCATIONS[randomIndex][1]};
-            SPAWN_LOCATIONS[randomIndex] = null;
+
+            SPAWN_LOCATIONS[randomIndex] = null; // set null to signify spawn location has already been used
+
             return randomSpawnLocation;
         } else {
-            return selectRandomLocation();
+            return selectRandomLocation(); // if spawn location has already been used, select another random location
         }
     }
 
@@ -319,14 +332,16 @@ public class GamePanel extends JPanel {
      * @return an int array representing a random destination from <code>DESTINATION_LOCATIONS</code>
      */
     private int[] selectRandomDestination() {
-        int randomIndex = generateRandomIndex(13);
+        int randomIndex = generateRandomIndex(13); // generate random index from 0-13
 
-        if ((DESTINATION_LOCATIONS[randomIndex] != null)) {
+        if ((DESTINATION_LOCATIONS[randomIndex] != null)) { // if destination location hasn't already been used
             int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
-            DESTINATION_LOCATIONS[randomIndex] = null;
+
+            DESTINATION_LOCATIONS[randomIndex] = null; // set null to signify destination location has already been used
+
             return randomDestination;
         } else {
-            return selectRandomDestination();
+            return selectRandomDestination(); // if destination location has already been used, select another random destination
         }
     }
 

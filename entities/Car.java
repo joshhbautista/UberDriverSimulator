@@ -67,6 +67,9 @@ public class Car extends Entity {
     /**
      * This method is called every frame. It is used to 
      * continuously check for updates.
+     * 
+     * @param hud the <code>Hud</code> object to be 
+     * communicated with
      */
     @Override
     public void update(Hud hud) {
@@ -91,6 +94,9 @@ public class Car extends Entity {
     /**
      * This method is called every frame. It is used to draw the 
      * car onto the screen according to player keyboard input.
+     * 
+     * @param graphics the <code>Graphics</code> object to be
+     * drawn on to
      */
     @Override
     public void render(Graphics graphics) {
@@ -100,7 +106,7 @@ public class Car extends Entity {
     /**
      * Moves the car on the x and y axis.
      */
-    public void move() {
+    private void move() {
         moveXPos();
         moveYPos();
     }
@@ -126,22 +132,22 @@ public class Car extends Entity {
         xMove = 0;
         yMove = 0;
 
-        if (game.getKeyManager().getIsUpPressed()) {
+        if (game.getKeyManager().getIsUpPressed()) { // up pressed
             car = game.getAssets().getAudi()[0];
             fuelLeft -= 0.01;
             yMove = -1.5f;
         }
-        if (game.getKeyManager().getIsDownPressed()) {
+        if (game.getKeyManager().getIsDownPressed()) { // down pressed
             car = game.getAssets().getAudi()[2];
             fuelLeft -= 0.01;
             yMove = 1.5f;
         }
-        if (game.getKeyManager().getIsLeftPressed()) {
+        if (game.getKeyManager().getIsLeftPressed()) { // left pressed
             car = game.getAssets().getAudi()[3];
             fuelLeft -= 0.01;
             xMove = -1.5f;
         }
-        if (game.getKeyManager().getIsRightPressed()) {
+        if (game.getKeyManager().getIsRightPressed()) { // right pressed
             car = game.getAssets().getAudi()[1];
             fuelLeft -= 0.01;
             xMove = 1.5f;

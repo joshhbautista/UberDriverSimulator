@@ -88,7 +88,7 @@ public class Customer extends Entity {
         hasBeenPickedUp = false;
         hasBeenDroppedOff = false;
 
-        pickUpSpot = new Rectangle(0, 0, 30, 30); // this.pickupSpot?
+        pickUpSpot = new Rectangle(0, 0, 30, 30);
         dropOffSpot = new Rectangle(0, 0, 30, 30);
     }
 
@@ -100,14 +100,13 @@ public class Customer extends Entity {
      */
     @Override
     public void update(Hud hud) {
-
         // ------------------ If car is on customer pickup symbol ------------------ \\
         if (pickUpSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            getPickedUp();
+            pickedUp();
         }
         // -------------------- If car is at customer destination ------------- \\
         if (dropOffSpot.intersects(game.getGamePanel().getCar().getCollisionBounds())) {
-            getDroppedOff();
+            droppedOff();
             payFare();
         }
         // -------------------- If the customer is shown to user ----------------  \\
@@ -134,7 +133,7 @@ public class Customer extends Entity {
             graphics.drawImage(customerImage, (int) super.getXPos(), (int) super.getYPos(), super.getWidth(), super.getHeight(), null); // Customer
             graphics.drawImage(fareDisplay, (int) (super.getXPos() + 35), (int) (super.getYPos() - 50), 120, 65, null); // Fare display
             if (!hasBeenPickedUp) {
-                graphics.drawImage(game.getAssets().getPickUpSymbol(), (int) getXPos() + 6, (int) getYPos() + 100, 50, 50, null); 
+                graphics.drawImage(game.getAssets().getPickUpSymbol(), (int) getXPos() + 6, (int) getYPos() + 100, 50, 50, null); // Pick up symbol
             }
         }
 
@@ -146,7 +145,7 @@ public class Customer extends Entity {
     /**
      * Simulates the customer getting picked up by the player.
      */
-    private void getPickedUp() {
+    private void pickedUp() {
         JOptionPane.showMessageDialog(null, name + " has been picked up!", "Uber Driver Simulator", 1);
         game.getKeyManager().resetKeyPresses(); // Reset key presses 
         pickUpSpot.setLocation(0, 0); // Remove pick up bounds
@@ -158,7 +157,7 @@ public class Customer extends Entity {
     /**
      * Simulates getting dropped off by the player.
      */
-    private void getDroppedOff() {
+    private void droppedOff() {
         JOptionPane.showMessageDialog(null, name + " has been dropped off!\n\nThey have paid you $" + fare + "!", "Uber Driver Simulator", 1);
         game.getKeyManager().resetKeyPresses(); // Reset key presses
         game.getGamePanel().addNumOfCustomersDriven(1); 
@@ -172,7 +171,7 @@ public class Customer extends Entity {
     /**
      * Pays the fare to the driver/player.
      */
-    public void payFare() {
+    private void payFare() {
         game.getGamePanel().getCar().addMoneyMade(fare);
         if (fare > game.getGamePanel().getHighestFarePaid()) {
             game.getGamePanel().setHighestFarePaid(fare);

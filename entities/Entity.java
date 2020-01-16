@@ -140,5 +140,4 @@ public abstract class Entity {
      * to be drawn to
      */
     public abstract void render(Graphics graphics);
-
 }

@@ -67,19 +67,20 @@ public class Menu extends JFrame implements ActionListener {
         setPreferredSize(new Dimension(1600, 900));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // -------------- Background image -------------- \\
         background = new JLabel(new ImageIcon("resources\\HUD\\townmap.jpg"));
         background.setSize(new Dimension(1600, 900));
         setContentPane(background);
         setLayout(new GridBagLayout());
 
+        // ----------- GridBagConstaints ----------- \\
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(15, 40, 15, 40);
         c.gridwidth = GridBagConstraints.REMAINDER;
 
+        // ----------------- Buttons ---------------- \\
         playButton = new JButton();
         quitButton = new JButton();
-        title = new JLabel();
-
         playButton.setIcon(game.getAssets().getPlayButtonIcon());
         playButton.setBorderPainted(false);
         playButton.setBorder(null);
@@ -87,16 +88,18 @@ public class Menu extends JFrame implements ActionListener {
         quitButton.setBorderPainted(false);
         quitButton.setBorder(null);
 
+        playButton.addActionListener(this);
+        playButton.setActionCommand("play");
+        quitButton.addActionListener(this);
+        quitButton.setActionCommand("quit");
+
+        // ------------- Title Label ---------------- \\
+        title = new JLabel();
         title.setIcon(game.getAssets().getTitleIcon());
         title.setFont(new Font("", Font.BOLD, 80));
         title.setBorder(new LineBorder(Color.BLACK));
         title.setBackground(Color.BLUE);
         title.setForeground(Color.BLACK);
-
-        playButton.addActionListener(this);
-        playButton.setActionCommand("play");
-        quitButton.addActionListener(this);
-        quitButton.setActionCommand("quit");
 
         add(title, c);
         add(playButton, c);
@@ -108,11 +111,9 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     /**
-     * Plays the menu background music with a 
-     * specified volume.
+     * Plays the menu background music with a specified volume.
      * 
-     * @param volume a float representing how loud 
-     * the music should be played
+     * @param volume a float representing how loud the music should be played
      */
     private void playBackgroundMusic(float volume) {
         game.getAssets().getMenuBgMusic().play(volume);

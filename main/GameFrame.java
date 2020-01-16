@@ -35,6 +35,9 @@ public class GameFrame extends JFrame {
 
     /**
      * Creates and displays the GameFrame.
+     * 
+     * @param gamePanel the <code>GamePanel</code> object that displays the main game
+     * @param hud the <code>Hud</code> object that displays the stats
      */
     public GameFrame(GamePanel gamePanel, Hud hud) {
         super("Uber Driver Simulator");

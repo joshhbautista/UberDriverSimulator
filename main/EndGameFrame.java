@@ -124,8 +124,8 @@ public class EndGameFrame extends JFrame implements ActionListener {
         statsTitle.setText("You've earned...");
 
         stats = new JLabel();
-        stats.setFont(new Font("", Font.BOLD, 30));
-        stats.setText("$" + totalMoneyMade + " by driving " + numOfCustomersDriven + " customers!");
+        stats.setFont(new Font("", Font.BOLD, 28));
+        stats.setText("$" + totalMoneyMade + " by driving " + numOfCustomersDriven + " customer(s)!");
 
         highestPayingCustomer = new JLabel();
         highestPayingCustomer.setFont(new Font("", Font.BOLD, 24));
@@ -177,12 +177,14 @@ public class EndGameFrame extends JFrame implements ActionListener {
      * Searches for the highest paying customer that the player 
      * has driven using a linear search algorithm.
      * 
+     * @param highestFareToSearchFor the highest fare to search for
      * @return a String representing the name of the highest paying
      * customer
      */
     private String searchForHighestPayingCustomer(int highestFareToSearchFor) {
         Customer[] customers = game.getGamePanel().getCustomers();
-        Customer highestPayingCustomer = searchForFareUsingLinearSearch(customers, highestFareToSearchFor);
+
+        Customer highestPayingCustomer = searchCustomersForFareUsingLinearSearch(customers, highestFareToSearchFor);
 
         return highestPayingCustomer.getName();
     }
@@ -190,10 +192,13 @@ public class EndGameFrame extends JFrame implements ActionListener {
     /**
      * Searches for a specified fare using the linear search algorithm.
      * 
+     * @param customers a <code>Customer</code> array containing all of
+     * the customers to search for
+     * @param fareToSearchFor the fare to search for
      * @return a <code>Customer</code> object representing the customer
      * that paid the highest fare to the player
      */
-    private Customer searchForFareUsingLinearSearch(Customer[] customers, int fareToSearchFor) {
+    private Customer searchCustomersForFareUsingLinearSearch(Customer[] customers, int fareToSearchFor) {
         for (int i = 0; i < customers.length; i++) {
             if (customers[i].getFare() == fareToSearchFor) {
                 if (customers[i].getHasBeenDroppedOff()) {
@@ -207,6 +212,8 @@ public class EndGameFrame extends JFrame implements ActionListener {
     /**
      * This method is called every time an action is performed.
      * Used to check for button clicks.
+     * 
+     * @param e the <code>ActionEvent</code>
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -43,6 +43,7 @@ public class Game {
     private boolean isGameRunning;
     /**
      * A boolean telling if the user wants to play again.
+     * Assumed false.
      */
     private boolean playAgain = false;
     /**
@@ -103,7 +104,7 @@ public class Game {
     /**
      * Initializes all assets and runs the main game loop.
      */
-    public void run() {
+    private void run() {
 
         long start;
         long elapsed;
@@ -114,25 +115,22 @@ public class Game {
         // ---------------- GAME LOOP ----------------- \\
 
         while (isGameRunning) {
-            System.out.println(currentState);
 
             // -------- MENU STATE ----- \\
             if (currentState.equals("menu")) {
                 new Menu(this);
                 currentState = "playing menu";
-            }
-            
+            } 
             // -------- INIT GAME STATE -------- \\
-            if (currentState.equals("init game")) {
+            else if (currentState.equals("init game")) {
                 displayGameDescription();
                 hud = new Hud();
                 gamePanel = new GamePanel(this);
                 gameFrame = new GameFrame(gamePanel, hud);
                 currentState = "playing game";
-            }
-
+            } 
             // ---------- PLAYING GAME STATE -------- \\ 
-            if (currentState.equals("playing game")) {
+            else if (currentState.equals("playing game")) {
                 start = System.nanoTime();
 
                 update();
@@ -147,12 +145,13 @@ public class Game {
                 } catch (Exception e) {
                     //e.printStackTrace();
                 } 
-            }
-
+            } 
             // -------- END GAME STATE ------- \\
-            if (currentState.equals("end")) {
+            else if (currentState.equals("end")) {
                 new EndGameFrame(this);
                 currentState = "prompt play again";
+            } else {
+                System.out.println(); // the game bugs out if nothing is outputted in between state changes
             }
         }
     }
@@ -233,6 +232,8 @@ public class Game {
 
     /**
      * Sets if the user wants to play again.
+     * 
+     * @param playAgain a boolean telling if the user wants to play again
      */
     public void setPlayAgain(boolean playAgain) {
         this.playAgain = playAgain;
@@ -240,6 +241,8 @@ public class Game {
 
     /**
      * Sets the current state of the game.
+     * 
+     * @param currentState the current state of the game
      */
     public void setCurrentState(String currentState) {
         this.currentState = currentState;
@@ -254,6 +257,3 @@ public class Game {
         return assets;
     }
 }
-    /*
-    TODO should car class be PlayerCar or Player or Car?
-    */

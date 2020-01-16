@@ -94,7 +94,7 @@ public class Hud extends JPanel {
         add(fuelLeftBar);
 
         // -------------------- Time Left Timer ------------------\\
-        timeLeftInSecs = 260;
+        timeLeftInSecs = 275;
 
         timeLeftTimer = new Timer(1000, new ActionListener() {
             @Override
