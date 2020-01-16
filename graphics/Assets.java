@@ -132,7 +132,7 @@ public class Assets {
         CUSTOMERS[10] = ImageLoader.loadImage("resources\\Customers\\millenialgirl.png");
         CUSTOMERS[11] = ImageLoader.loadImage("resources\\Customers\\millenialgirl2.png");
         CUSTOMERS[12] = ImageLoader.loadImage("resources\\Customers\\millenialgirl3.png");
-        CUSTOMERS[13] = ImageLoader.loadImage("resources\\Customers\\millenial4.png");
+        CUSTOMERS[13] = ImageLoader.loadImage("resources\\Customers\\millenialgirl4.png");
 
         // Icons & Hud
         TITLE_ICON = ImageLoader.loadIcon("resources\\Menu\\title.PNG");

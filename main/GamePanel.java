@@ -233,24 +233,23 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * Generates a random index from 0 to a 
-     * specified number.
+     * Generates a random index from 0 to a specified number.
      * 
      * @param max the maximum range to be generated
      */
     private int generateRandomIndex(int max) {
-        int randomIndex = (int) (Math.random() * (max));
+        int randomIndex = (int) (Math.random() * (max + 1));
         return randomIndex;
     }
 
     /**
-     * Simulating "spawning in" a <code>Customer</code> by 
+     * Simulating "spawning in" a <code>Customer</code> in the game by 
      * making them visible.
      */
     private void spawnCustomer() {
-        int randomIndex = generateRandomIndex(10);
-        if (customers[randomIndex].getIsVisible() == true) {
-            spawnCustomer();
+        int randomIndex = generateRandomIndex(13);
+        while (customers[randomIndex].getIsVisible() == true) {
+            randomIndex = generateRandomIndex(13);
         }
         customers[randomIndex].setIsVisible(true);
         game.getAssets().getCustomerSpawnSFX().play(5);
@@ -262,7 +261,7 @@ public class GamePanel extends JPanel {
     private void initializeCustomers() {
         customers = new Customer[14];
         for (int i = 0; i < 14; i++) {
-            int randomFareIndex = generateRandomIndex(8);
+            int randomFareIndex = generateRandomIndex(7);
 
             sortCustomerNamesAlphabeticallyUsingInsertion();
 
@@ -301,7 +300,7 @@ public class GamePanel extends JPanel {
      * @return an int array representing a random location from <code>SPAWN_LOCATIONS</code>
      */
     private int[] selectRandomLocation() {
-        int randomIndex = generateRandomIndex(14);
+        int randomIndex = generateRandomIndex(13);
 
         if ((SPAWN_LOCATIONS[randomIndex] != null)) {
             int[] randomSpawnLocation = {SPAWN_LOCATIONS[randomIndex][0], SPAWN_LOCATIONS[randomIndex][1]};
@@ -320,7 +319,7 @@ public class GamePanel extends JPanel {
      * @return an int array representing a random destination from <code>DESTINATION_LOCATIONS</code>
      */
     private int[] selectRandomDestination() {
-        int randomIndex = generateRandomIndex(14);
+        int randomIndex = generateRandomIndex(13);
 
         if ((DESTINATION_LOCATIONS[randomIndex] != null)) {
             int[] randomDestination = DESTINATION_LOCATIONS[randomIndex];
