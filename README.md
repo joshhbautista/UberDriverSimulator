@@ -7,8 +7,10 @@ Made for ICS culminating project.
 ![Gameplay](Gameplay.gif)
 
 ## How to play
-Install [Java](https://www.java.com/en/download/) from the Oracle website.
-Download the repository and run the **UberDriverSimulator.jar** file in the **src** folder.
+* Install [Java](https://www.java.com/en/download/) from the Oracle website.
+* Download from the [release page](https://github.com/kthisisjosh/UberDriverSimulator/releases).
+   * Extract the **UberDriverSimulator-1.0.zip** file.
+   * Run the **UberDriverSimulator.jar** file in the **src** folder.
 
 ## What's new
 Released the first version (v1.0).
