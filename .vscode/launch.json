@@ -1,0 +1,46 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - UberDriverSimulator",
+            "request": "launch",
+            "mainClass": "main.UberDriverSimulator",
+            "projectName": "UberDriverSim_7af68c1c"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "main.Launcher",
+            "projectName": "UberDriverSim_ad0e80dd"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ImageButton",
+            "request": "launch",
+            "mainClass": "ImageButton",
+            "projectName": "UberDriverSim_7af68c1c"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "main.Launcher",
+            "projectName": "UberDriverSim_7af68c1c"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "game.Launcher",
+            "projectName": "UberDriverSim_7af68c1c"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Launcher",
+            "request": "launch",
+            "mainClass": "Launcher",
+            "projectName": "UberDriverSim_7af68c1c"
+        }
+    ]
+}
