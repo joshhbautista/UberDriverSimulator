@@ -1,6 +1,8 @@
 # Uber Driver Simulator
 🚗Welcome to Uber Driver Simulator. You play as an Uber Driver picking up customers as they pop up on screen. The goal of the game is to make as much money before either your fuel runs out or time runs out.
 
+Made for ICS culminating project.
+
 ## Gameplay
 ![Gameplay](Gameplay.gif)
 
