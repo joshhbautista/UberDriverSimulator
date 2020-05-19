@@ -14,3 +14,6 @@ All credit for assets goes to their respective owners.
 
 ## What's new
 Released the first version (v1.0).
+
+## Support ⭐
+If you like the project, please star the repo.
